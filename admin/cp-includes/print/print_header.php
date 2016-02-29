@@ -1,0 +1,1 @@
+<html><head>    <title>Printing...</title>    <script language="Javascript1.2">        <!--        function printpage() {            window.print();        }        //-->    </script>    <link type="text/css" rel="stylesheet" href="<?php echo PP_URL . '/admin/css/printer_friendly.css'; ?>"/></head><body onload="printpage();">

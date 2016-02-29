@@ -1,0 +1,1 @@
+$.ctrl = function (key, callback, args) {    shortcut.remove("Ctrl+" + key);    shortcut.add("Ctrl+" + key, function () {        callback();        return false;    });};$.shift = function (key, callback, args) {    shortcut.remove("Shift+" + key);    shortcut.add("Shift+" + key, function () {        callback();        return false;    });};

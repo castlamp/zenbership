@@ -1,0 +1,93 @@
+ul.colfields {
+    margin: 0;
+}
+
+ul.colfields li {
+    padding: 12px 16px 12px 16px;
+    border: 1px solid #e1e1e1;
+    margin: 0 0 8px 0;
+    cursor: pointer;
+}
+
+ul.colfields li.on, ul.colfields li:hover {
+    background-color: #FFFED9;
+    border: 1px solid #ccc;
+    margin-right: -1px;
+}
+
+ul.colfields li.section {
+    background-color: #F1F1F1;
+    border-bottom: 2px solid #e1e1e1;
+}
+
+ul.colfields li.page_break {
+    background-color: #ccc;
+    border-bottom: 2px solid #e1e1e1;
+    border-top: 5px solid #000;
+}
+
+.field_edit_menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0 0 0 -1px;
+    width: 300px;
+    height: 500px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.topoptions {
+    text-align: right;
+    margin: 0 0 12px 0;
+    padding: 0 0 12px 0;
+    border-bottom: 1px dotted #e1e1e1;
+}
+
+ul#field_types_hori {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul#field_types_hori li {
+    float: left;
+    width: 274px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    border: 1px solid #e1e1e1;
+    padding: 4px 8px 4px 8px !important;
+    font-family: arial, verdana;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    -moz-box-shadow: inset 1px 1px 3px #fff;
+    -webkit-box-shadow: inset 1px 1px 3px #fff;
+    box-shadow: inset 1px 1px 3px #fff;
+}
+
+ul#field_types_hori li:hover {
+    background-color: #FFFFCC;
+}
+
+p.fffield_type_desc {
+    font-size: 0.8em;
+    color: #999;
+    padding: 0 !important;
+    margin: 0 0 0 24px !important;
+    font-weight: normal !important;
+}
+
+.move {
+    float: left;
+    height: 16px;
+    width: 8px;
+    text-align: right;
+    margin-right: 8px;
+    cursor: move !important;
+    background: url('../imgs/icon-move.png') center left no-repeat;
+}

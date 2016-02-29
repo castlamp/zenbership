@@ -1,0 +1,32 @@
+<h1>Subscription No. %subscription:id% Canceled</h1>
+<div class="box">
+    <div class="pad">
+        <p>%first_name%,</p>
+
+        <p>The following email confirms that your subscription has been successfully canceled. Here's more information
+            on what was canceled. Note that you can re-start this subscription at any time from your management
+            page.</p>
+
+        <h2>Subscription Overview</h2>
+        <table border="0" cellspacing=0 cellpadding=0 class=basic>
+            <tr>
+                <td class="right" width="130"><b>Name</b></th>
+                <td>%product:name%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Description</b></th>
+                <td>%product:tagline%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Price</b></th>
+                <td>%product:format_price%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Manage</b></th>
+                <td><a href="%subscription:update_link%">Manage Subscription Online</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

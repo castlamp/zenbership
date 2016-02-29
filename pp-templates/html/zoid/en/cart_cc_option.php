@@ -1,0 +1,1 @@
+<li><input type="radio" name="method" value="card:%id%" onclick="return deactivate_billing('1');"/> %full_method%</li>

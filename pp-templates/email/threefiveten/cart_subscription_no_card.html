@@ -1,0 +1,32 @@
+<h1>Credit Card Required for Subscription No. %subscription:id%</h1>
+<div class="box">
+    <div class="pad">
+        <p>%first_name%,</p>
+
+        <p>While attempting to renew your subscription (see below) we noticed that you do not have a credit card on
+            file. This makes it impossible to process the order. If you wish to continue receiving your purchased
+            services, please take a moment to click the link below to update your credit card.</p>
+
+        <h2>Subscription Overview</h2>
+        <table border="0" cellspacing=0 cellpadding=0 class=basic>
+            <tr>
+                <td class="right" width="130"><b>Name</b></th>
+                <td>%product:name%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Description</b></th>
+                <td>%product:tagline%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Price</b></th>
+                <td>%product:format_price%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Manage</b></th>
+                <td><a href="%subscription:update_link%">Manage this subscription</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

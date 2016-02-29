@@ -1,0 +1,72 @@
+%invoice:stamp%
+
+<p class="highlight">Thank you for your recent payment on this invoice. This e-mail is notification that your invoice is
+    now considered "Paid". We thank you for your business!</p>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="company">
+    <tr>
+        <td width="33%">
+            <div id="logo">%logo%</div>
+            <div style="margin-top:8px;" id="address">%company_address%</div>
+        </td>
+        <td width="67%" style="text-align: right;">
+            <p>
+
+            <div style="margin-bottom:4px;"><b>Invoice No.</b><br/>%invoice:id%</div>
+            <div style="margin-bottom:4px;"><b>Date Created</b><br/>%invoice:format_date%</div>
+            <div style="margin-bottom:4px;"><b>Date Due</b><br/>%invoice:format_due_date% (%invoice:time_to_due_date%)
+            </div>
+            <div style="margin-bottom:4px;"><b>Balance Due</b><br/>%pricing:format_due%</div>
+            </p>
+        </td>
+    </tr>
+</table>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="addy">
+    <tr>
+        <td width="33%"><h2>Bill To</h2>%billing:company_name%<br/>%billing:contact_name%<br/>%format_billing%</td>
+        <td width="34%"><h2>Ship To</h2>%format_shipping%</td>
+        <td width="33%"><h2>Status</h2>%invoice:format_status%
+            <p>
+                <a href="%invoice:link%">View Online</a>
+            </p>
+        </td>
+    </tr>
+</table>
+
+<table cellspacing="0" cellpadding="4" width="100%" border="0" style="margin-top:24px;">
+    <thead>
+    <th>Item</th>
+    <th width="80">Qty</th>
+    <th width="100">Unit Price</th>
+    <th width="120">Total</th>
+    </thead>
+    <tbody>
+    %components%
+    %payments%
+    <tr class="line">
+        <td colspan="3" class="right">Subtotal</td>
+        <td>%pricing:format_subtotal%</td>
+    </tr>
+    <tr class="line">
+        <td colspan="3" class="right">Tax</td>
+        <td>%pricing:format_tax% (%invoice:tax_rate%%)</td>
+    </tr>
+    <tr class="line">
+        <td colspan="3" class="right">Shipping</td>
+        <td>%pricing:format_shipping%</td>
+    </tr>
+    <tr class="line">
+        <td colspan="3" class="right">Credits</td>
+        <td>(%pricing:format_credits%)</td>
+    </tr>
+    <tr class="line">
+        <td colspan="3" class="right">Payments</td>
+        <td>(%pricing:format_paid%)</td>
+    </tr>
+    <tr class="line">
+        <td colspan="3" class="right"><b>Balance Due</b></td>
+        <td>%pricing:format_due%</td>
+    </tr>
+    </tbody>
+</table>

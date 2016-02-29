@@ -1,0 +1,187 @@
+body {
+    margin: 0 0 24px 0;
+    background-color: #f9f9f9;
+    padding: 0;
+}
+
+.holder {
+    width: 600px;
+    margin: 0 auto;
+}
+
+.box {
+    border: 1px solid #e1e1e1;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.highlight {
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-bottom: 12px;
+    line-height: 16px;
+    background-color: #FFF9BC;
+    padding: 6px 12px 6px 12px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -moz-text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.35);
+    -webkit-text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.35);
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.35);
+    -moz-box-shadow: inset 1px 1px 4px #FFFCD5;
+    -webkit-box-shadow: inset 1px 1px 4px #FFFCD5;
+    box-shadow: inset 1px 1px 4px #FFFCD5;
+    border: 1px solid #F7F0A8;
+}
+
+.small, .zen_small {
+    font-size: 0.75em !important;
+}
+
+.gray, .zen_gray {
+    color: #999;
+}
+
+.pad {
+    padding: 18px 24px 18px 24px;
+}
+
+.col50 {
+    float: left;
+    width: 50%;
+}
+
+.clear {
+    clear: both;
+}
+
+p {
+    font-size: 0.9em;
+    color: #555;
+    line-height: 1.3em;
+    font-family: arial, verdana;
+}
+
+p.quote {
+    font-size: 0.9em;
+    color: #555;
+    line-height: 1.3em;
+    font-style: italic;
+    font-family: georgia, arial, verdana;
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 8px;
+}
+
+.kill_h_margin {
+    margin-top: -8px;
+}
+
+.right {
+    text-align: right;
+}
+
+.small {
+    font-size: 0.8em !important;
+}
+
+.gray {
+    color: #666;
+}
+
+#top {
+    background-color: #111;
+    border-bottom: 3px solid #e1e1e1;
+    line-height: 47px;
+    font-family: arial, verdana;
+    font-size: 1.3em;
+    color: #f1f1f1;
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+h1 {
+    font-family: arial, verdana;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
+h2 {
+    font-family: arial, verdana;
+    font-size: 1.0em;
+    color: #555;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 4px solid #e1e1e1;
+}
+
+table {
+    font-family: arial, verdana;
+    font-size: 0.9em;
+    width: 100%;
+}
+
+table tr.line, table td.line {
+    border-bottom: 1px solid #e1e1e1;
+}
+
+table td.zen_l {
+    text-align: right;
+    font-weight: bold;
+    width: 125px;
+    font-size: 0.8em;
+    color: #555;
+}
+
+table th {
+    text-align: left;
+    padding: 3px 5px 3px 5px;
+    border-bottom: 4px solid #e1e1e1;
+    vertical-align: top;
+}
+
+table td {
+    padding: 3px 5px 3px 5px !important;
+    vertical-align: top;
+}
+
+table td.right {
+    text-align: right;
+    vertical-align: top;
+    font-weight: bold;
+    font-size: 0.8em;
+    color: #555;
+}
+
+.basic_formatting {
+    font-size: 0.9em;
+    color: #555;
+    line-height: 1.3em;
+    font-family: arial, verdana;
+}
+
+#footer {
+    margin: 24px auto 0 auto;
+    text-align: right;
+    font-family: arial, verdana;
+    font-size: 0.75em;
+    color: #999;
+}
+
+.centered_element {
+    text-align: center;
+    margin: 24px 0 24px 0;
+}
+
+#unsubscribe_section {
+    margin: 24px auto 0 auto;
+    font-family: arial, verdana;
+    font-size: 0.75em;
+    color: #999;
+    text-align: center;
+}
+
+span.bottom_link {
+    margin: 0 12px 0 12px;
+}

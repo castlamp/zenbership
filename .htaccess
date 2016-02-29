@@ -1,0 +1,65 @@
+
+# -----------------------------------------------------------------------------------------
+# Basic Settings
+
+Options -indexes
+Options +FollowSymlinks
+RewriteEngine On
+
+
+# -----------------------------------------------------------------------------------------
+# Some PHP related items
+
+# php_flag magic_quotes_gpc Off
+# php_value memory_limit 10M
+# php_value post_max_size 10M
+
+# php_value upload_max_filesize 10M
+# php_flag file_uploads On
+# php_value max_execution_time 10000
+
+
+# -----------------------------------------------------------------------------------------
+# Prevent common exploits
+# Block common exploits and redirect to login page
+
+RewriteCond %{QUERY_STRING} mosConfig_[a-zA-Z_]{1,21}(=|\%3D) [OR]
+RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [OR]
+RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+RewriteRule ^(.*)$ login.php [F,L]
+
+
+# ---------------------------------------------------------
+# Force www or no-www in URL
+# Option 1: "www.yoursite.com"
+#   RewriteCond %{HTTP_HOST} ^yoursite\.com$
+#   RewriteRule ^(.*)$ http://www.yoursite.com/$1 [R=301,L]
+# Options 2: "yoursite.com"
+
+# RewriteCond %{HTTP_HOST} ^www\.yoursite\.com$
+# RewriteRule ^(.*)$ http://yoursite.com/$1 [R=301,L]
+
+
+# ---------------------------------------------------------
+# Compress using gzip
+
+#<ifmodule mod_deflate.c>
+#	AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript
+#</ifmodule>
+
+
+# ---------------------------------------------------------
+# Main rewrites
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?in=$1 [L,QSA]
+
+
+# ---------------------------------------------------------
+# Errors Screens
+
+errorDocument 404 error.php?type=404&filename=%{SCRIPT_FILENAME}
+errorDocument 500 error.php?type=500

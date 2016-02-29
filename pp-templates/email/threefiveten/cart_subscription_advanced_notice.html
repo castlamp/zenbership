@@ -1,0 +1,37 @@
+<h1>Subscription No. %subscription:id% Will Renew in %days_until_renewal% days!</h1>
+
+<div class="box">
+    <div class="pad">
+        <p>%first_name%,</p>
+
+        <p>This email is to inform you that your subscription for "%product:name%" will renew on "%subscription:renews%". More information has been included below:</p>
+
+        <h2>Subscription Overview</h2>
+        <table border="0" cellspacing=0 cellpadding=0 class=basic>
+            <tr>
+                <td class="right" width="130"><b>Card</b></th>
+                <td>%card_status%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Name</b></th>
+                <td>%product:name%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Description</b></th>
+                <td>%product:tagline%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Price</b></th>
+                <td>%subscription:format_next_price%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Manage</b></th>
+                <td><a href="%subscription:update_link%">Manage this subscription</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p>Please feel free to contact us with any questions you may have regarding this subscription.</p>
+
+    </div>
+</div>

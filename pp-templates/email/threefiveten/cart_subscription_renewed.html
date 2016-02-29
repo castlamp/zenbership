@@ -1,0 +1,38 @@
+<h1>Subscription No. %subscription:id% Renewed</h1>
+<div class="box">
+    <div class="pad">
+        <p>%first_name%,</p>
+
+        <p>The following subscription has successfully been renewed:</p>
+
+        <h2>Subscription Overview</h2>
+        <table border="0" cellspacing=0 cellpadding=0 class=basic>
+            <tr>
+                <td class="right" width="130"><b>Name</b></th>
+                <td>%product:name%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Description</b></th>
+                <td>%product:tagline%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Price</b></th>
+                <td>%product:format_price%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Next Renewal</b></th>
+                <td>%subscription:renews%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Order No.</b></th>
+                <td>%order:zen_order_id%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Manage</b></th>
+                <td><a href="%subscription:update_link%">Manage this subscription</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

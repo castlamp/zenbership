@@ -1,0 +1,39 @@
+<h1>Subscription No. %subscription:id% Failed</h1>
+<div class="box">
+    <div class="pad">
+        <p>%first_name%,</p>
+
+        <p><b>Important:</b> This email is notification that the following subscription has failed to renew! Please <a
+                href="%subscription:update_link%">click here</a> to update your billing information!</p>
+
+        <h2>Subscription Overview</h2>
+        <table border="0" cellspacing=0 cellpadding=0 class=basic>
+            <tr>
+                <td class="right" width="130"><b>Name</b></th>
+                <td>%product:name%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Description</b></th>
+                <td>%product:tagline%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Price</b></th>
+                <td>%product:format_price%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Retry No.</b></th>
+                <td>%subscription:retry%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Attempts Remaining</b></th>
+                <td>%subscription:retries_remaining%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Next Attempt</b></th>
+                <td>%subscription:renews%</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

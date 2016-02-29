@@ -1,0 +1,10 @@
+$(function () {
+    $("ul#nav li").hover(function () {
+        $(this).addClass("hover");
+        $('ul:first', this).css('visibility', 'visible');
+    }, function () {
+        $(this).removeClass("hover");
+        $('ul:first', this).css('visibility', 'hidden');
+    });
+    $("ul#nav li ul li:has(ul)").find("a:first").append("<div class=\"floatright\" style=\"margin-right:8px;\">&raquo;</div>");
+});

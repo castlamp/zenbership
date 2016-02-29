@@ -1,0 +1,142 @@
+
+/* ---------------- Listings Table ----------------- */
+
+table#subslider_table {
+
+    border-top: 1px solid #ccc;
+
+    margin-top: 12px;
+
+}
+
+table.tablesorter thead tr .headerSortUp {
+
+    background: url(../imgs/asc.gif) no-repeat center right;
+
+}
+
+table.tablesorter thead tr .headerSortDown {
+
+    background: url(../imgs/desc.gif) no-repeat center right;
+
+}
+
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+
+    background-color: #f1f1f1;
+
+}
+
+table.popuptable {
+
+    border-top: 1px solid #ccc;
+
+}
+
+table.listings {
+
+    width: 100%;
+
+}
+
+table.listings th {
+    background: url('../imgs/th_back.png') top left repeat-x #e1e1e1;
+    padding: 8px 8px 8px 8px;
+    margin: 0;
+    font-weight: bold;
+    text-align: left;
+    font-family: 'Open Sans', tahoma;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    -moz-text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.75);
+    -webkit-text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.75);
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: inset 0px 2px 4px 0px rgba(255, 255, 255, 0.75);
+    box-shadow: inset 0px 2px 4px 0px rgba(255, 255, 255, 0.75);
+}
+
+table.listings th.first {
+
+    border-left: none;
+
+}
+
+table.listings td {
+
+    padding: 6px 8px 6px 8px;
+
+    margin: 0;
+
+    text-align: left;
+
+    border-bottom: 1px solid #e1e1e1;
+
+    border-left: 1px solid #e1e1e1;
+
+}
+
+table.listings td.overview_left {
+
+    border: none !important;
+
+    font-size: 0.9em;
+
+    padding: 5px 8px 5px 8px;
+
+}
+
+table.listings td.overview_right {
+
+    border: none !important;
+
+    padding: 5px 8px 5px 8px;
+
+}
+
+table.listings td.ctotal {
+
+    font-weight: bold;
+
+}
+
+table.listings td.right {
+
+    text-align: right;
+
+    padding-right: 6px;
+
+}
+
+table.listings tr.even {
+
+}
+
+table.listings tr.tr_highlight {
+
+    background-color: #f5f5f5;
+
+}
+
+table#subslider_table tr.even {
+
+}
+
+table.listings tr.active {
+
+    background-color: #FFFDC7;
+
+}
+
+table.listings td.options {
+
+    text-align: center;
+
+}
+
+table.listings td.options img {
+
+    margin: 0 auto 0 auto;
+
+}

@@ -1,0 +1,136 @@
+/* -------------- Calendar -------------- */
+
+#zen_calendar_holder {
+    width: 100%;
+    margin: 0 auto;
+    font-size: 0.9em;
+}
+
+#zen_calendar_top {
+    font-family: arial, verdana;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+#zen_calendar_top h1 {
+    font-size: 1.4em;
+    margin: 0 0 4px 0;
+    padding: 0;
+}
+
+#zen_calendar_top p {
+    margin: 0;
+}
+
+table.zen_calendar {
+    width: 100%;
+    border-bottom: 1px solid #e1e1e1;
+    font-family: arial, tahoma;
+    color: #444;
+    padding: 0;
+    margin: 0;
+
+}
+
+table.zen_calendar th {
+    text-align: center;
+    padding: 12px 0 12px 0;
+    width: 14.2%;
+}
+
+table.zen_calendar td {
+    height: 100px;
+    border-left: 1px solid #e1e1e1;
+    border-top: 1px solid #e1e1e1;
+    vertical-align: top !important;
+    background-color: #fff;
+    font-size: 0.9em;
+}
+
+table.zen_calendar ul {
+    padding: 12px;
+
+}
+
+table.zen_calendar ul li {
+    padding: 0 0 4px 0 !important;
+    border-borrom: 1px solid red;
+}
+
+table.zen_calendar td.zen_empty {
+    background-color: #f1f1f1;
+}
+
+table.zen_calendar td.zen_today {
+
+}
+
+table.zen_calendar td.zen_noevent {
+    background-color: #f9f9f9;
+}
+
+table.zen_calendar td.zen_event {
+    background-color: #fff;
+}
+
+table.zen_calendar td.zen_last {
+    border-right: 1px solid #e1e1e1;
+}
+
+table.zen_calendar tr.zen_top_line {
+    border-top: 1px solid #e1e1e1;
+}
+
+.zen_day_number {
+    background-color: #f1f1f1;
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    border-radius: 24px;
+    float: right;
+    padding: 4px 4px 4px 4px;
+    margin: 8px 8px 0 0;
+    font-weight: bold;
+}
+
+.zen_today a {
+    color: #000;
+}
+
+div.zen_today {
+    background-color: #F8A037;
+    color: #fff;
+}
+
+p.zen_tagline {
+    margin-top: 4px;
+}
+
+.zen_calendar_event {
+    padding: 24px;
+}
+
+#zen_calendar_bottom {
+    margin-top: 24px;
+    font-family: arial;
+    font-size: 0.9em !important;
+}
+
+.zen_event_tag {
+    float: left;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    width: 8px;
+    height: 8px;
+    margin-right: 3px;
+}
+
+ul.zen_tag_legend {
+    list-style: none;
+    margin: 0;
+    float: right;
+}
+
+ul.zen_tag_legend li {
+    padding: 0 0 4px 0;
+}

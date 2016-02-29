@@ -1,0 +1,160 @@
+
+@media (max-width : 991px) {
+
+    #zen_calendar_holder {
+        width: 100%;
+    }
+
+    table.zen_calendar {
+        width: 100%;
+    }
+
+    table.zen_calendar th {
+        display: none;
+    }
+
+    table.zen_calendar td {
+        width: 100% !important;
+        display: block;
+    }
+
+    table.zen_calendar td.zen_empty {
+        display: none;
+    }
+
+}
+
+@media (max-width : 767px) {
+
+    .zen_holder {
+        width: 95%;
+        margin: 0 auto;
+    }
+    .col20l, .col25l, .col25r, .col30l,
+    .col30r, .col33l, .col33r, .col34,
+    .col50l, .col50r, .col70l, .col70r,
+    .col75l, .col75r, .col80r, .zen_left,
+    #zen_view_product_left, #zen_view_product_right,
+    #zen_product_add, #top_search {
+        float: none;
+        clear: both;
+        width: 100%;
+    }
+
+    .col33l, .col34, .col33r {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    label.zen_left {
+        float: none;
+        width: 100%;
+        clear: both;
+        display: block;
+    }
+
+    .zen_field_entry {
+        margin: 4px 0 0 0;
+    }
+
+    .featured_prod_box {
+        margin-bottom: 8px;
+    }
+
+    .zen_field_entry input {
+        width: 100% !important;
+    }
+
+    #zen_product_add {
+        margin: 16px 0;
+    }
+
+    .zen_pad_more {
+        padding: 16px;
+    }
+
+    #menu_site_topbar {
+        display: none;
+    }
+
+    #navExpand {
+        display: block;
+        text-align: right;
+        height: 43px;
+        line-height: 43px;
+        float: right;
+    }
+
+    #navExpand img {
+        margin-top: 10px;
+    }
+
+    #navExpand img {
+        width: 32px;
+        height: 32px;
+        margin-top: 10px;
+    }
+
+    #top_search {
+        text-align: center;
+    }
+
+    #zen_body {
+        margin-top: 145px;
+    }
+
+    #zen_overlay {
+        width: 90%;
+    }
+
+    #zen_popup_content {
+        width: 80%;
+    }
+
+    #zen_product_tb {
+        display: none;
+    }
+
+    .zen_field_set_col_pad {
+        padding: 0;
+    }
+
+}
+
+
+@media (min-width: 768px) {
+    .zen_holder {
+        width: 750px;
+    }
+    .col20l { }
+    .col25l { }
+    .col25r { }
+    .col30l { }
+    .col30r { }
+    .col33l { }
+    .col33r { }
+    .col34 { }
+    .col50l { }
+    .col50r { }
+    .col70l { }
+    .col70r { }
+    .col75l { }
+    .col75r { }
+    .col80r { }
+    .zen_view_product_left {
+
+    }
+    .zen_view_product_right { }
+}
+
+@media (min-width: 992px) {
+    .zen_holder {
+        width: 970px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .zen_holder {
+        width: 1170px;
+    }
+}

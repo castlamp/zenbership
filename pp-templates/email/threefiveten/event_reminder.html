@@ -1,0 +1,62 @@
+<h1>Event Reminder</h1>
+<div class="box">
+    <div class="pad">
+        <p>%first_name%,</p>
+
+        <p>%custom_message%</p>
+
+        <h2>Registration Details</h2>
+        <table border="0">
+            <tr>
+                <td class="zen_l">Ticket No.</td>
+                <td>%id%</td>
+            </tr>
+            <tr>
+                <td class="zen_l">Status</td>
+                <td>%show_status%</td>
+            </tr>
+            <tr>
+                <td class="zen_l">First Name</td>
+                <td>%first_name%</td>
+            </tr>
+            <tr>
+                <td class="zen_l">Last Name</td>
+                <td>%last_name%</td>
+            </tr>
+            <tr>
+                <td class="zen_l">E-Mail</td>
+                <td>%email%</td>
+            </tr>
+        </table>
+
+        <h2>%event:name%</h2>
+
+        <p class="quote kill_h_margin">%event:tagline%</p>
+
+        <div class="basic_formatting">%event:description%</div>
+
+        <p class="right small"><a href="%event:link%">View event online &raquo;</a></p>
+
+        <h2>Location Details</h2>
+        <table border="0">
+            <tr>
+                <td class="zen_l">Name</td>
+                <td>%event:location_name%</td>
+            </tr>
+            <tr>
+                <td class="zen_l">Address</td>
+                <td>%event:formatted_address%</td>
+            </tr>
+            <tr>
+                <td class="zen_l">Phone</td>
+                <td>%event:phone%</td>
+            </tr>
+            <tr>
+                <td class="zen_l">Website</td>
+                <td>%event:url%</td>
+            </tr>
+        </table>
+
+        <div class="centered_element">%qrcode%</div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+body {
+    margin: 4%;
+}
+
+.col50l { display: block; width: 100%; }
+.col50r { display: block; width: 100%; }
+
+#login_logo {
+    position: static;
+    width: 100%;
+    margin: 0 0 36px 0;
+}
+
+#login_logo img {
+    width: 150px;
+    height: 50px;
+    margin: 0 auto;
+    display: block;
+}
+
+#background { display: none; }
+#foreground { display: none; }
+
+label {
+    font-size: 1.0em;
+    color: #999;
+    font-family: 'Open Sans', tahoma;
+    display: block;
+    margin: 12px 0 6px 0;
+}
+
+#remember {
+    text-align: center;
+    margin: 18px 0 18px 0;
+    font-size: 1.0em;
+    color: #999;
+    font-family: 'Open Sans', tahoma;
+}
+
+#penguin {
+    display: none;
+    position: absolute;
+    bottom: -350px;
+    left: 0px;
+    background: url('../imgs/login/penguin.png') top center no-repeat;
+    width: 100%;
+    height: 200px;
+}
+
+#login_box {
+    margin: 0 auto 0 auto;
+    z-index: 100;
+    width: 100%;
+    position: static;
+}
+
+#login_pad {
+    padding: 24px;
+}
+
+p.links {
+    position: static;
+    text-align: center;
+    margin: 24px 0 0 0;
+    padding: 0;
+    font-family: 'Open Sans', tahoma;
+    font-size: 0.9em;
+    color: #777777;
+    -moz-text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+    -webkit-text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.links a {
+    text-decoration: none;
+    color: #777777;
+}

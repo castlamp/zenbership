@@ -1,0 +1,61 @@
+<h1>Order No. %order:id% has Shipped!</h1>
+<div class="box">
+    <div class="pad">
+        <p>We're thrilled to inform you that your order has shipped. Here's more information:</p>
+
+        <h2>Order Overview</h2>
+        <table border="0">
+            <thead>
+            <tr>
+                <th>Product</th>
+                <th width="80">Unit Price</th>
+                <th width="40">Qty</th>
+                <th width="80">Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            %products%
+            <tr class="line">
+                <td class="right" colspan="3">Subtotal</th>
+                <td>%pricing:format_subtotal%</td>
+            </tr>
+            <tr class="line">
+                <td class="right" colspan="3">Shipping<p class="small gray">%shipping:name%</p></th>
+                <td>%pricing:format_shipping%</td>
+            </tr>
+            <tr class="line">
+                <td class="right" colspan="3">Savings</th>
+                <td>(%pricing:format_savings%)</td>
+            </tr>
+            <tr class="line">
+                <td class="right" colspan="3">Tax</th>
+                <td>%pricing:format_tax%</td>
+            </tr>
+            <tr class="line">
+                <td class="right" colspan="3">Total</th>
+                <td><b>%pricing:format_total%</b></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2>Shipping Details</h2>
+
+        <p>
+            <b>Provider:</b> %shipping_provider%<br/>
+            <b>Reference No.:</b> %shipping_number%<br/>
+            <b>Tracking:</b> %tracking_link%
+        </p>
+
+        <h2>Address</h2>
+
+        <p>%shipping_address%</p>
+
+        <h2>Remarks</h2>
+
+        <p>%remarks%</p>
+
+        <p>You can find more information about this order online by <a href="%order:url%">clicking here</a>.</p>
+
+        <div class="centered_element">%order:qrcode%</div>
+    </div>
+</div>

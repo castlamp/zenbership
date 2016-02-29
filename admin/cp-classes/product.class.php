@@ -1,0 +1,1 @@
+<?phpclass product extends db{}
