@@ -80,28 +80,6 @@ require "assets/header.php";
                 </li>
                 <li class="indent">
                     <?php
-                    if (!is_writable($path . '/admin/sd-system/backups/db')) {
-                        $class = 'bad';
-                        $error = '1';
-                    } else {
-                        $class = 'good';
-                    }
-                    echo "<span class=$class>admin/sd-system/backups/db</span>";
-                    ?>
-                </li>
-                <li class="indent">
-                    <?php
-                    if (!is_writable($path . '/admin/sd-system/backups/theme')) {
-                        $class = 'bad';
-                        $error = '1';
-                    } else {
-                        $class = 'good';
-                    }
-                    echo "<span class=$class>admin/sd-system/backups/theme</span>";
-                    ?>
-                </li>
-                <li class="indent">
-                    <?php
                     if (!is_writable($path . '/custom/sessions')) {
                         $class = 'bad';
                         $error = '1';

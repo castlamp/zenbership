@@ -7,15 +7,6 @@
  * Email = withfusion@gmail.com
  */
 
-/**
-* Setup Folder?
-*/
-$setup = PP_PATH . '/setup';
-if (file_exists($setup)) {
-    echo "Delete the setup folder before continuing.";
-    exit;
-}
-
 
 /**
 * Auto-loader
@@ -87,7 +78,15 @@ if ($mode == 'test') {
 } else {
     define('ZEN_TEST_MODE','0');
     define('ZEN_PERFORM_TESTS','0');
+
+    // Setup folder
+    $setup = PP_PATH . '/setup';
+    if (file_exists($setup)) {
+        echo "Delete the setup folder before continuing.";
+        exit;
+    }
 }
+
 
 /**
 * SALT file for two-way encryption
