@@ -4,10 +4,8 @@ Zenbership Membership Software
 Zenbership is open source membership software written in PHP that combines event planning, CRM, a CMS, invoicing,
 subscription management, marketing tools (like e-mail campaigns), a shopping cart, and secure content delivery.
 
-Author      Castlamp (https://www.castlamp.com/)
-Online      http://www.zenbership.com/
-Twitter     @castlamp
-            @jbelelieu
+Author: Castlamp (https://www.castlamp.com/)  
+Online: [http://www.zenbership.com/](http://www.zenbership.com/)  
 
 
 License
@@ -20,10 +18,12 @@ Server Requirements
 ===================
 
 **PHP 5.2+**
-Required Libraries and Extensions:
+
+Required Libraries and Extensions:  
   - PDO_MySQL
   - GD
   - mcrypt
+
 **MySQL 5+**
 
 
@@ -41,4 +41,5 @@ Resources
 Credits
 =======
 
-Zenbership is created and maintained by Castlamp. Jon Belelieu (@jbelelieu) is the lead developer on the project.
+Zenbership is created and maintained by Castlamp ([@castlamp](http://twitter.com/castlamp)).  
+Jon Belelieu ([@jbelelieu](http://twitter.com/jbelelieu)) is the lead developer on the project.
