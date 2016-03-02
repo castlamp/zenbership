@@ -540,7 +540,8 @@ class template extends db
             $content = $this->get_options($content);
         }
         // Some basics
-        $secure_url = str_replace('http://', 'https://', PP_URL);
+        // $secure_url = str_replace('http://', 'https://', PP_URL);
+        $secure_url = $this->getSecureLink();
         $home_link = $this->get_option('homepage');
         $final_home = PP_URL . '/' . trim($home_link, '/');
         // Array of changes

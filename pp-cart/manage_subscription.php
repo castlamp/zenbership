@@ -55,7 +55,7 @@ if (empty($sub['data']['card_id'])) {
     }
 }
 if ($nocard == '1') {
-    $secure       = str_replace('http://', 'https://', PP_URL);
+    $secure = $db->getSecureLink();
     $billing_data = array(
         'full_method' => '<a href="' . $secure . '/pp-cart/add_card.php?sub=' . $sub['data']['id'] . '&subs=' . $sub['data']['salt'] . '">' . $db->get_error('G001') . '</a>',
         'img'         => '',

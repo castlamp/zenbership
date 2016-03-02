@@ -12,7 +12,7 @@ ini_set("memory_limit", "100M");
 ini_set("log_errors", "1");
 ini_set("error_log", PP_PATH . "/custom/errors.txt");
 error_reporting(0);
-//error_reporting(E_ALL);
+// error_reporting(E_ALL);
 
 /**
  * Start the application

@@ -317,11 +317,7 @@ if (empty($cart->id)) {
         } else {
             $shipping_form = $db->get_error('S028');
         }
-        if (ZEN_PERFORM_TESTS == '1') {
-            $secure = str_replace('https://', 'http://', PP_URL);
-        } else {
-            $secure = str_replace('http://', 'https://', PP_URL);
-        }
+        $secure = $db->getSecureLink();
         // Paying invoice?
         if (!empty($_COOKIE['zen_invoice'])) {
             $invoice_active = '1';

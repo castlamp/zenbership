@@ -41,7 +41,11 @@ if (! empty($_GET['id'])) {
             echo $temp;
             exit;
         } else {
-            $secure = str_replace('http://', 'https://', PP_URL);
+
+
+            $secure = $this->getSecureLink();
+            // $secure = str_replace('http://', 'https://', PP_URL);
+
             header('Location: ' . $secure . '/pp-cart/invoice_add.php?id=' . urlencode($data['data']['id']) . '&hash=' . urlencode($data['data']['hash']) . '&amount=' . urlencode($data['totals']['due']));
             exit;
         }

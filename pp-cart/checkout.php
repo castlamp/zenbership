@@ -71,11 +71,7 @@ if (empty($cart->id)) {
             // API!
             if ($primary_gateway['0']['api'] == '1') {
 
-                if (ZEN_PERFORM_TESTS == '1') {
-                    $ssl = str_replace('https://', 'http://', PP_URL);
-                } else {
-                    $ssl = str_replace('http://', 'https://', PP_URL);
-                }
+                $ssl = $db->getSecureLink();
 
                 header('Location: ' . $ssl . '/pp-cart/payment.php');
                 exit;

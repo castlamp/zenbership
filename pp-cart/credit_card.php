@@ -122,7 +122,7 @@ if (!empty($_POST['sub'])) {
     $final_sub = '';
 }
 
-$secure = str_replace('http://', 'https://', PP_URL);
+$secure = $db->getSecureLink();
 
 
 

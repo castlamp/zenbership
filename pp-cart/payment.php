@@ -132,12 +132,7 @@ if (empty($cart->id)) {
     } else {
         $credit_cards = '';
     }
-    if (ZEN_PERFORM_TESTS == '1') {
-        $secure = str_replace('https://', 'http://', PP_URL);
-    } else {
-        $secure = str_replace('http://', 'https://', PP_URL);
-    }
-    // $secure = str_replace('http://','http://',PP_URL);
+    $secure = $db->getSecureLink();
     // Paying invoice?
     if (!empty($_COOKIE['zen_invoice'])) {
         $invoice_active = '1';
