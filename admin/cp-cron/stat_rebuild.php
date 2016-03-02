@@ -111,7 +111,7 @@ while ($row = $q9->fetch()) {
  * month on the 1st and 15th when this cron runs.
  */
 $stat_opt_in = $db->get_option('stat_opt_in');
-if ($stat_opt_in == '1' && (date('j') == 1 || date('j') == 15)) {
+if ($stat_opt_in == '1' && (date('j') == 1 || date('j') == 15) && date('G') <= 6) {
     $members = $db->get_array("
         SELECT COUNT(*) AS total
         FROM ppSD_members
