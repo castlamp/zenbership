@@ -38,5 +38,3 @@ if (empty($criteria->{'data'}['id'])) {
     include 'email-send.php';
 
 }
-
-?>
