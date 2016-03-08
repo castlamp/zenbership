@@ -2,7 +2,7 @@
 
 function installed_version()
 {
-    return '1.0.5';
+    return '107';
 }
 
 function current_url()

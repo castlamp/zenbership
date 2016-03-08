@@ -1,3 +1,5 @@
-/*
+# Ignore everything
+*
 
-!.gitignore
+# But not these files...
+!route.php
