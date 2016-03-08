@@ -140,7 +140,6 @@ class conditions extends db
                 INSERT INTO `ppSD_form_conditions` (" . substr($query_form['if2'], 1) . ")
                 VALUES (" . substr($query_form['iv2'], 1) . ")
 	        ");
-
             return $id;
         } else {
             return '';

@@ -1433,10 +1433,8 @@ function preview_criteria(form) {
         js_path_put = "cp-functions/preview_criteria.php";
         send_data = $('#' + form).serialize();
         $.post(js_path_put, send_data, function (theResponse) {
-
-            console.log(theResponse);
-
             $('#pop_inner').fadeOut('200', function () {
+                // $('#criteriaPreview').html('');
                 $('#' + usepop).append(theResponse);
                 $('#preview_but').val('Close Preview');
             });

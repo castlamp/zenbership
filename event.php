@@ -49,8 +49,11 @@ $get_event = $event->get_event($event_id);
 if ($get_event['data']['members_only_view'] == '1' && $ses['error'] == '1') {
     $session->reject('calendar', 'C001');
     exit;
-} else if ($get_event['data']['status'] != '1') {
+} else if ($get_event['data']['status'] == '0') {
     $session->reject('calendar', 'C012');
+    exit;
+} else if ($get_event['data']['status'] == '2') {
+    $session->reject('calendar', 'C019');
     exit;
 }
 

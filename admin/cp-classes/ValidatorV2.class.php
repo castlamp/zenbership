@@ -779,6 +779,7 @@ class ValidatorV2
             'badwords' => 'Inappropriate language is not permitted.',
             'date' => 'Date must be a valid YYYY-MM-DD format',
             'datetime' => 'Date and time must be in a valid YYYY-MM-DD HH:MM:SS format.',
+            'check_future' => 'Date must be in the future.',
             'price' => '%name% must be a valid price.',
             'timeframe' => '%name% must be a valid timeframe (yymmddhhmmss).',
         );
