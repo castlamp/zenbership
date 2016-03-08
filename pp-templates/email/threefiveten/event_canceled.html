@@ -1,10 +1,12 @@
-<h1>Registration Complete</h1>
+<h1>%event:name% Has Been Canceled</h1>
 <div class="box">
     <div class="pad">
-        <p>%first_name%,</p>
+        <p>%rsvp:first_name%,</p>
 
-        <p>Congratulations, your membership has been created! Your username is <b>%username%</b> and you can log in by
-            <a href="%pp_url%/login.php">clicking here</a>. Let us know if you have any additional questions.</p>
+        <p>We regret to inform you that an event you are registered for has been canceled.
+            The event in question is the "%event:name%" event which was originally scheduled
+        for "%event:starts_formatted%".</p>
 
+        <p>%reason%</p>
     </div>
 </div>
