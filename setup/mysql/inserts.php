@@ -44,7 +44,8 @@ $inserts[] = "
 	('GEN_MEMBER', '', '', '', '', '', '', '', '', '', '', 'General Members', '', '', '', 0, '', '', ''),
 	('GEN_CAMPAI', '', '', '', '', '', '', '', '', '', '', 'Campaign Sign Ups', '', '', '', 0, '', '', ''),
 	('CASTLAMP', '', '', 'New York', 'NY', '', 'United States', '', '', '', '', 'Castlamp', 'http://www.castlamp.com/', 'Technology', 'Other', 0, 'https://www.facebook.com/castlamp', 'http://twitter.com/castlmap', 'https://www.linkedin.com/company/castlamp'),
-	('NON_MEMBER', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '');
+	('NON_MEMBER', '', '', '', '', '', '', '', '',
+	 '', '', '', '', '', '', 0, '', '', '');
 ";
 $inserts[] = "
 	INSERT INTO `ppSD_activity_methods` (`id`, `icon`, `link`, `link_type`, `text`, `in_feed`, `custom`) VALUES
@@ -53,20 +54,22 @@ $inserts[] = "
 	('logout', 'icon-logout.png', 'member-view', 'slider', '%act% logged out.', 1, 0),
 	('status_changed', 'icon-status.png', 'member-view', 'slider', 'Status changed to %act%.', '1', '0'),
 	('concurrent', 'icon-concurrent.png', 'member-view', 'slider', 'Concurrent login detected for %act%.', '1', 0),
-	('email', 'icon-email.png', 'email-view', 'popup_large', 'E-Mail sent to %act%.', 0, 0),
+	('email', 'icon-email-sent.png', 'email-view', 'popup_large', 'E-Mail sent to %act%.', 0, 0),
 	('member_access_lost', 'icon-access_lost.png', 'member-view', 'slider', 'Access to content %act% expired.', 1, 0),
-	('sms', 'icon-text.png', '', '', 'SMS sent', 0, 0),
+	('sms', 'icon-text.png', 'member-view', 'slider', 'SMS sent to %act%.', 1, 0),
 	('dependency_submit', 'icon-dependency.png', 'member-view', 'slider', 'Dependency form submitted by %act%.', '1', 0),
 	('member_type', 'icon-member_type.png', 'member-view', 'slider', '', 'Member type changed for %act%.', '1'),
 	('update', 'icon-update.png', 'member-view', 'slider', '%act% updated his/her account', 1, 0),
-	('member_update', 'icon-update.png', 'member-view', 'slider', '%act% updated his/her account', 1, 0),
+	('member_update', 'icon-edit-on.png', 'member-view', 'slider', '%act% updated his/her account', 1, 0),
 	('purchase', 'icon-sales.png', 'transaction-view', 'slider', 'Transaction ID %act%', 1, 0),
 	('subscription_created', 'icon-subscriptions.png', 'subscription-view', 'slider', 'Subscription No. %act% created.', 1, 0),
 	('subscription_renew', 'icon-saved.png', 'subscription-view', 'slider', 'Subscription No. %act% renewed.', 1, 0),
 	('subscription_cancel', 'icon-warning.png', 'subscription-view', 'slider', 'Subscription No. %act% Canceled.', 1, 0),
-	('subscription_failed', 'icon-lg-error_codes.png', 'subscription-view', 'slider', 'Subscription No. %act% failed to renew.', 1, 0),
+	('subscription_failed', 'icon-sub-failed.png', 'subscription-view', 'slider', 'Subscription No. %act% failed to renew.', 1, 0),
 	('subscription_changed', 'icon-subscriptions.png', 'subscription-view', 'slider', 'Subscription No. %act% plan changed.', '1', ''),
-	('read_email', 'icon-email.png', 'email-view', 'popup_large', 'E-Mail opened by %act%.', 1, 0),
+	('subscription_downgrade', 'icon-subscriptions-upgrade.png', 'subscription-view', 'slider', 'Subscription No. %act% downgraded.', '1', ''),
+	('subscription_upgrade', 'icon-subscriptions-downgrade.png', 'subscription-view', 'slider', 'Subscription No. %act% upgraded.', '1', ''),
+	('read_email', 'icon-email-read.png', 'email-view', 'popup_large', 'E-Mail opened by %act%.', 1, 0),
 	('link_clicked', 'icon-click.png', 'email-view', 'popup_large', 'E-Mail link clicked by %act%.', 1, 0),
 	('event_rsvp', 'icon-calendar.png', 'rsvp_view', 'popup', 'Registration for %act%', 1, 0),
 	('invoice_closed', 'icon-save.png', 'invoice-view', 'slider', 'Invoice No. %act% settled.', 1, 0),
@@ -76,17 +79,20 @@ $inserts[] = "
 	('content_access_lost', 'icon-access_lost.png', 'member-view', 'slider', 'Access to content %act% expired.', '1', ''),
 	('note', 'icon-note.png', 'note-add', 'popup_large', 'Note posted for %act%.', 0, 0),
 	('extended_next_action', 'icon-delay.png', 'contact-view', 'slider', 'Next required action date extended for %act%.', '1', 0),
-	('member_staff_update', 'icon-edit.png', 'member-view', 'slider', 'Member %act% updated by staff.', 0, 0),
+	('member_staff_update', 'icon-edit-on.png', 'member-view', 'slider', 'Member %act% updated by staff.', 0, 0),
 	('member_created', 'icon-member-add.png', 'member-view', 'slider', 'Member %act% created.', 1, 0),
 	('contact_staff_update', 'icon-edit.png', 'contact-view', 'slider', 'Contact %act% updated by staff.', 0, 0),
 	('account_created', 'icon-account.png', 'account-view', 'slider', 'Account %act% created.', 1, 0),
 	('account_updated', 'icon-account.png', 'account-view', 'slider', 'Account %act% updated.', 0, 0),
+	('error', 'icon-system-error.png', 'system_alerts', 'alert', '', 1, 0),
 	('contact_created', 'icon-contact-add.png', 'contact-view', 'slider', 'Contact %act% created.', 1, 0),
 	('contact_assigned', 'icon-attention-on.png', 'contact-view', 'slider', 'Contact %act% assigned.', 0, 0),
 	('contact_converted', 'icon-save.png', 'contact-view', 'slider', 'Contact %act% converted.', 1, 0),
 	('contact_dead', 'icon-mark-dead.png', 'contact-view', 'slider', 'Contact %act% marked \"dead\".', 1, 0),
-	('bounced', 'icon-warning-big.png', 'member-view', 'slider', 'User %act% e-mail bounced.', 1, 0),
+	('bounced', 'icon-mail-bounced.png', 'member-view', 'slider', 'User %act% e-mail bounced.', 1, 0),
 	('campaign_unsubscription', 'icon-campaign_unsub.png', 'campaign-view', 'slider', 'Campaign %act% unsubscription.', 1, 0),
+    ('form_submit', 'icon-form-submitted.png', 'contact-view', 'slider', 'Form submitted by %act%.', 1, 0),
+    ('event_checkin', 'icon-checkin.png', 'rsvp_view', 'popup', '%act% has checked in.', 1, 0),
 	('contact_reopen', 'icon-mark-alive.png', 'contact-view', 'slider', 'Contact %act% re-opened.', 1, 0);
 ";
 $inserts[] = "
@@ -114,7 +120,7 @@ $inserts[] = "
 	INSERT INTO `ppSD_data_eav` (`item_id`, `key`, `value`) VALUES
 	('options', 'member_print', 'username,profile_pic,joined,last_action,email,last_login,last_renewal,last_updated,url,source,account,owner,first_name,last_name,address_line_1,address_line_2,city,state,zip,country,phone,fax,dob,industry,cell,alt_phone,office_phone,member_type,status'),
 	('options', 'contact_print', 'profile_pic,email,type,last_name,first_name,type,url,address_line_1,address_line_2,city,state,zip,country,phone,cell,office_phone,alt_phone,fax,company_name,url,dob,occupation,created,last_action,next_action,last_updated,source,account,owner,converted,expected_value,actual_value'),
-	('options', 'rsvp_print', 'date,last_name,first_name,status,type,order_id,purchased'),
+	('options', 'rsvp_print', 'date,last_name,first_name,status,type,arrived,arrived_date,order_id,purchased'),
 	('options', 'note_print', 'name,date,note,added_by,label,public,deadline,value,for,complete,completed_by,completed_on,priority'),
 	('options', 'account_print', 'name,profile_pic,created,owner,url,contact_frequency,last_updated,source,address_line_1,address_line_2,city,state,zip,country,phone,office_phone,alt_phone,fax,company_name,url,industry,account_type'),
 
@@ -427,8 +433,7 @@ $inserts[] = "
 	(19, 'Miscellaneous Contact Fields', '', 999, 1, 0, 1, 0, 0),
 	(20, 'Miscellaneous Account Fields', '', 999, 1, 0, 1, 0, 0),
 	(21, 'Miscellaneous RSVP Fields', '', 999, 1, 0, 1, 0, 0),
-	(22, 'Contact Basics', '', '1', '1', '', '1', '2', ''),
-	(300, 'Contact Basics', '', 1, 1, 0, 1, 2, 0);
+	(22, 'Contact Basics', '', '1', '1', '', '1', '2', '');
 ";
 $inserts[] = "
 	INSERT INTO `ppSD_fieldsets_fields` (`fieldset`, `field`, `order`, `req`, `column`, `tabindex`, `autoadd_product`, `autoadd_value`) VALUES
@@ -509,9 +514,9 @@ $inserts[] = "
 	(16, 'industry', 2, 1, 1, 0, '', ''),
 	(17, 'password', 2, 1, 1, 0, '', ''),
 	(17, 'repeat_pwd', 3, 1, 1, 0, '', ''),
-	(300, 'email',  '1',  '1',  '1',  '',  '',  ''),
-	(300, 'first_name',  '2',  '1',  '1',  '',  '',  ''),
-	(300, 'last_name',  '3',  '1',  '1',  '',  '',  '');
+	(22, 'email',  '1',  '1',  '1',  '',  '',  ''),
+	(22, 'first_name',  '2',  '1',  '1',  '',  '',  ''),
+	(22, 'last_name',  '3',  '1',  '1',  '',  '',  '');
 ";
 $inserts[] = "
 	INSERT INTO `ppSD_fieldsets_locations` (`location`, `order`, `col`, `fieldset_id`) VALUES
@@ -620,17 +625,20 @@ $inserts[] = "
 	('sphider', 0, '0000-00-00 00:00:00', '', '', '', '', '', 0, 0, '', 'a:1:{s:4:\"host\";s:17:\"sphider.host.here\";}');
 */
 $inserts[] = "
-	INSERT INTO `ppSD_note_labels` (`label`, `color`, `fontcolor`) VALUES
-	('Important', 'E05252', ''),
-	('Work', '6CACED', ''),
-	('Personal', '89CE3E', ''),
-	('To Do', 'E0CA52', ''),
-	('Later', '9B52E0', ''),
-	('Complete', 'e1e1e1', '000');
-";
-$inserts[] = "
-	INSERT INTO `ppSD_note_labels` (`id`, `label`, `color`, `fontcolor`) VALUES
-	('25', 'Appointment', 'DD4E3F', 'fff'),
+	INSERT INTO `ppSD_note_labels` (`label`, `color`, `fontcolor`, `static_lookup`) VALUES
+	('Important', 'DD1C1A', '', 'important'),
+	('Support', 'FC6C58', '', ''),
+	('Initial Lead Call', '54A7FF', '', ''),
+	('Cold Call', '63DBDB', '', ''),
+	('Phone Followup', 'F7E188', '', ''),
+	('E-Mail Received', 'CCC', '', 'emailin'),
+	('E-Mail Sent', 'efd64a', '', 'emailout'),
+	('E-Mail Followup', 'CB81F0', '', ''),
+	('Specifications', '85A2A6', '', ''),
+	('Services Rendered', '0BBF0B', '', ''),
+	('Miscellaneous', 'F1F1F1', '', 'misc'),
+	('Appointment', 'DD4E3F', 'fff', 'appointment'),
+	('To Do', 'FFBF00', '', 'todo');
 ";
 $inserts[] = "
 	INSERT INTO `ppSD_member_types` (`name`,`order`) VALUES ('Standard Member','1');
@@ -649,7 +657,8 @@ $inserts[] = "
 	('currency', 'Currency', 'USD', '', 'select', 80, 'USD|EUR|GBP|AUD|CAD|INR|ZAR|NZD|JPY|SGD|CNY|MYR|CHF|THB|IDR|AED|HKD|PHP|SEK|HUF|MXN|RUB', 'cart', 0, ''),
 	('member_id_format', 'Member ID Format', 'LLLL-nnnnn-nnnnn', 'Customize the format of member IDs. Recommended: 15-20 characters. L = Upper case letter. l = Lower case letter. n = Number. random = Random Format', 'text', 150, '', 'members', 20, ''),
 	('startpage', 'Default Start Page?', 'home', 'What should the homepage of your site be? Common pages are home, catalog, calendar, or login.', 'text', '200', '', 'site', '85', ''),
-	('sub_id_format', 'Subscription ID Format', 'random', 'Customize the format of subscription IDs. Recommended: 15-22 characters. L = Upper case letter. l = Lower case letter. n = Number. random = Random Format', 'text', 150, '', 'subscriptions', 22, ''),
+	('welcome_guide', '', '0', '', '', '0', '', 'system', '0', ''),
+	('sub_id_format', 'Subscription ID Format', 'LnnnnnnnnnnnLLLnnnn', 'Customize the format of subscription IDs. Recommended: 15-22 characters. L = Upper case letter. l = Lower case letter. n = Number. random = Random Format', 'text', 150, '', 'subscriptions', 22, ''),
 	('remove_content_cancel_sub', 'Remove Content Upon Cancel?', '1', 'Would you like to instantly remove access to content granted by a subscription when it expires (YES) or let the content expire naturally on the scheduled expiration date (NO)?', 'radio', '', '', 'subscriptions', '', ''),
 	('account_headings', '', 'name,city,state,phone,created', 'Default table sorting headings. Employees can override.', 'text', 0, '', 'system', 0, ''),
 	('concurrent_use_system', 'Allow Concurrent Logins?', '0', 'Would you like to allow concurrent logins to the same membership?', 'radio', '0', '', 'members', '', ''),
@@ -664,6 +673,8 @@ $inserts[] = "
 	('session_inactivity_expiration', 'Session Length', '3600', 'How long, in seconds, before a user\'s session expires due to inactivity&#63;', 'text', 100, '', 'members', 6, 'zen_num'),
 	('session_admin_inactivity', 'Session Expiration', '7200', '', 'special', 0, '', 'admin', 0, 'zen_num'),
 	('additional_search_contacts', '', 'phone,fax', 'Make additional custom fields searchable in the quick ajax search.', 'text', 0, '', 'system', 0, ''),
+
+
 	('additional_search_members', '', 'phone,fax', 'Make additional custom fields searchable in the quick ajax search.', 'text', 0, '', 'system', 0, ''),
 	('price_format', 'Price Format', '1', 'What format should prices be displayed in&#63;', 'select', 150, '1:1,000.00|2:1 000,00|3:1000.00|4:1000', 'cart', 0, ''),
 	('language', 'Language', 'en', 'Default language for the program?', 'select', '200', 'en:English|fr:Francais|es:Espanol|dr:Deutsch|pt:Portugues|ru:Russian', 'general', '', ''),
@@ -673,7 +684,10 @@ $inserts[] = "
 	('rsvp_ticket_format', 'Confirmation Number Format', 'LLn-nnnnn-nnnnn-nnnnn', 'Customize the format of event registration confirmation numbers. Recommended: between 15 and 21 characters. L = Upper case letter. l = Lower case letter. n = Number. random = Random Format', 'text', 0, '', 'events', 21, ''),
 	('use_qcodes', 'Use QR Codes?', '1', 'Would you like to use QCodes throughout the program, like on event registrations&#63;', 'radio', 0, '', 'general', 0, ''),
 	('note_headings_admin', '', 'date,name,label,public,deadline,for', '', '', '', '', 'hide', '', ''),
+	('cron_alerts', '', '0', '', '', '0', '', 'system', '0', ''),
 	('theme', '', 'zoid', '', 'text', 0, '', 'system', 0, ''),
+    ('sms_plugin',  'SMS Plugin',  '', 'Enter the plugin ID you want to use for SMS sending.',  'text',  '15',  '', 'sms',  '',  ''),
+	('email_plugin',  'E-Mail Plugin',  '', 'Enter the plugin ID you want to use for SMS sending.',  'text',  '150',  '', 'email',  '',  ''),
 	('theme_emails', '', 'threefiveten', '', 'text', 0, '', 'system', 0, ''),
 	('max_failed_logins', 'Failed Logins Before CAPTCHA?', '5', 'How many failed logins before the user must submit a CAPTCHA?', 'text', '80', '', 'members', '4', ''),
 	('paypal_return_text', '', 'CLICK HERE TO COMPLETE YOUR ORDER', '', 'text', 0, '', 'system', 0, ''),
@@ -684,7 +698,7 @@ $inserts[] = "
 	('subscription_advanced_notice',  'Upcoming Renewal Reminder',  '7', 'How many days before a subscription renews should users be reminded of the upcoming subscription? Set to \"999\" for never!',  'text',  '80',  '', 'subscriptions',  '',  ''),
 	('curl_proxy', 'cURL Proxy', '', 'If you would like to use a cURL proxy, please input the proxy above.', 'text', 0, '', 'general', 0, ''),
 	('append_contact', 'Append Existing Contacts?', 'create', 'When a contact form is submitted with an email address that matches a contact already in the database, would you like to append the submission to the existing contact or create a new record?', 'select', '200', 'append:Append To Existing|create:Create New Record', 'contacts', 0, ''),
-	('allow_invoicing', 'Allow Invoicing&#63;', '1', 'Would you like to allow users to request an invoice the shopping cart&#63;', 'radio', 0, '', 'invoices', 0, ''),
+	('allow_invoicing', 'Allow Invoicing&#63;', '0', 'Would you like to allow users to request an invoice the shopping cart&#63;', 'radio', 0, '', 'invoices', 0, ''),
 	('cart_login_req', 'Login Requirement', '0', 'When should a user be required to log in during a shopping session&#63;', 'select', 150, '0:Never|1:To View The Catalog|2:To View His/Her Cart|3:To Checkout', 'cart', 0, ''),
 	('crumb_divider', 'Breadcrumb Divider', '/', 'What symbol should be used to separate components in the breabcrumbs&#63;', 'text', 50, '', 'site', 1, ''),
 	('new_contact_form_type', 'New Contact Type (Forms)', 'Lead', 'What type of contact should be created when a user submits a contact form?', 'select', '200', 'Contact:General Contact|Lead:Lead|Opportunity:Opportunity|Customer:Customer', 'contacts', 0, ''),
@@ -940,8 +954,8 @@ $inserts[] = "
 ";
 $inserts[] = "
 	INSERT INTO `ppSD_staff` (`id`, `username`, `password`, `salt`, `permission_group`, `signature`, `email`, `first_name`, `last_name`, `address_line_1`, `address_line_2`, `city`, `state`, `zip`, `country`, `phone`, `fax`, `alt_phone`, `office_phone`, `facebook`, `twitter`, `linkedin`, `department`, `occupation`, `locked`, `locked_ip`, `login_attempts`, `status`, `options`, `created`, `last_updated`, `owner`, `static`) VALUES
-	(1, '" . $_POST['admin']['user'] . "', '$admin_pass_encoded', '$admin_pass_salt', 1, '\n\n--\n$emp_name', '', '$emp_first_name', '$emp_last_name', '', '', '', '', '', '', '', '', '', '', '0', '0', '0', '1', '', '0000-00-00 00:00:00', '', 0, 1, '', '$date', '0000-00-00 00:00:00', 0, 1),
-	(2, 'system', 'xxx', 'nnn', 1, '', '', 'System Console', '', '', '', '', '', '', '', '', '', '', '', '0', '0', '0', '', '', '0000-00-00 00:00:00', '', 0, 1, '', '$date', '0000-00-00 00:00:00', 0, 1);
+	(1, 'system', 'xxx', 'nnn', 1, '', '', 'System Console', '', '', '', '', '', '', '', '', '', '', '', '0', '0', '0', '', '', '0000-00-00 00:00:00', '', 0, 1, '', '$date', '0000-00-00 00:00:00', 0, 1),
+	(2, '" . $_POST['admin']['user'] . "', '$admin_pass_encoded', '$admin_pass_salt', 1, '\n\n--\n$emp_name', '', '$emp_first_name', '$emp_last_name', '', '', '', '', '', '', '', '', '', '', '0', '0', '0', 'Administration', '', '0000-00-00 00:00:00', '', 0, 1, '', '$date', '0000-00-00 00:00:00', 0, 1);
 ";
 $inserts[] = "
 	INSERT INTO `ppSD_templates` (`id`, `path`, `theme`, `subtemplate`, `title`, `desc`, `caller_tags`, `order`, `custom_header`, `custom_footer`, `custom_template`, `type`, `section`, `content`, `secure`, `static`, `owner`) VALUES
