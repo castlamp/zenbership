@@ -53,7 +53,7 @@ if (! is_writable($path . '/admin/sd-system')) {
 
 // ----------------------------
 
-$DBH = new PDO("mysql:host=127.0.0.1;dbname=" . $_POST['mysql']['db'], $_POST['mysql']['user'], $_POST['mysql']['pass']);
+$DBH = new PDO("mysql:host=" . $_POST['mysql']['host'] . ";dbname=" . $_POST['mysql']['db'], $_POST['mysql']['user'], $_POST['mysql']['pass']);
 
 
 // ----------------------------
