@@ -38,7 +38,7 @@ $version = installed_version();
 
 // ----------------------------
 
-$path = str_replace('/setup','',dirname(__FILE__));
+$path = str_replace(array('\\', '/setup'), array('/', ''), dirname(__FILE__));
 $exp = explode('/',$path);
 $folder_name = array_pop($exp);
 $base_path = implode('/',$exp);
