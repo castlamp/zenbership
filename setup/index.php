@@ -26,7 +26,7 @@
  */
 
 $error = '0';
-$path = str_replace('/setup', '', dirname(__FILE__));
+$path = str_replace(array('\\', '/setup'), array('/', ''), dirname(__FILE__));
 require "assets/header.php";
 
 ?>
