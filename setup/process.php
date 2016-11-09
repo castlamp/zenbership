@@ -109,6 +109,8 @@ $emp_last_name = $_POST['admin']['last_name'];
 
 // ----------------------------
 
+$use_url = $url;
+
 require "mysql/create.php";
 require "mysql/inserts.php";
 foreach ($create as $item) {
@@ -122,7 +124,6 @@ foreach ($inserts as $item) {
 
 // ----------------------------
 
-$use_url = $url;
 //$use_url = str_replace('http://','//',$url);
 //$use_url = str_replace('https://','//',$use_url);
 
