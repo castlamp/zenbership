@@ -1888,7 +1888,7 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_widgets` (
   `installed` datetime NOT NULL DEFAULT  '0000-00-00 00:00:00',
   `original_creator` VARCHAR( 40 ) NOT NULL,
   `original_creator_url` VARCHAR( 120 ) NOT NULL ,
-  `description` TEXT NOT NU
+  `description` TEXT NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8";
 $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_widgets_menus` (
