@@ -800,8 +800,8 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_field_logic` (
 $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_forms` (
   `id` varchar(25),
   `type` enum('admin_cp','payment_form','register-free','contact','update_account','event','register-paid','campaign','dependency','update'),
-  `criteria` mediumtext,
-  `act_id` varchar(20),
+  `criteria` mediumtext NULL DEFAULT '',
+  `act_id` varchar(20) NULL DEFAULT '',
   `name` varchar(50),
   `description` text,
   `code_required` tinyint(1),
