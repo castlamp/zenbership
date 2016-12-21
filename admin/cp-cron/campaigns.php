@@ -36,6 +36,7 @@ $q1   = $db->run_query("
       ppSD_campaigns.criteria_id,
       ppSD_campaigns.when_type,
       ppSD_campaigns.user_type,
+      ppSD_campaigns.name,
       ppSD_campaigns.type
     FROM
       `ppSD_campaign_items`
@@ -48,6 +49,7 @@ $q1   = $db->run_query("
       ppSD_campaigns.optin_type='criteria'
 ");
 while ($row = $q1->fetch()) {
+
     // ----------------------------
     //   Load campaign functions,
     //   Load the message,
@@ -57,9 +59,13 @@ while ($row = $q1->fetch()) {
 
     $connect  = new connect($msg_data['data']['msg_id']); // Load the email
     // ----------------------------
-    //   Get criteria and build
-    //   the query.
-    $criteria   = new criteria($row['criteria_id']);
+    //   Get criteria and build the query.
+    $criteria   = new criteria($row['criteria_id'], true);
+    if ($criteria->error) {
+        $cronObject->alert('Zenguin could not send a campaign! The criteria that was set up for campaign "' . $row['name'] . '" has been deleted or cannot be found.');
+        continue;
+    }
+
     $applicable = $db->run_query($criteria->query);
 
     // ----------------------------

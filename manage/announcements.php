@@ -37,4 +37,3 @@ if ($ses['error'] == '1') {
     echo $wrapper;
     exit;
 }
-exit;

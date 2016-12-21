@@ -25,6 +25,8 @@
  * @project     Zenbership Membership Software
  */
 
+require "assets/functions.php";
+
 $error = '0';
 $path = str_replace('/setup', '', dirname(__FILE__));
 require "assets/header.php";
@@ -32,6 +34,11 @@ require "assets/header.php";
 ?>
 
     <div class="col50l">
+
+        <p class="help">Need help installing the program?
+        <br /><br /><a href="http://documentation.zenbership.com/Basics/Installation-and-Setup" target="_blank">Click here</a> for documentation
+        <br /><a href="http://www.zenbership.com/Services/Installations-And-Implementations" target="_blank">Click here</a> for information on having our staff install or implement it for you.</p>
+
 
         <fieldset class="blue">
             <legend>Write Permissions</legend>
@@ -116,9 +123,48 @@ require "assets/header.php";
         </fieldset>
 
 
-        <p class="help">Need help installing the program?
-        <br /><br /><a href="http://documentation.zenbership.com/Basics/Installation-and-Setup" target="_blank">Click here</a> for documentation
-        <br /><a href="http://www.zenbership.com/Services/Installations-And-Implementations" target="_blank">Click here</a> for information on having our staff install or implement it for you.</p>
+        <fieldset class="blue">
+            <legend>Required Extensions</legend>
+
+            <ul class="form">
+                <li class="indent">
+                    <?php
+                    if (! defined('PDO::ATTR_DRIVER_NAME')) {
+                        $class = 'bad';
+                        $error = '1';
+                    } else {
+                        $class = 'good';
+                    }
+                    echo "<span class=$class>Extension: PDO [<a href=\"http://php.net/manual/en/book.pdo.php\" target=\"_blank\">Info</a>]</span>";
+                    ?>
+                </li>
+                <li class="indent">
+                    <?php
+                    if (! function_exists('mcrypt_encrypt')) {
+                        $class = 'bad';
+                        $error = '1';
+                    } else {
+                        $class = 'good';
+                    }
+                    echo "<span class=$class>Extension: mcrypt [<a href=\"http://php.net/manual/en/book.mcrypt.php\" target=\"_blank\">Info</a>]</span>";
+                    ?>
+                </li>
+                <li class="indent">
+                    <?php
+                    //  && function_exists('gd_info')
+                    if (extension_loaded('gd')) {
+                        $class = 'bad';
+                        // $error = '1';
+                    } else {
+                        $class = 'good';
+                    }
+
+                    echo "<span class=$class>Extension: GD (not required but recommended) [<a href=\"http://php.net/manual/en/book.image.php\" target=\"_blank\">Info</a>]</span>";
+                    ?>
+                </li>
+            </ul>
+
+        </fieldset>
 
 
     </div>
@@ -149,19 +195,22 @@ require "assets/header.php";
                 <ul class="form">
                     <li>
                         <label>Server Host</label>
-                        <input type="text" name="mysql[host]" value="localhost" autocomplete="off" style="width:200px;"/>
+                        <input type="text" name="mysql[host]" id="mysqlhost" value="localhost" autocomplete="off" style="width:200px;"/>
                     </li>
                     <li>
                         <label>Database Name</label>
-                        <input type="text" name="mysql[db]" value="" autocomplete="off" style="width:200px;"/>
+                        <input type="text" name="mysql[db]" id="mysqldb" value="" autocomplete="off" style="width:200px;"/>
                     </li>
                     <li>
                         <label>Username</label>
-                        <input type="text" name="mysql[user]" value="" autocomplete="off" style="width:200px;"/>
+                        <input type="text" name="mysql[user]" id="mysqluser" value="" autocomplete="off" style="width:200px;"/>
                     </li>
                     <li>
                         <label>Password</label>
-                        <input type="text" name="mysql[pass]" value="" autocomplete="off" style="width:200px;"/>
+                        <input type="text" name="mysql[pass]" id="mysqlpass" value="" autocomplete="off" style="width:200px;"/>
+                    </li>
+                    <li>
+                        <button type="button" id="connectionButton">Click to Test Connection</button><span style="padding-left:12px;" id="connection"></span>
                     </li>
                 </ul>
 

@@ -43,7 +43,7 @@ error_reporting(0);
 require dirname(dirname(__FILE__)) . '/sd-system/config.php';
 // ----------------------------
 //   Start timer.
-$time_start = microtime(true);
+$cronObject = new cron();
 // ----------------------------
 //   Begin cron functions.
 // Backup
@@ -57,6 +57,7 @@ $time_start = microtime(true);
 // require "stat_rebuild.php";
 // Event Reminders
 require "event_reminders.php";
+
 // Stats
 // Rebuild today's stats to
 // account for deletions, etc.
@@ -80,6 +81,7 @@ require "event_reminders.php";
 //   link_clicks-[CAMPAIGN_ID]
 //   emails_read-[CAMPAIGN_ID]
 require "stat_rebuild.php";
+
 // Subscriptions
 // Subscriptions without a credit card
 // on file need to send a reminder email
@@ -90,6 +92,7 @@ require "stat_rebuild.php";
 // before a subscription is set to
 // expire.
 require "subscriptions.php";
+
 // Campaigns:
 // Ignore if status != '1'
 // optin_type = single or double
@@ -98,16 +101,20 @@ require "subscriptions.php";
 //  -> Send based on members or contacts matching the criteria_id, but not
 //     present in the "ppSD_campaign_unsubscribe" table.
 require "campaigns.php";
+
 // Invoice reminders.
 // 	ppSD_invoices where status != '1'.
 //	Options for reminders.
 //  -> invoice_reminder_no1
 //  -> invoice_reminder_no2
 //  -> invoice_reminder_post
+
 require "invoice_reminders.php";
 // Delete old files
 // Attachments?
 // QR Codes?
+
+
 
 // ----------------------------
 // Custom cron jobs
@@ -129,9 +136,29 @@ while (false !== ($filename = readdir($dh))) {
 
 
 // ----------------------------
+// Plugin cron jobs
+
+$dh  = opendir(PP_PATH . '/custom/plugins');
+while (false !== ($filename = readdir($dh))) {
+    $path = PP_PATH . '/custom/plugins/cron';
+    if ($filename == '.' || $filename == '..' || ! is_dir($path)) {
+        continue;
+    } else {
+        if (file_exists($path . '/index.php')) {
+            ob_start();
+            include $path . '/index.php';
+            $output = ob_get_contents();
+            ob_end_clean();
+        }
+    }
+}
+
+
+
+// ----------------------------
 //   Complete timer.
-$time_end = microtime(true);
-$time     = $time_end - $time_start;
-$db->update_option('cron_last_run', current_date());
-$db->update_option('cron_time', $time);
+
+echo "Done.";
+
+$cronObject->end();
 exit;

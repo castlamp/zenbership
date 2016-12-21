@@ -46,23 +46,9 @@ class ValidatorV2
 
 
     /**
-     * @param array $form_data Data we are working with. Generally POST array from a form.
-     * @param array $rules Array of supplemental rules for fields
-     *          Options: email, date, phone, url, zip, postal_code,
-     *                   alpha, numeric, alphanumeric, minlength,
-     *                   maxlength, sanitize, nosymbols, zippostal,
-     *                   sanitize, badwords, censor, date, datetime,
-     *                   bool, fixed_values, timeframe, encode, basicsymbols,nosymbols
-     *          Order in array: only_if:... First | required | Default last
-     *          Example Array:
-     *                  $rules = array(
-     *                      'email' => array('email','required'),
-     *                      'phone' => array('phone'),
-     *                      'state' => array('fixed_values:"option 1","option 2","etc."'),
-     *                      'about_me' => array('only_if:field=value','sanitize','minlength:25','maxlength:100'),
-     *                  );
-     *          So when building $rules, you need to put ALL possible rules, and have conditions
-     *          remove them if they don't need to be validated.
+     * @param $form_data
+     * @param array $rules
+     * @param array $options
      */
     function __construct($form_data, $rules = array(), $options = array())
     {
@@ -102,7 +88,7 @@ class ValidatorV2
             // Loop submitted items.
             foreach ($this->rules as $name => $value) {
                 $this->current_name = $name;
-                $this->current_value = $this->form_data[$name];
+                $this->current_value = (! empty($this->form_data[$name])) ? $this->form_data[$name] : '';
                 //if (! empty($this->form_data[$name]) || $this->form_data[$name] == '0') {
                     $this->check_rules();
                 //}
@@ -436,9 +422,11 @@ class ValidatorV2
      */
     function only_if()
     {
+        $temp = (! empty($this->form_data[$this->temp_hold])) ? $this->form_data[$this->temp_hold] : '';
+
         if (substr($this->only_if_match,0,2) == '!=') {
             $check = substr($this->only_if_match,2);
-            if ($this->form_data[$this->temp_hold] != $check) {
+            if ($temp != $check) {
                 return '0';
             } else {
                 $this->current_value = '';
@@ -448,7 +436,7 @@ class ValidatorV2
         }
         else if (substr($this->only_if_match,0,2) == '>=') {
             $check = substr($this->only_if_match,2);
-            if ($this->form_data[$this->temp_hold] >= $check) {
+            if ($temp >= $check) {
                 return '0';
             } else {
                 $this->current_value = '';
@@ -458,7 +446,7 @@ class ValidatorV2
         }
         else if (substr($this->only_if_match,0,2) == '<=') {
             $check = substr($this->only_if_match,2);
-            if ($this->form_data[$this->temp_hold] <= $check) {
+            if ($temp <= $check) {
                 return '0';
             } else {
                 $this->current_value = '';
@@ -468,7 +456,7 @@ class ValidatorV2
         }
         else if (substr($this->only_if_match,0,1) == '=') {
             $check = substr($this->only_if_match,1);
-            if ($this->form_data[$this->temp_hold] == $check) {
+            if ($temp == $check) {
                 return '0';
             } else {
                 $this->current_value = '';
@@ -478,7 +466,7 @@ class ValidatorV2
         }
         else if (substr($this->only_if_match,0,1) == '>') {
             $check = substr($this->only_if_match,1);
-            if ($this->form_data[$this->temp_hold] > $check) {
+            if ($temp > $check) {
                 return '0';
             } else {
                 $this->current_value = '';
@@ -488,7 +476,7 @@ class ValidatorV2
         }
         else if (substr($this->only_if_match,0,1) == '<') {
             $check = substr($this->only_if_match,1);
-            if ($this->form_data[$this->temp_hold] < $check) {
+            if ($temp < $check) {
                 return '0';
             } else {
                 $this->current_value = '';
@@ -497,7 +485,7 @@ class ValidatorV2
             }
         }
         else {
-            if ($this->form_data[$this->temp_hold] == $this->only_if_match) {
+            if ($temp == $this->only_if_match) {
                 return '0';
             } else {
                 $this->current_value = '';

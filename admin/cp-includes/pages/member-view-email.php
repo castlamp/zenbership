@@ -43,5 +43,3 @@ if (empty($data['data']['email'])) {
     include 'email-send.php';
 
 }
-
-?>

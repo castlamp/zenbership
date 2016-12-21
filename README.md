@@ -16,7 +16,7 @@ Zenbership is licensed under the [GPLv3](http://www.zenbership.com/Legal/License
 Server Requirements
 ===================
 
-**PHP 5.2+**
+**PHP 5.3+**
 
 Required Libraries and Extensions:  
   - PDO_MySQL

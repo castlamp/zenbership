@@ -31,7 +31,7 @@
  * @license     http://www.gnu.org/licenses/gpl-3.0.en.html
  * @project     Zenbership Membership Software
  */
-// require "../sd-system/config.php";
+
 // ----------------------------
 //   Product Popularity
 $day = date('d');

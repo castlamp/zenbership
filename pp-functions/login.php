@@ -237,6 +237,7 @@ if ($use_username == $check_username && $encode_password == $member['data']['pas
             }
         }
     }
+
     // Check for required update
     $check_update = add_time_to_expires($db->get_option('user_update_time'), $member['data']['last_updated']);
     if ($check_update <= current_date()) {
@@ -245,12 +246,17 @@ if ($use_username == $check_username && $encode_password == $member['data']['pas
     } else {
         $require_update = '0';
     }
+
     // Create login
     $add_login = $user->add_login($member['data']['id'], '1', $current_attempt, $create);
+
     // End the task
     $indata = array(
         'member_id' => $member['data']['id'],
         'login_id'  => $add_login,
+        'redirect' => $redirect,
+        'content' => $member['areas'],
+        'member' => $member,
     );
     $task   = $db->end_task($task_id, '1', '', 'login', '', $indata);
     if ($ajax == '1') {

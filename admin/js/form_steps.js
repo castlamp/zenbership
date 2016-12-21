@@ -20,6 +20,17 @@ function switch_type(type) {
     }
 }
 function switch_step(gotostep) {
+    var storeStep = onStep;
+
+    if (gotostep > storeStep) {
+        var dir = 'forward';
+    }
+    else if (gotostep < storeStep) {
+        var dir = 'back';
+    } else {
+        return false;
+    }
+
     if (!gotostep) {
         var index = onStep;
         onStep += 1;
@@ -29,6 +40,10 @@ function switch_step(gotostep) {
     }
     $('#step_tabs li').removeClass('on');
     $('#step_tabs li:eq(' + index + ')').addClass('on');
+
     $('.step_form').hide();
     $('#step_' + gotostep).show();
+
+    //$('#step_' + storeStep).addClass('animated fadeOut');
+    //$('#step_' + gotostep).addClass('animated fadeIn');
 }

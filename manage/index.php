@@ -26,7 +26,7 @@ if ($ses['error'] == '1') {
     exit;
 } else {
     $user = new user;
-    $data = $user->get_user($ses['member_id']);
+    $udata = $user->get_user($ses['member_id']);
     /**
      * Pagination
      */
@@ -132,9 +132,8 @@ if ($ses['error'] == '1') {
         'pagination' => $paginate->{'rendered_pages'}
     );
 
-
     $theme = $db->get_theme();
-    $page_check = 'manage_home-' . $member_type;
+    $page_check = 'manage_home-' . $udata['data']['member_type'];
     $path = PP_PATH . '/pp-templates/html/' . $theme['name'] . '/' . $db->determine_language() . '/' . $page_check . '.php';
 
     if (file_exists($path)) {

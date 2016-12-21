@@ -67,13 +67,6 @@ function set_width() {
     close_loading();
 }
 
-
-function update_price(event) {
-    var val = $(event).val();
-    var selected = $('#selectedOption1 option[value="' + val + '"]').attr('zen_price');
-    $('#zen_prod_view_price').text(selected);
-}
-
 function close_overlay() {
     $('#zen_overlay').add('#zen_faded').fadeOut('250', function () {
         $('#zen_overlay, #zen_faded').remove();
@@ -85,9 +78,11 @@ function close_overlay() {
  * Cart Calls
  */
 
+// Changes
 function switch_thumb(filename, width, height) {
     var src = zen_url + '/custom/uploads/' + filename;
     $('#zen_cover_photo').attr('src', src);
+    //$('#zen_thumb_href').attr('data-featherlight', src);
     $('#zen_cover_photo').attr('width', width);
     $('#zen_cover_photo').attr('height', height);
     return false;
@@ -101,19 +96,19 @@ function expandImage()
 
 function add_to_cart() {
     show_loading();
-    var send_data = $('#zen_cart_form').serialize() + '&act=add_to_cart';
+    var send_data = $('#zen_cart_form').serialize() + '&act=add_to_cart&random=' + Math.random();
     cart_call(send_data);
     return false;
 }
 function quick_add_to_cart(id) {
     show_loading();
-    var send_data = '&act=add_to_cart&id=' + id + '&qty=1&quick=1';
+    var send_data = '&act=add_to_cart&id=' + id + '&qty=1&quick=1&random=' + Math.random();
     cart_call(send_data);
     return false;
 }
 function update_shipping(rule) {
     show_loading();
-    var send_data = 'rule=' + rule + '&act=update_shipping';
+    var send_data = 'rule=' + rule + '&act=update_shipping&random=' + Math.random();
     cart_call(send_data);
 }
 function set_country_state() {
@@ -127,7 +122,7 @@ function set_country_state() {
 }
 function upgrade_sub(id, salt) {
     show_loading();
-    send_data = 'act=upgrade_sub&id=' + id + '&salt=' + salt + '&confirm=' + confirm;
+    send_data = 'act=upgrade_sub&id=' + id + '&salt=' + salt + '&confirm=' + confirm + '&random=' + Math.random();
     $.get(cart_functions, send_data, function (theResponse) {
         var returned = theResponse.split('+++');
         show_overlay(returned['1'], '1');
@@ -138,7 +133,7 @@ function complete_sub_upgrade(id, salt, plan, confirm_message) {
     var r = confirm(confirm_message)
     if (r == true) {
         show_loading();
-        send_data = 'act=upgrade_sub_complete&id=' + id + '&salt=' + salt + '&plan=' + plan;
+        send_data = 'act=upgrade_sub_complete&id=' + id + '&salt=' + salt + '&plan=' + plan + '&random=' + Math.random();
         $.get(cart_functions, send_data, function (theResponse) {
             var returned = theResponse.split('+++');
             if (returned['0'] == "1") {
@@ -155,7 +150,7 @@ function complete_sub_upgrade(id, salt, plan, confirm_message) {
 }
 function alter_subscription(id, salt, type, confirm) {
     show_loading();
-    send_data = 'act=cancel_sub&id=' + id + '&salt=' + salt + '&type=' + type + '&confirm=' + confirm;
+    send_data = 'act=cancel_sub&id=' + id + '&salt=' + salt + '&type=' + type + '&confirm=' + confirm + '&random=' + Math.random();
     $.get(cart_functions, send_data, function (theResponse) {
         var returned = theResponse.split('+++');
         show_overlay(returned['1'], '1');
@@ -164,7 +159,7 @@ function alter_subscription(id, salt, type, confirm) {
 }
 function complete_sub_alter(id, salt, type) {
     show_loading();
-    send_data = 'act=confirm_cancel&id=' + id + '&salt=' + salt + '&type=' + type;
+    send_data = 'act=confirm_cancel&id=' + id + '&salt=' + salt + '&type=' + type + '&random=' + Math.random();
     $.get(cart_functions, send_data, function (theResponse) {
         var returned = theResponse.split('+++');
         if (returned['0'] == "1") {
@@ -179,23 +174,23 @@ function complete_sub_alter(id, salt, type) {
 }
 function set_region() {
     show_loading();
-    var send_data = $('#zen_popup_form').serialize() + '&act=update_region';
+    var send_data = $('#zen_popup_form').serialize() + '&act=update_region&random=' + Math.random();
     cart_call(send_data);
     close_overlay();
     return false;
 }
 function delete_card(id, salt) {
-    send_data = 'act=delete_card&id=' + id + '&salt=' + salt;
+    send_data = 'act=delete_card&id=' + id + '&salt=' + salt + '&random=' + Math.random();
     cart_call(send_data);
     return false;
 }
 function applyCoupon() {
-    send_data = 'act=add_code&coupon=' + $('#coupon').val();
+    send_data = 'act=add_code&coupon=' + $('#coupon').val() + '&random=' + Math.random();
     cart_call(send_data);
     return false;
 }
 function remove_code() {
-    send_data = 'act=remove_code';
+    send_data = 'act=remove_code&random=' + Math.random();
     cart_call(send_data);
     $('#zen_display_code').fadeOut('150', function () {
         $('#zen_display_code').remove();
@@ -291,10 +286,12 @@ function set_same_as_billing(clear) {
 function verifyLogin(form) {
     show_loading();
     js_path_put = "pp-functions/login.php";
-    send_data = $('#' + form).serialize() + '&ajax=1';
+    send_data = $('#' + form).serialize() + '&ajax=1&random=' + Math.random();
     $.post(js_path_put, send_data, function (theResponse) {
+
+        // console.log(theResponse);
+
         var returned = theResponse.split('+++');
-        close_loading();
         if (returned['0'] == "1") {
             if (returned['1'] == 'redirect') {
                 window.location = returned['2'];
@@ -324,6 +321,7 @@ function verifyLogin(form) {
             }
         }
     });
+    close_loading();
     return false;
 }
 function captcha(image) {
@@ -337,7 +335,9 @@ function captcha(image) {
 function cart_call(send_data) {
     $.get(cart_functions, send_data, function (theResponse) {
         var returned = theResponse.split('+++');
-        // console.log(theResponse);
+
+        console.log(theResponse);
+
         if (returned['0'] == '1') {
             process_success(theResponse);
         } else {

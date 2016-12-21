@@ -59,8 +59,14 @@ if (! empty($_GET['action']) && $_GET['action'] == 'reset') {
 if (empty($_GET['id'])) {
     $form      = new form();
     $get_forms = $form->public_list();
+
+    if (sizeof($get_forms['forms']) == 1) {
+        header('Location: register.php?id=' . str_replace('register-', '', $get_forms['forms']['0']));
+        exit;
+    }
+
     $changes   = array(
-        'forms' => $get_forms
+        'forms' => $get_forms['forms'],
     );
     $wrapper   = new template('register_list', $changes, '1');
     echo $wrapper;
@@ -145,6 +151,9 @@ if (empty($_GET['step'])) {
 if (empty($step)) {
     $step = '1';
 }
+
+
+// Select a registration option!
 if ($this_form->formdata['type'] == 'register-paid' && (empty($form_session['products']) || $step == 'membership_option')) {
     $all_products = '';
     $cart         = new cart;
@@ -157,6 +166,16 @@ if ($this_form->formdata['type'] == 'register-paid' && (empty($form_session['pro
         $all_products .= new template('reg_select_product_entry',$aChange,'0');
     }
     */
+
+    /*
+    $len = sizeof($all_products);
+    $len1 = sizeof($addons);
+    $totalProducts = $len + $len1;
+    if ($totalProducts == 1) {
+
+    }
+    */
+
     $step_ul  = $form->generate_step_array($this_form->formdata, 'product');
     $template = 'reg_select_product';
     $changes  = array(

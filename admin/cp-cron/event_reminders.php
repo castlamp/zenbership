@@ -73,47 +73,55 @@ while ($row = $q->fetch()) {
     foreach ($rsvps as $user) {
         $fail        = '0';
         $fail_reason = '';
+        $proceed = false;
+
+        if ($row['when'] == 'before' || ($row['when'] == 'after' && $user['arrived'] == '1')) {
+            $proceed = true;
+        }
 
         // Check reminder status
-        $check = $event->check_reminder($row['id'], $user['id']);
-        if ($check <= 0) {
+        if ($proceed) {
 
-            // Update custom message
-            foreach ($user as $item => $value) {
-                if (!is_array($value)) {
-                    $hold_msg = str_replace('%' . $item . '%', $value, $hold_msg);
+            $check = $event->check_reminder($row['id'], $user['id']);
+            if ($check <= 0) {
+
+                // Update custom message
+                foreach ($user as $item => $value) {
+                    if (!is_array($value)) {
+                        $hold_msg = str_replace('%' . $item . '%', $value, $hold_msg);
+                    }
                 }
+
+                // SMS or email?
+                if ($row['sms'] == '1') {
+                    if (!empty($user['cell']) && !empty($user['cell_carrier'])) {
+                        $fail = '1';
+                        $fail_reason = 'Not enough cell data.';
+                    } else if (!empty($user['sms_optout'])) {
+                        $fail = '1';
+                        $fail_reason = 'SMS Output';
+                    } else {
+                        $prep = $sms->prep_sms($user['id'], 'rsvp', $hold_msg);
+                    }
+
+                } // Email
+                else {
+                    if (!empty($user['email'])) {
+                        $data = array();
+                        $changes = $user;
+                        $changes['custom_message'] = $hold_msg;
+                        $changes['event'] = $edata['data'];
+                        $email = new email('', $user['id'], 'rsvp', $data, $changes, $template);
+                    } else {
+                        $fail = '1';
+                        $fail_reason = 'No E-Mail';
+                    }
+                }
+
+                // ppSD_event_reminder_logs
+                $add_log = $event->add_reminder_log($row['event_id'], $user['id'], $row['id'], $fail, $fail_reason);
+
             }
-
-            // SMS or email?
-            if ($row['sms'] == '1') {
-                if (!empty($user['cell']) && !empty($user['cell_carrier'])) {
-                    $fail        = '1';
-                    $fail_reason = 'Not enough cell data.';
-                } else if (!empty($user['sms_optout'])) {
-                    $fail        = '1';
-                    $fail_reason = 'SMS Output';
-                } else {
-                    $prep = $sms->prep_sms($user['id'], 'rsvp', $hold_msg);
-                }
-
-            } // Email
-            else {
-                if (!empty($user['email'])) {
-                    $data                      = array();
-                    $changes                   = $user;
-                    $changes['custom_message'] = $hold_msg;
-                    $changes['event']          = $edata['data'];
-                    $email                     = new email('', $user['id'], 'rsvp', $data, $changes, $template);
-                } else {
-                    $fail        = '1';
-                    $fail_reason = 'No E-Mail';
-                }
-            }
-
-            // ppSD_event_reminder_logs
-            $add_log = $event->add_reminder_log($row['event_id'], $user['id'], $row['id'], $fail, $fail_reason);
-
         }
 
     }

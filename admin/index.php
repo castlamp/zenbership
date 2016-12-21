@@ -70,16 +70,27 @@ if (empty($_GET['l'])) {
 // If no location was submitted, redirect
 // to the control panel homepage.
 else {
-    $lit = PP_ADMINPATH . "/cp-includes/" . $_GET['l'] . ".php";
-    if (! file_exists($lit)) {
-        $lit = PP_PATH . "/custom/admin_extensions/" . htmlentities($_GET['l']) . "/views/list.php";
+    if (! empty($_GET['plugin'])) {
+        $lit = PP_PATH . "/custom/plugins/" . htmlentities($_GET['plugin']) . "/admin/views/" . htmlentities($_GET['l']) . ".php";
         if (! file_exists($lit)) {
-            $lit       = PP_ADMINPATH . "/cp-includes/home.php";
-            $_GET['l'] = 'home';
+            $lit       = PP_ADMINPATH . "/cp-includes/error.php";
+            $_GET['l'] = 'error';
         } else {
-            $ae = new admin_extensions($_GET['l'], $employee);
-            $content = $ae->runTask('list');
-            $extension = true;
+            $ae = new admin_extensions($_GET['l'], $employee, $_GET['plugin']);
+            $content = $ae->runTask($_GET['l']);
+
+            if (empty($content)) {
+                $lit       = PP_ADMINPATH . "/cp-includes/error.php";
+                $_GET['l'] = 'error';
+            } else {
+                $extension = true;
+            }
+        }
+    } else {
+        $lit = PP_ADMINPATH . "/cp-includes/" . $_GET['l'] . ".php";
+        if (! file_exists($lit)) {
+            $lit       = PP_ADMINPATH . "/cp-includes/error.php";
+            $_GET['l'] = 'error';
         }
     }
 }

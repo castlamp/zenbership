@@ -25,17 +25,25 @@ class admin_extensions extends admin {
 
     protected $activeTask = array();
 
+    protected $plugin;
+
+    protected $field;
+
+
     /**
      * @param $extension
      * @param $employee
      */
-    public function __construct($extension, $employee)
+    public function __construct($extension, $employee, $plugin)
     {
         $this->extension = $extension;
 
-        define('ZEN_CUS_EXTENSION', $extension);
+        $this->field = new adminFields();
 
-        $this->path = PP_PATH . "/custom/admin_extensions/" . $extension;
+        define('ZEN_CUS_EXTENSION', $plugin);
+        define('ZEN_CUS_EXTENSION_PAGE', $extension);
+
+        $this->path = PP_PATH . "/custom/plugins/" . $plugin . '/admin';
 
         if (file_exists($this->path . '/ExtensionObject.php')) {
             require $this->path . '/ExtensionObject.php';
@@ -44,16 +52,23 @@ class admin_extensions extends admin {
 
         $file = $this->path . '/package.php';
 
-        if (file_exists($file)) {
-            $this->settings = require $file;
+        $this->plugin = new plugin($plugin);
 
-            $this->employee = $employee;
+        if (empty($this->plugin->data['name'])) {
+            $this->proceed = false;
+        } else {
 
-            $check = $this->check_permissions($this->settings->permission, $employee);
-            if ($check != '1') {
-                $this->show_no_permissions();
-            } else {
-                $this->proceed = true;
+            if (file_exists($file)) {
+                $this->settings = require $file;
+
+                $this->employee = $employee;
+
+                $check = $this->check_permissions($this->settings['permission'], $employee);
+                if ($check != '1') {
+                    $this->proceed = false;
+                } else {
+                    $this->proceed = true;
+                }
             }
         }
     }
@@ -66,14 +81,18 @@ class admin_extensions extends admin {
      */
     public function formatFields($data = array())
     {
+        /*
         $fields = '';
+        $formatter = new adminFields();
 
         foreach ($this->settings['fields'] as $key => $fData) {
 
             if ($fData['required']) {
                 $class = 'req';
+                $req = 1;
             } else {
                 $class = '';
+                $req = 0;
             }
 
             $val = (! empty($data[$key])) ? $data[$key] : '';
@@ -100,12 +119,22 @@ qq;
             else if ($fData['type'] == 'date') {
                 $fields .= <<<qq
 qq;
-                $fields .= $this->datepicker($key, $val, '0', '250', '', '', '1');
+                $fields .= $this->datepicker($key, $val, '0', '250', '', '', $req);
+            }
+            else if ($fData['type'] == 'memberList') {
+                $fields .= $formatter->memberList($key, $val, $class);
+            }
+            else if ($fData['type'] == 'contactList') {
+                $fields .= $formatter->contactList($key, $val, $class);
+            }
+            else if ($fData['type'] == 'formList') {
+
+            }
+            else if ($fData['type'] == 'productList') {
+
             }
             else {
-                $fields .= <<<qq
-                <input type="text" name="{$key}" id="{$key}" value="{$val}" style="width:100%;" class="$class" />
-qq;
+                $fields .= $formatter->string($key, $val, $class);
             }
 
 
@@ -118,6 +147,7 @@ qq;
         }
 
         return $fields;
+        */
     }
 
 
@@ -125,16 +155,17 @@ qq;
     public function header($type)
     {
         $val = ($type == 'edit') ? 1 : 0;
+        $id = (! empty($_POST['id'])) ? $_POST['id'] : '';
 
         echo <<<qq
 <script type="text/javascript">
     $.ctrl('S', function () {
-        return json_add('custom:{$this->extension}', '{$_POST['id']}', '{$val}', 'popupform');
+        return json_add('custom:{$this->extension}', '{$id}', '{$val}', 'popupform');
     });
 </script>
 
 <form action="" method="post" id="popupform"
-      onsubmit="return json_add('custom:{$this->extension}','{$_POST['id']}','{$val}','popupform');">
+      onsubmit="return json_add('custom:{$this->plugin->id}:{$this->extension}','{$id}','{$val}','popupform');">
 
     <div id="popupsave">
         <input type="hidden" name="dud_quick_add" value="1" />
@@ -142,8 +173,6 @@ qq;
     </div>
 
     <h1>Edit</h1>
-
-    <div class="pad24t popupbody">
 qq;
     }
 
@@ -151,8 +180,6 @@ qq;
     public function footer($type)
     {
         echo <<<qq
-    </div>
-
 </form>
 qq;
     }
@@ -172,6 +199,15 @@ qq;
     }
 
 
+    public function formatLink($page)
+    {
+        if (file_exists($this->path . '/views/' . $page . '.php')) {
+            return '?plugin=' . $this->plugin->id . '&l=' . $page;
+        } else {
+            return '';
+        }
+    }
+
     /**
      * @param        $task
      * @param string $space
@@ -181,8 +217,12 @@ qq;
      */
     public function runTask($task, $space = '', $input = array())
     {
+        if (! $this->proceed) {
+            return '';
+        }
+
         if (empty($space)) {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $space = 'func';
             } else {
                 $space = 'views';
@@ -192,10 +232,11 @@ qq;
         try {
 
             ob_start();
+            $plugin = $this->plugin;
             $extension = $this->extension;
             $settings = $this->settings;
             $obj = $this;
-            $rendered = $this->formatFields($_POST);
+            // $rendered = $this->formatFields($_POST);
             include $this->path . '/' . $space . '/' . $task . '.php';
             $content = ob_get_contents();
             ob_end_clean();
@@ -208,7 +249,6 @@ qq;
 
         }
     }
-
 
 
     public function startAndConfirm()
@@ -233,8 +273,8 @@ qq;
         $values = '';
         $updateValues = '';
 
-        foreach ($this->settings['fields'] as $key => $crap) {
-            if ($crap['required'] && empty($_POST[$key])) {
+        foreach ($this->settings['fields'] as $key => $aField) {
+            if ($aField['required'] && empty($_POST[$key])) {
                 $error = true;
                 break;
             }

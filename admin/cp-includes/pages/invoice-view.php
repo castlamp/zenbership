@@ -36,7 +36,10 @@ if ($check != '1') {
     // Ownership
     $invoice = new invoice;
     $data    = $invoice->get_invoice($_POST['id']);
-    // pa($data);
+
+
+    $notes = new notes;
+    $pinned_notes = $notes->get_pinned_notes($_POST['id']);
     ?>
 
     <div class="col50l">
@@ -57,34 +60,6 @@ if ($check != '1') {
                         <dd><?php echo $data['data']['format_last_reminder']; ?></dd>
                         <dt>Owner</dt>
                         <dd><?php
-
-                            /**
-                             *
-                             *
-                             * Zenbership Membership Software
- * Copyright (C) 2013-2016 Castlamp, LLC
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * @author      Castlamp
-                             * @link        http://www.castlamp.com/
-                             * @link        http://www.zenbership.com/
-                             * @copyright   (c) 2013-2016 Castlamp
-                             * @license     http://www.gnu.org/licenses/gpl-3.0.en.html
-                             * @project     Zenbership Membership Software
-                             */
-
                             if ($data['data']['member_type'] == 'member') {
                                 echo "<a href=\"return_null.php\" onclick=\"return load_page('member','view','" . $data['data']['member_id'] . "');\">Member ID " . $data['data']['member_id'] . "</a>";
                             } else {
@@ -132,6 +107,22 @@ if ($check != '1') {
     <div class="col50r">
         <div class="pad24_fs_r">
 
+            <?php
+
+            if (!empty($pinned_notes)) {
+
+                echo '<div style="margin-bottom:24px;">';
+
+                foreach ($pinned_notes as $item) {
+                    echo $admin->format_note($item);
+                }
+
+                echo '</div>';
+
+            }
+
+            ?>
+
             <fieldset>
                 <legend>Totals</legend>
                 <div class="pad24">
@@ -157,34 +148,6 @@ if ($check != '1') {
             </fieldset>
 
             <?php
-
-            /**
-             *
-             *
-             * Zenbership Membership Software
- * Copyright (C) 2013-2016 Castlamp, LLC
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * @author      Castlamp
-             * @link        http://www.castlamp.com/
-             * @link        http://www.zenbership.com/
-             * @copyright   (c) 2013-2016 Castlamp
-             * @license     http://www.gnu.org/licenses/gpl-3.0.en.html
-             * @project     Zenbership Membership Software
-             */
-
             if (!empty($data['data']['shipping_rule'])) {
                 ?>
 
@@ -209,34 +172,6 @@ if ($check != '1') {
                     <div class="pad24">
 
                         <?php
-
-                        /**
-                         *
-                         *
-                         * Zenbership Membership Software
- * Copyright (C) 2013-2016 Castlamp, LLC
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * @author      Castlamp
-                         * @link        http://www.castlamp.com/
-                         * @link        http://www.zenbership.com/
-                         * @copyright   (c) 2013-2016 Castlamp
-                         * @license     http://www.gnu.org/licenses/gpl-3.0.en.html
-                         * @project     Zenbership Membership Software
-                         */
-
                         echo generate_map($data['shipping'], '100%', '275');
                         ?>
 
@@ -244,33 +179,6 @@ if ($check != '1') {
                 </fieldset>
 
                 <?php
-
-                /**
-                 *
-                 *
-                 * Zenbership Membership Software
- * Copyright (C) 2013-2016 Castlamp, LLC
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * @author      Castlamp
-                 * @link        http://www.castlamp.com/
-                 * @link        http://www.zenbership.com/
-                 * @copyright   (c) 2013-2016 Castlamp
-                 * @license     http://www.gnu.org/licenses/gpl-3.0.en.html
-                 * @project     Zenbership Membership Software
-                 */
 
             }
             ?>
@@ -280,33 +188,4 @@ if ($check != '1') {
     <div class="clear"></div>
 
     <?php
-
-    /**
-     *
-     *
-     * Zenbership Membership Software
- * Copyright (C) 2013-2016 Castlamp, LLC
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * @author      Castlamp
-     * @link        http://www.castlamp.com/
-     * @link        http://www.zenbership.com/
-     * @copyright   (c) 2013-2016 Castlamp
-     * @license     http://www.gnu.org/licenses/gpl-3.0.en.html
-     * @project     Zenbership Membership Software
-     */
-
-}
-?>
+    }

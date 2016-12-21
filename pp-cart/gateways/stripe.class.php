@@ -192,6 +192,7 @@ class gw_stripe extends cart
     function add_card()
     {
         $data = $this->build_token();
+
         if ($data['error'] == '1') {
             return $data;
         } else {

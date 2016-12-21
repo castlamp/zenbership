@@ -1,5 +1,32 @@
 <?php
 
+/**
+ *
+ *
+ * Zenbership Membership Software
+ * Copyright (C) 2013-2016 Castlamp, LLC
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author      Castlamp
+ * @link        http://www.castlamp.com/
+ * @link        http://www.zenbership.com/
+ * @copyright   (c) 2013-2016 Castlamp
+ * @license     http://www.gnu.org/licenses/gpl-3.0.en.html
+ * @project     Zenbership Membership Software
+ */
+
 // Load the basics
 require "../sd-system/config.php";
 $admin = new admin;
@@ -19,6 +46,10 @@ $path = PP_PATH . '/custom/plugins';
 if ($handle = opendir($path)) {
     while (false !== ($entry = readdir($handle))) {
 
+        $continue = true;
+        $updating = false;
+        $verb = 'installed';
+
         if ($entry != "." && $entry != "..") {
 
             $plugin_id = $entry;
@@ -34,13 +65,23 @@ if ($handle = opendir($path)) {
                 
                 // Widget already exists.
                 if ($find['0'] > 0) {
-                
-                    $errors .= '<li>Could not install plugin: plugin ID already exists.</li>';
-                
-                } else {
-                
+
+                    $file = $entry . '/update.php';
+                    if (file_exists($file)) {
+                        $continue = true;
+                        $updating = true;
+                        $verb = 'updated';
+                    } else {
+                        $continue = false;
+                    }
+
+                }
+                else {
                     $file = $entry . '/install.php';
-                    
+                }
+
+                if ($continue) {
+
                     if (file_exists($file)) {
                 
                         $install++;
@@ -52,36 +93,54 @@ if ($handle = opendir($path)) {
                         $settings = $plugin['settings'];
                         
                         // Widget
-                        $in = $db->insert("
-                            INSERT INTO `ppSD_widgets` (
-                                `id`,
-                                `name`,
-                                `type`,
-                                `active`,
-                                `description`,
-                                `author`,
-                                `author_url`,
-                                `author_twitter`,
-                                `version`,
-                                `installed`,
-                                `original_creator`,
-                                `original_creator_url`
-                            )
-                            VALUES (
-                                '" . $db->mysql_clean($plugin_id) . "',
-                                '" . $db->mysql_clean($plugin['name']) . "',
-                                'plugin',
-                                '1',
-                                '" . $db->mysql_clean($plugin['description']) . "',
-                                '" . $db->mysql_clean($plugin['author']) . "',
-                                '" . $db->mysql_clean($plugin['author_url']) . "',
-                                '" . $db->mysql_clean($plugin['author_twitter']) . "',
-                                '" . $db->mysql_clean($plugin['version']) . "',
-                                '" . current_date() . "',
-                                '" . $db->mysql_clean($plugin['app_creator']) . "',
-                                '" . $db->mysql_clean($plugin['app_creator_url']) . "'
-                            )
-                        ");
+                        if (! $updating) {
+                            $in = $db->insert("
+                                INSERT INTO `ppSD_widgets` (
+                                    `id`,
+                                    `name`,
+                                    `type`,
+                                    `active`,
+                                    `description`,
+                                    `author`,
+                                    `author_url`,
+                                    `author_twitter`,
+                                    `version`,
+                                    `installed`,
+                                    `original_creator`,
+                                    `original_creator_url`
+                                )
+                                VALUES (
+                                    '" . $db->mysql_clean($plugin_id) . "',
+                                    '" . $db->mysql_clean($plugin['name']) . "',
+                                    'plugin',
+                                    '1',
+                                    '" . $db->mysql_clean($plugin['description']) . "',
+                                    '" . $db->mysql_clean($plugin['author']) . "',
+                                    '" . $db->mysql_clean($plugin['author_url']) . "',
+                                    '" . $db->mysql_clean($plugin['author_twitter']) . "',
+                                    '" . $db->mysql_clean($plugin['version']) . "',
+                                    '" . current_date() . "',
+                                    '" . $db->mysql_clean($plugin['app_creator']) . "',
+                                    '" . $db->mysql_clean($plugin['app_creator_url']) . "'
+                                )
+                            ");
+                        } else {
+                            $q = $db->update("
+                                UPDATE `ppSD_widgets`
+                                SET
+                                  `name`='" . $this->mysql_clean($plugin['name']) . "',
+                                  `description`='" . $this->mysql_clean($plugin['description']) . "',
+                                  `version`='" . $this->mysql_clean($plugin['version']) . "',
+                                  `author`='" . $this->mysql_clean($plugin['author']) . "',
+                                  `author_url`='" . $this->mysql_clean($plugin['author_url']) . "',
+                                  `author_twitter`='" . $this->mysql_clean($plugin['author_twitter']) . "',
+                                  `original_creator`='" . $this->mysql_clean($plugin['app_creator']) . "',
+                                  `original_creator_url`='" . $this->mysql_clean($plugin['app_creator_url']) . "'
+                                WHERE
+                                    `id`='" . $this->mysql_clean($plugin_id) . "'
+                                LIMIT 1
+                            ");
+                        }
                     
                         // Options
                         foreach ( (array)$options as $item ) {
@@ -105,10 +164,9 @@ if ($handle = opendir($path)) {
                             // Option updates
                             $item['data'] = str_replace('%path%', $entry, $item['data']);
                             
-                            $make = $db->make_hook($item['trigger'], $item['specific_trigger'], $item['type'], $item['data'], $item['when'], $plugin_id, $item['name']);
-                        
-                        }
+                            $make = $db->make_hook($item['trigger'], $item['specific_trigger'], $item['type'], $item['data'], $item['when'], '', $item['name'], $plugin_id, $item['order']);
 
+                        }
 
                         // Routes
                         foreach ( (array)$routes as $item ) {
@@ -127,43 +185,17 @@ if ($handle = opendir($path)) {
 
                         }
 
-                        // Secure Folders
-                        /*
-                            $id = $db->insert("
-                                INSERT INTO `ppSD_content` (`additional_update_fieldsets`" . $query_form['if2'] . ")
-                                VALUES ('" . $db->mysql_cleans($fieldsets) . "'" . $query_form['iv2'] . ")
-                            ");
-                            $modrewrite = new modrewrite($_POST['path'], $id);
-                            if ($modrewrite->error == '1') {
-                                $del = $db->delete("
-                                    DELETE FROM `ppSD_content`
-                                    WHERE `id`='" . $db->mysql_cleans($id) . "'
-                                    LIMIT 1
-                                ");
-                                echo "0+++" . $modrewrite->error_details;
-                                exit;
-                            }
-                        */
-                        /*
-                        foreach ( (array)$folders as $item ) {
-
-                            // Option updates
-                            $item['path'] = str_replace('%path%', $entry, $item['path']);
-
-
+                        // Custom tables/commands.
+                        foreach ( (array)$tables as $item ) {
+                            $db->run_query($item);
                         }
-                        */
 
                         // End the task.
                         $task = $db->end_task($task_id,'1');
                     
                         // Delete installed.
-                        if (@unlink($file)) {
-                            $success .= '<li>Plugin has been installed. ID <u>' . $plugin_id . '</u>.</li>';
-                        } else {
-                            $success .= '<li>Plugin has been installed. ID <u>' . $plugin_id . '</u>. Please take a moment to delete the install.php file.</li>';
-                        }
-                    
+                        $success .= '<li>Plugin has been ' . $verb . '. ID <u>' . $plugin_id . '</u>.</li>';
+
                     }
                     
                 }

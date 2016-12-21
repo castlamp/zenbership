@@ -43,10 +43,11 @@ $inserts[] = "
 	('GEN_CONTAC', '', '', '', '', '', '', '', '', '', '', 'General Contacts', '', '', '', 0, '', '', ''),
 	('GEN_MEMBER', '', '', '', '', '', '', '', '', '', '', 'General Members', '', '', '', 0, '', '', ''),
 	('GEN_CAMPAI', '', '', '', '', '', '', '', '', '', '', 'Campaign Sign Ups', '', '', '', 0, '', '', ''),
-	('CASTLAMP', '', '', 'New York', 'NY', '', 'United States', '', '', '', '', 'Castlamp', 'http://www.castlamp.com/', 'Technology', 'Other', 0, 'https://www.facebook.com/castlamp', 'http://twitter.com/castlmap', 'https://www.linkedin.com/company/castlamp'),
+	('CASTLAMP', '', '', 'New York', 'NY', '', 'United States', '', '', '', '', 'Castlamp', 'http://www.castlamp.com/', 'Technology', 'Other', 0, 'https://www.facebook.com/castlamp', 'http://twitter.com/castlamp', 'https://www.linkedin.com/company/castlamp'),
 	('NON_MEMBER', '', '', '', '', '', '', '', '',
 	 '', '', '', '', '', '', 0, '', '', '');
 ";
+
 $inserts[] = "
 	INSERT INTO `ppSD_activity_methods` (`id`, `icon`, `link`, `link_type`, `text`, `in_feed`, `custom`) VALUES
 	('campaign_subscription', 'icon-campaign_sub.png', 'campaign-view', 'slider', 'Campaign %act% subscription.', 1, 0),
@@ -612,6 +613,12 @@ $inserts[] = "
 	('joomla', 0, '0000-00-00 00:00:00', '', '', '', '', '', 1, 1, '', ''),
 	('kayako', 0, '0000-00-00 00:00:00', '', '', '', '', '', 1, 1, '', '');
 ";
+
+$inserts[] = "INSERT INTO `ppSD_pipeline` (`id`,`name`,`position`) VALUES (1, 'Contact', 1);";
+$inserts[] = "INSERT INTO `ppSD_pipeline` (`id`,`name`,`position`) VALUES (2, 'Lead', 2);";
+$inserts[] = "INSERT INTO `ppSD_pipeline` (`id`,`name`,`position`) VALUES (3, 'Opportunity', 3);";
+$inserts[] = "INSERT INTO `ppSD_pipeline` (`id`,`name`,`position`) VALUES (4, 'Customer', 4);";
+
 /*
 	('modxcms_evolution', 0, '0000-00-00 00:00:00', '', '', '', '', '', 1, 1, '', ''),
 	('phpfox', 0, '0000-00-00 00:00:00', '', '', '', '', '', 1, 1, '', ''),
@@ -674,6 +681,7 @@ $inserts[] = "
 	('session_admin_inactivity', 'Session Expiration', '7200', '', 'special', 0, '', 'admin', 0, 'zen_num'),
 	('additional_search_contacts', '', 'phone,fax', 'Make additional custom fields searchable in the quick ajax search.', 'text', 0, '', 'system', 0, ''),
 
+    ('cc_expiring_notify', 'Notify Expiring Credit Cards?', '1', 'If set to yes, users will be notified of upcoming expiring credit cards one month before they expire.', 'radio', '0', '', 'cart', '0', ''),
 
 	('additional_search_members', '', 'phone,fax', 'Make additional custom fields searchable in the quick ajax search.', 'text', 0, '', 'system', 0, ''),
 	('price_format', 'Price Format', '1', 'What format should prices be displayed in&#63;', 'select', 150, '1:1,000.00|2:1 000,00|3:1000.00|4:1000', 'cart', 0, ''),
@@ -1093,6 +1101,7 @@ $inserts[] = "
 	('event_followup',  'Default Event Followup',  '',  'Thank you for attending \"%event:name%\"!',  '',  '',  '',  '',  '',  '1',  '1',  '0',  '0',  '0',  '',  '',  '2',  '0',  '" . $date . "',  '',  '',  '1',  '',  'threefiveten',  'template'),
 	('event_canceled',  'Event Canceled',  '',  'Event \"%event:name%\" Has Been Canceled',  '',  '',  '',  '',  '',  '1',  '1',  '0',  '0',  '0',  '',  '',  '2',  '0',  '" . $date . "',  '',  '',  '1',  '',  'threefiveten',  'template'),
 
+    ('cart_credit_card_expiring', 'Credit Card Expiring', 'Credit card is expiring soon.', 'Your credit card is expiring soon!', '', '', '', '', '', 1, 1, 1, 0, 0, '', 0, 2, 0, '" . $date . "', '', '', 1, 0, 'threefiveten', 'template'),
 	('cart_receipt', 'Cart Receipt', 'Sent for a successful cart purchase.', 'Receipt for Order No. %order:id%', '', '', '', '', '', 1, 1, 1, 0, 0, '', 0, 2, 0, '" . $date . "', '', '', 1, 0, 'threefiveten', 'template'),
 	('cart_subscription_canceled', 'Subscription Canceled', '', 'Subscription No. %subscription:id% Canceled', '', '', '', '', '', 1, 1, 1, 0, 0, '', 0, 2, 0, '" . $date . "', '', '', 1, 0, 'threefiveten', 'template'),
 	('cart_subscription_failed', 'Subscription renewal failure notice', '', 'Subscription Renewal Has Failed', '', '', '', '', '', 1, 1, 1, 1, 0, '', 0, 2, 0, '" . $date . "', '', '', 1, 0, 'threefiveten', 'template'),
@@ -1159,23 +1168,23 @@ $inserts[] = "
 
 $inserts[] = "
 	INSERT INTO `ppSD_widgets_menus` (`widget_id`, `submenu`, `title`, `link`, `link_type`, `link_target`, `position`) VALUES
-	('user_manage_menu', 0, 'Your Content', $use_url . '/manage', 3, 'same', 1),
-	('user_manage_menu', 0, 'Update Account', $use_url . '/manage/update_account.php', 3, 'same', 2),
-	('user_manage_menu', 0, 'Announcements', $use_url . '/manage/announcements.php', 3, 'same', 3),
-	('user_manage_menu', 0, 'Billing History', $use_url . '/manage/billing_history.php', 3, 'same', 4),
-	('user_manage_menu', 0, 'Subscriptions', $use_url . '/manage/subscriptions.php', 3, 'same', 5),
-	('user_manage_menu', 0, 'Credit Cards', $use_url . '/manage/credit_cards.php', 3, 'same', 6),
-	('user_manage_menu', 0,  'Invoices',  $use_url . '/manage/invoices.php',  '3',  'same',  7),
-	('user_manage_menu', 0, 'Event Registrations', $use_url . '/manage/events.php', 3, 'same', 8),
-	('user_manage_menu', 0, 'Uploads', $use_url . '/manage/uploads.php', 3, 'same', 9),
-	('user_manage_menu', 0, 'Logout', $use_url . '/logout.php', 3, 'same', 10),
-	('site_topbar', 0, 'Members', $use_url . '/manage', 3, 'same', 1),
-	('site_topbar', 0, 'Events', $use_url . '/calendar.php', 3, 'same', 2),
-	('site_topbar', 0, 'Shop', $use_url . '/catalog.php', 3, 'same', 3),
-	('site_topbar', 0, 'Cart', $use_url . '/cart.php', 3, 'same', 4),
-	('site_topbar_logged_in', 0, 'Welcome %username%', 'manage', 3, 'same', 1),
-	('site_topbar_logged_in', 0, 'Events', $use_url . '/calendar.php', 3, 'same', 2),
-	('site_topbar_logged_in', 0, 'Shop', $use_url . '/catalog.php', 3, 'same', 3),
-	('site_topbar_logged_in', 0, 'Cart', $use_url . '/cart.php', 3, 'same', 4),
-	('site_topbar_logged_in', 0, 'Logout', $use_url . '/logout.php', 3, 'same', 5);
+	('user_manage_menu', 0, 'Your Content', $use_url . '/manage', 2, 'same', 1),
+	('user_manage_menu', 0, 'Update Account', $use_url . '/manage/update_account.php', 2, 'same', 2),
+	('user_manage_menu', 0, 'Announcements', $use_url . '/manage/announcements.php', 2, 'same', 3),
+	('user_manage_menu', 0, 'Billing History', $use_url . '/manage/billing_history.php', 2, 'same', 4),
+	('user_manage_menu', 0, 'Subscriptions', $use_url . '/manage/subscriptions.php', 2, 'same', 5),
+	('user_manage_menu', 0, 'Credit Cards', $use_url . '/manage/credit_cards.php', 2, 'same', 6),
+	('user_manage_menu', 0,  'Invoices',  $use_url . '/manage/invoices.php',  2,  'same',  7),
+	('user_manage_menu', 0, 'Event Registrations', $use_url . '/manage/events.php', 2, 'same', 8),
+	('user_manage_menu', 0, 'Uploads', $use_url . '/manage/uploads.php', 2, 'same', 9),
+	('user_manage_menu', 0, 'Logout', $use_url . '/logout.php', 2, 'same', 10),
+	('site_topbar', 0, 'Members', $use_url . '/manage', 2, 'same', 1),
+	('site_topbar', 0, 'Events', $use_url . '/calendar.php', 2, 'same', 2),
+	('site_topbar', 0, 'Shop', $use_url . '/catalog.php', 2, 'same', 3),
+	('site_topbar', 0, 'Cart', $use_url . '/cart.php', 2, 'same', 4),
+	('site_topbar_logged_in', 0, 'Welcome %username%', 'manage', 2, 'same', 1),
+	('site_topbar_logged_in', 0, 'Events', $use_url . '/calendar.php', 2, 'same', 2),
+	('site_topbar_logged_in', 0, 'Shop', $use_url . '/catalog.php', 2, 'same', 3),
+	('site_topbar_logged_in', 0, 'Cart', $use_url . '/cart.php', 2, 'same', 4),
+	('site_topbar_logged_in', 0, 'Logout', $use_url . '/logout.php', 2, 'same', 5);
 ";

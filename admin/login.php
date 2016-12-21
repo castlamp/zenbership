@@ -106,7 +106,7 @@ if (! $mobile) {
         $('#foreground').animate({ backgroundPosition: "(10000px -2000px)" }, 120000, 'linear');
     });
 </script>
-<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+<!--<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>-->
 <script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
 
 <?php

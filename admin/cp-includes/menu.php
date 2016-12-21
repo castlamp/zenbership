@@ -69,6 +69,21 @@ if ($employee['permissions']['admin'] == '1' || ! empty($employee['permissions']
                 <li><a href="index.php?l=contacts&filters[]=<?php echo $day30f; ?>||next_action||lt||ppSD_contacts&filters[]=1||status||eq||ppSD_contacts&order=next_action">Next 30 Days</a></li>
             </ul>
         </li>
+        <li><a href="null.php" onclick="return popup('build_criteria','type=search&act=contact');">Custom Reports</a>
+            <ul>
+                <?php
+                $list = $admin->saved_criteria_list('contact', '', true);
+                $upb = false;
+                foreach ($list as $item) {
+                    $upb = true;
+                    echo '<li><a href="index.php?l=contacts&criteria_id=' . $item['id'] . '">' . $item['name'] . '</a></li>';
+                }
+                if (! $upb) {
+                    echo '<li><i>No custom reports.</i></li>';
+                }
+                ?>
+            </ul>
+        </li>
         <?php
         if ($employee['permissions']['admin'] == '1') {
         ?>
@@ -81,8 +96,7 @@ if ($employee['permissions']['admin'] == '1' || ! empty($employee['permissions']
         <?php
         }
         ?>
-        <li><a href="index.php?l=contacts&filters[]=<?php echo $day3; ?>||created||gt||ppSD_contacts">Recent</a></li>
-
+        <li><a href="index.php?l=contacts&filters[]=<?php echo $day3; ?>||created||gt||ppSD_contacts&order=created&dir=asc">Recent</a></li>
 
         <?php
         if ($employee['permissions']['admin'] == '1' ||
@@ -95,14 +109,23 @@ if ($employee['permissions']['admin'] == '1' || ! empty($employee['permissions']
         <li class="div"></li>
         <li class="title">Other</li>
         <?php
-        if ($employee['permissions']['admin'] == '1'|| ! empty($employee['permissions']['scopes']['import'])) {
-        ?>
-        <li><a href="returnnull.php" onclick="return popup('import','scope=contact');">Import</a></li>
-        <?php
-        }
         if ($employee['permissions']['admin'] == '1'|| ! empty($employee['permissions']['scopes']['sources'])) {
         ?>
-        <li><a href="returnnull.php" onclick="return popup('sources','');">Sources</a></li>
+        <li><a href="index.php?l=sources">Sources</a>
+            <ul>
+                <li><a href="index.php?l=source_tracking">Tracking</a></li>
+            </ul>
+        </li>
+        <?php
+        }
+        if ($employee['permissions']['admin'] == '1') {
+            ?>
+            <li><a href="null.php" onclick="return popup('pipeline','');">Pipeline Steps</a></li>
+        <?php
+        }
+        if ($employee['permissions']['admin'] == '1'|| ! empty($employee['permissions']['scopes']['import'])) {
+            ?>
+            <li><a href="returnnull.php" onclick="return popup('import','scope=contact');">Import</a></li>
         <?php
         }
         if ($employee['permissions']['admin'] == '1'|| ! empty($employee['permissions']['scopes']['note_labels'])) {
@@ -171,6 +194,21 @@ if ($employee['permissions']['admin'] == '1' || ! empty($employee['permissions']
                 ?>
             </ul>
         </li>
+        <li><a href="null.php" onclick="return popup('build_criteria','type=search&act=member');">Custom Reports</a>
+            <ul>
+                <?php
+                $list = $admin->saved_criteria_list('member', '', true);
+                $upa = false;
+                foreach ($list as $item) {
+                    $upa = true;
+                    echo '<li><a href="index.php?l=members&criteria_id=' . $item['id'] . '">' . $item['name'] . '</a></li>';
+                }
+                if (! $upa) {
+                    echo '<li><i>No custom reports.</i></li>';
+                }
+                ?>
+            </ul>
+        </li>
         <li class="div"></li>
         <?php
         }
@@ -191,7 +229,7 @@ if ($employee['permissions']['admin'] == '1' || ! empty($employee['permissions']
         if ($employee['permissions']['admin'] == '1'|| ! empty($employee['permissions']['scopes']['login_announcements'])) {
         ?>
         <li>
-            <a href="index.php?l=announcements">Announcements</a>
+            <a href="index.php?l=announcements">News</a>
             <ul>
                 <li><a href="index.php?l=announcements">View All</a></li>
                 <?php
@@ -501,7 +539,7 @@ if ($employee['permissions']['admin'] == '1' || ! empty($employee['permissions']
 if ($employee['permissions']['admin'] == '1' || ! empty($employee['permissions']['scopes']['menu-connect'])) {
 ?>
 <li>
-    <a href="index.php?l=connect">Connect</a>
+    <a href="index.php?l=connect">Marketing</a>
     <ul>
         <li class="title">E-Mail</li>
         <?php
@@ -618,20 +656,21 @@ if ($employee['permissions']['admin'] == '1' || ! empty($employee['permissions']
 if ($employee['permissions']['admin'] == '1' || ! empty($employee['permissions']['scopes']['menu-integration'])) {
 ?>
 <li>
-    <a href="index.php?l=integration">Integration</a>
+    <a href="index.php?l=integration">Integrate</a>
     <ul>
         <li class="title">Extensions</li>
         <li><a href="http://www.zenbership.com/Extensions/" target="_blank">Extension Store</a></li>
         <!--<li><a href="null.php" onclick="return popup('extension_store','','1');">Extension Store</a></li>
         <li><a href="index.php?l=modules">Modules</a></li>-->
         <li>
-            <a href="index.php?l=plugins">Plugins</a>
+            <!--<a href="index.php?l=plugins">Plugins</a>-->
+            Plugins
             <ul>
                 <li><a href="null.php" onclick="return command('plugin_installer', '', '');">Run Installer</a></li>
             </ul>
         </li>
         <li>
-            <a href="index.php?l=custom_actions">Custom Hooks</a>
+            <a href="index.php?l=custom_actions">Hooks</a>
             <ul>
                 <li><a href="index.php?l=custom_actions&filters[]=1||type||eq||ppSD_custom_actions">PHP Code Execution</a></li>
                 <li><a href="index.php?l=custom_actions&filters[]=2||type||eq||ppSD_custom_actions">E-Mail Dispatcher</a></li>
@@ -711,19 +750,22 @@ if ($employee['permissions']['admin'] == '1' || ! empty($employee['permissions']
 <?php
 }
 $extensionLinks = array();
-$path = PP_PATH . '/custom/admin_extensions';
+$path = PP_PATH . '/custom/plugins';
 $dh = opendir($path);
 while (false !== ($filename = readdir($dh))) {
-    if ($filename == '.' || $filename == '..') continue;
-    if (is_dir($path . '/' . $filename)) {
-        $package = require $path . '/' . $filename . '/package.php';
-        $extensionLinks[$package['menu']] = $filename;
+    $fullpath = $path . '/' . $filename;
+
+    if ($filename == '.' || $filename == '..' || ! is_dir($fullpath)) continue;
+
+    if (is_dir($path . '/' . $filename . '/admin')) {
+        $package = require $path . '/' . $filename . '/admin/package.php';
+        $extensionLinks[$package['menu']] = 'l=home&plugin=' . $filename;
     }
 }
 if (! empty($extensionLinks)) {
-    echo "<li>Custom<ul>";
+    echo "<li>Extensions<ul>";
     foreach ($extensionLinks as $item => $link) {
-        echo "<li><a href=\"?l=$link\">$item</a></li>";
+        echo "<li><a href=\"?$link\">$item</a></li>";
     }
     echo "</ul></li>";
 }

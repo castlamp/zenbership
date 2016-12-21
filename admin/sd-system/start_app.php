@@ -1,14 +1,6 @@
 <?php
 
 /**
- * Encode online at:
- * https://www.ioncube.com/main.php?c=account
- * Username = withfusion
- * Email = withfusion@gmail.com
- */
-
-
-/**
 * Auto-loader
 */
 function __autoload($class) {
@@ -25,9 +17,10 @@ function __autoload($class) {
     	if (file_exists($file)) {
         	include_once(PP_ADMINPATH . "/cp-classes/" . $class . ".class.php");
         } else {
-            $file = PP_ADMINPATH . "/cp-core/" . $class . ".php";
+            // Interface?
+            $file = PP_ADMINPATH . "/cp-classes/" . $class . ".contract.php";
             if (file_exists($file)) {
-                include_once(PP_ADMINPATH . "/cp-core/" . $class . ".php");
+                include_once(PP_ADMINPATH . "/cp-classes/" . $class . ".contract.php");
             }
         }
     }
@@ -42,8 +35,15 @@ $DBH = new PDO(
     dbname=" . PP_MYSQL_DB,
     PP_MYSQL_USER,
     PP_MYSQL_PASS,
-    array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
+    array(
+        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
+    )
 );
+// sql_mode='TRADITIONAL'
+// array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET sql_mode="TRADITIONAL"')
+//SET SESSION sql_mode = "ANSI,TRADITIONAL"
+// $strictMode = $db->run_query("SET SESSION sql_mode = 'TRADITIONAL';");
+$strictMode = $db->run_query("SET @@global.sql_mode= '';");
 
 /**
 * Basic classes
@@ -75,6 +75,8 @@ if ($mode == 'test') {
 
     $zen_performance_start = microtime(true);
     define('ZEN_PERFORM_START', $zen_performance_start);
+
+    $debugContainer = new debugContainer();
 } else {
     define('ZEN_TEST_MODE','0');
     define('ZEN_PERFORM_TESTS','0');

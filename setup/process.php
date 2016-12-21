@@ -34,7 +34,7 @@ error_reporting(0);
 
 require "assets/functions.php";
 
-$version = installed_version();
+$version = '108';
 
 // ----------------------------
 
@@ -42,6 +42,7 @@ $path = str_replace('/setup','',dirname(__FILE__));
 $exp = explode('/',$path);
 $folder_name = array_pop($exp);
 $base_path = implode('/',$exp);
+
 $url = current_url();
 
 // ----------------------------
@@ -53,8 +54,27 @@ if (! is_writable($path . '/admin/sd-system')) {
 
 // ----------------------------
 
-$DBH = new PDO("mysql:host=" . $_POST['mysql']['host'] . ";dbname=" . $_POST['mysql']['db'], $_POST['mysql']['user'], $_POST['mysql']['pass']);
+// $DBH = new PDO("mysql:host=" . $_POST['mysql']['host'] . ";dbname=" . $_POST['mysql']['db'], $_POST['mysql']['user'], $_POST['mysql']['pass']);
+try {
+    $DBH = new PDO("mysql:host=" . $_POST['mysql']['host'] . ";dbname=" . $_POST['mysql']['db'], $_POST['mysql']['user'], $_POST['mysql']['pass']);
 
+    // For servers with 16-byte password encryption.
+    // Additional changes are required if you choose to use
+    // this route. Files containing references to PDO  include:
+    //   admin/cp-classes/bind.class.php
+    //   admin/cp-classes/contact.class.php
+    //   admin/cp-classes/db.class.php
+    //   admin/cp-classes/plugin.class.php
+    //   admin/cp-classes/socialmedia.class.php
+    //   admin/cp-classes/user.class.php
+    //   admin/cp-functions/hook-add.php
+    //   admin/sd-system/start_app.php
+    // $DBH = new mysqli($_POST['mysql']['host'], $_POST['mysql']['user'], $_POST['mysql']['pass'], $_POST['mysql']['db']);
+}
+catch (PDOException $e) {
+    echo "Error: " . $e->getMessage() . "<br/>";
+    exit;
+}
 
 // ----------------------------
 

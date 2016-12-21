@@ -1,10 +1,5 @@
 <?php
 
-function installed_version()
-{
-    return '107';
-}
-
 function current_url()
 {
     $pageURL = 'http';

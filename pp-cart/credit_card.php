@@ -100,9 +100,9 @@ if (!empty($member_id)) {
 // Add card to DB, and assign to
 // subscription is possible.
 if ($local == '1') {
-    $add = $cart->add_card($_POST['billing'], '1');
+    $add = $cart->add_cardin($_POST['billing'], '1');
 } else {
-    $add = $cart->add_card($_POST['billing'], '0');
+    $add = $cart->add_cardin($_POST['billing'], '0');
 }
 
 // Subscription?

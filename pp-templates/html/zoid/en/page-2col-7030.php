@@ -1,16 +1,13 @@
 <div id="zen_content" class="zen_fonts">
     <div class="zen_pad_more">
 
-        <table cellspacing="0" cellpadding="0" border="0" width="100%" class="editor_table">
-            <tr>
-                <td width="70%" class="zen_colpad_r2">
-                    Please Left 70% Content Here
-                </td>
-                <td width="30%" class="zen_colpad_l2">
-                    Please Right 30% Content Here
-                </td>
-            </tr>
-        </table>
+        <div class="col70l">
+            Place right 70% content here
+        </div>
+        <div class="col30r">
+            Place left 30% content here
+        </div>
+        <div class="clear"></div>
 
     </div>
 </div>

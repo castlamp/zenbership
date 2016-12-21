@@ -245,17 +245,6 @@ if (empty($cart->id)) {
                 // $cart->set_shipping
                 $complete = $cart->complete_order('', $charge, $status, '0');
             }
-
-            /*
-            echo "<li>" . $get_gateway;
-            echo "<LI>" . $cart->{'order'}['pricing']['total'];
-            echo "<LI>" . $cart->{'id'};
-            echo "<HR>";
-            print_r($charge);
-            echo "<HR>"
-            echo "<li>COMPLETEING";
-            exit;
-            */
         }
 
     }

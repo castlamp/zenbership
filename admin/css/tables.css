@@ -1,6 +1,11 @@
 
 /* ---------------- Listings Table ----------------- */
 
+table {
+    font-family: 'roboto', arial;
+    font-size: 13px;
+}
+
 table#subslider_table {
 
     border-top: 1px solid #ccc;
@@ -39,13 +44,29 @@ table.listings {
 
 }
 
+.lesserHeading {
+    background: url('../imgs/th_back.png') top left repeat-x #e1e1e1;
+    margin: 0;
+    font-weight: bold;
+    font-family: 'Open Sans', tahoma;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    border-bottom: 1px solid #ccc;
+    -webkit-box-shadow: inset 0px 2px 4px 0px rgba(255, 255, 255, 0.75);
+    box-shadow: inset 0px 2px 4px 0px rgba(255, 255, 255, 0.75);
+    border-left: 1px solid #ccc;
+    -moz-text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.75);
+    -webkit-text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.75);
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.75);
+}
+
 table.listings th {
     background: url('../imgs/th_back.png') top left repeat-x #e1e1e1;
-    padding: 8px 8px 8px 8px;
+    padding: 8px;
     margin: 0;
     font-weight: bold;
     text-align: left;
-    font-family: 'Open Sans', tahoma;
+    font-family: 'Roboto', tahoma;
     font-size: 0.9em;
     text-transform: uppercase;
     border-bottom: 1px solid #ccc;
@@ -65,7 +86,7 @@ table.listings th.first {
 
 table.listings td {
 
-    padding: 6px 8px 6px 8px;
+    padding: 7px 8px;
 
     margin: 0;
 
@@ -75,6 +96,10 @@ table.listings td {
 
     border-left: 1px solid #e1e1e1;
 
+}
+
+table.listings tr:nth-child(odd) {
+    /*background-color: #f9f9f9;*/
 }
 
 table.listings td.overview_left {

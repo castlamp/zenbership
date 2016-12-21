@@ -103,7 +103,6 @@ if ($submitted_step == '1') {
         } else {
             $check = $db->check_captcha(get_ip(), 'user', $_POST['captcha']);
             if ($check == '1') {
-
                 // For future bypass...
                 $cook_name = md5(get_ip() . md5(date('Y-m')));
                 $cook_value = md5(get_ip() . ZEN_SECRET_PHRASE . PP_PATH);
@@ -458,12 +457,14 @@ if (empty($form->salt)) {
                 $validate      = new validator($form_data_put, $valid);
                 $form->update_step_data($form_data_put);
             }
+
             if ($formdata['type'] == 'register-paid' && $_POST['page'] == 'product') {
                 $form->assign_products($_POST['product']);
                 $redirect = PP_URL . '/register.php?id=' . $formdata['id'] . '&step=' . $form->session_info['step'];
                 header('Location: ' . $redirect);
                 exit;
             }
+
             if ($submitted_step == $formdata['pages']) {
                 if ($submitted_step == '1' && empty($_POST['zen_complete'])) {
                     $form_data_put = $form->process_fields($_POST);
