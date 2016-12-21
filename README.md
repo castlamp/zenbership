@@ -7,28 +7,24 @@ subscription management, marketing tools (like e-mail campaigns), a shopping car
 Author: Castlamp (https://www.castlamp.com/)  
 Online: [http://www.zenbership.com/](http://www.zenbership.com/)
 
+
+Alpha Software Warning
+======================
+
+*THIS IS ALPHA SOFTWARE AND IS NOT INTENDED FOR PRODUCTION/LIVE USE.
+USE THIS AT YOUR OWN RISK!*
+
+
 License
 =======
 
 Zenbership is licensed under the [GPLv3](http://www.zenbership.com/Legal/License).
 
 
-Server Requirements
-===================
-
-**PHP 5.3+**
-
-Required Libraries and Extensions:  
-  - PDO_MySQL
-  - GD
-  - mcrypt
-
-**MySQL 5+**
-
-
 Resources
 =========
 
+- [Server Requirements](http://documentation.zenbership.com/Home/Server-Requirements)
 - [Installation and Setup](http://documentation.zenbership.com/Basics/Installation-and-Setup)
 - [Post-Installation Getting Started Guide](http://documentation.zenbership.com/Home/Post-Installation-Recommended-Steps)
 - [Resources](http://www.zenbership.com/Resources)
