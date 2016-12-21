@@ -94,7 +94,6 @@ foreach ($commands as $item) {
 $db->update_option('current_version', $updating_to);
 
 echo <<<qq
-
 <p>Your database update is complete.</p>
 
 <p>We recommend that you delete all files in this directory except updater.php.</p>
