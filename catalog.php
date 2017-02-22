@@ -28,6 +28,7 @@
  */
 // Load the basics
 require "admin/sd-system/config.php";
+
 $cart = new cart();
 /**
  * Permissions:
@@ -36,7 +37,9 @@ $cart = new cart();
  * 2 : View Cart
  * 3 : Checkout
  */
+
 $cart->check_permission('1');
+
 /**
  * View Product
  */
@@ -81,7 +84,10 @@ if (!empty($_GET['id'])) {
             exit;
         }
     }
-} /**
+}
+
+
+/**
  * Browse Catalog
  */
 else {
@@ -127,6 +133,7 @@ else {
         $add_get = array(
             'category' => $final_category
         );
+
         if (!empty($_GET['organize'])) {
             if ($_GET['organize'] == 'alpha_az') {
                 $_GET['order'] = 'name';
@@ -175,7 +182,9 @@ else {
         if (empty($_GET['display'])) {
             $_GET['display'] = '24';
         }
+
         $paginate = new pagination('ppSD_products', 'catalog.php', $add_get, $_GET, $filters);
+
         if (empty($_GET['page'])) {
             $page = '1';
         } else {
@@ -185,11 +194,15 @@ else {
                 $page = '1';
             }
         }
+
         /**
          * Breadcrumbs and sub-categories
          */
+
         $breadcrumbs   = $cart->breadcrumbs($final_category);
+
         $category_list = $cart->render_subcategories($final_category);
+
         /**
          * Product blocks
          */
@@ -224,6 +237,7 @@ else {
             $colup++;
             // $blocks .= '<li style="' . $style . '">' . $cart->catalog_block($row['id'],$category['template_id']) . '</li>' . "\n";
         }
+
         if (empty($ablocks)) {
             $changesA = array();
             $blocks   = '<ul class="zen_catalog_product_list">';
@@ -251,6 +265,7 @@ else {
                 $category['cols']--;
             }
         }
+
         /**
          * Render the page
          */

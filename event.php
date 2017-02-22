@@ -102,11 +102,13 @@ if ($act == 'register') {
         $task_id = $db->start_task('event_rsvp', 'user', $get_event['data']['id'], $ses['member_id']);
         // Generate the form session
         // and the form itself
-        $form  = new form('', 'event', $_GET['id'], $ses['member_id'], '', '1');
+        $form  = new form('', 'event', $_GET['id'], $ses['member_id'], '', '1', true);
         $check = $form->check_session();
 
         if ($check != 1) {
-            $sesId = $form->start_session();
+            $sesId = $form->start_session('', true);
+        } else {
+            $sesId = '';
         }
 
         $form_session = $form->get_session($sesId);

@@ -37,5 +37,3 @@ $history  = new history('', $criteria, '1', '50', 'date', 'DESC', $table);
 $scope    = 'employee';
 $id       = $_POST['id'];
 include "note-table.php";
-
-?>

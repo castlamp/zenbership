@@ -1,6 +1,7 @@
 <?php
 
-//error_reporting(E_ALL);
+// error_reporting(E_ALL);
+
 ini_set('display_errors', 0);
 error_reporting(0);
 
@@ -32,9 +33,14 @@ error_reporting(0);
  * @project
  */
 
-require "assets/functions.php";
 
-$version = '108';
+                // ----------------------------------------
+
+                        $version = '109a';
+
+                // ----------------------------------------
+
+require "assets/functions.php";
 
 // ----------------------------
 

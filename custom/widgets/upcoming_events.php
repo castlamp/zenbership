@@ -42,6 +42,7 @@ if (!empty($options['timeframe'])) {
     $timeframe = add_time_to_expires('000600000000');
 }
 $where .= " AND `starts`>='" . current_date() . "' AND `starts`<='" . $timeframe . "'";
+$where .= " AND `status`='1'";
 // Load cart object
 $event = new event;
 // Run the query

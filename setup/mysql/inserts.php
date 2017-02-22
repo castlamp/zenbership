@@ -663,6 +663,9 @@ $inserts[] = "
 	('current_version', '', '$version', '', 'text', 0, '', 'system', 0, ''),
 	('currency', 'Currency', 'USD', '', 'select', 80, 'USD|EUR|GBP|AUD|CAD|INR|ZAR|NZD|JPY|SGD|CNY|MYR|CHF|THB|IDR|AED|HKD|PHP|SEK|HUF|MXN|RUB', 'cart', 0, ''),
 	('member_id_format', 'Member ID Format', 'LLLL-nnnnn-nnnnn', 'Customize the format of member IDs. Recommended: 15-20 characters. L = Upper case letter. l = Lower case letter. n = Number. random = Random Format', 'text', 150, '', 'members', 20, ''),
+
+	('use_email_as_username', 'Use E-Mail As Username?', '0', 'Would you like to use an email as username?', 'radio', 0, '', 'members', '', ''),
+
 	('startpage', 'Default Start Page?', 'home', 'What should the homepage of your site be? Common pages are home, catalog, calendar, or login.', 'text', '200', '', 'site', '85', ''),
 	('welcome_guide', '', '0', '', '', '0', '', 'system', '0', ''),
 	('sub_id_format', 'Subscription ID Format', 'LnnnnnnnnnnnLLLnnnn', 'Customize the format of subscription IDs. Recommended: 15-22 characters. L = Upper case letter. l = Lower case letter. n = Number. random = Random Format', 'text', 150, '', 'subscriptions', 22, ''),
@@ -694,7 +697,7 @@ $inserts[] = "
 	('note_headings_admin', '', 'date,name,label,public,deadline,for', '', '', '', '', 'hide', '', ''),
 	('cron_alerts', '', '0', '', '', '0', '', 'system', '0', ''),
 	('theme', '', 'zoid', '', 'text', 0, '', 'system', 0, ''),
-    ('sms_plugin',  'SMS Plugin',  '', 'Enter the plugin ID you want to use for SMS sending.',  'text',  '15',  '', 'sms',  '',  ''),
+    ('sms_plugin',  'SMS Plugin',  '', 'Enter the plugin ID you want to use for SMS sending.',  'text',  '150',  '', 'sms',  '',  ''),
 	('email_plugin',  'E-Mail Plugin',  '', 'Enter the plugin ID you want to use for SMS sending.',  'text',  '150',  '', 'email',  '',  ''),
 	('theme_emails', '', 'threefiveten', '', 'text', 0, '', 'system', 0, ''),
 	('max_failed_logins', 'Failed Logins Before CAPTCHA?', '5', 'How many failed logins before the user must submit a CAPTCHA?', 'text', '80', '', 'members', '4', ''),
@@ -716,7 +719,7 @@ $inserts[] = "
 	('catalog_cate_cols', 'Shop Columns', '2', 'How many columns should products be displayed in throughout the shop&#63;', 'text', 80, '', 'cart', 1, 'zen_num'),
 	('catalog_img_size_lg', 'Shop Large Image Size', '250', 'How large should the bigger version of a catalog item be when viewing a product&#63;', 'text', 0, '', 'cart', 0, 'zen_num'),
 	('catalog_img_size_tb', 'Thumbnail Size', '50', 'Width of small thumbnails on the view product page, in pixels.', 'text', 80, '', 'cart', 3, 'zen_num'),
-	('case_sensitive_username', 'Username Case Sensitivity', '1', 'Would you like to make usernames case sensitive&#63;', 'radio', 0, '', 'members', 0, ''),
+
 	('update_subs_card_update', 'Update subscription card?', '1', 'Would you like to update all subscriptions for a user when a credit card is updated or added?', 'radio', '', '', 'cart', '', ''),
 	('nonmember_cart_buy_acct', '', 'NON_MEMBER', 'Matches ID in ppSD_sources', 'text', 0, '', 'system', 0, ''),
 	('max_failed_login_attempts', 'Max Failed Login Attempts', '6', 'Maximum number of failed login attempts before a member is locked for 10 minutes.', 'text', 80, '', 'members', 2, ''),
@@ -808,6 +811,8 @@ $inserts[] = "
 ";
 
 /*
+    ('case_sensitive_username', 'Username Case Sensitivity', '1', 'Would you like to make usernames case sensitive&#63;', 'radio', 0, '', 'members', 0, ''),
+
 	('use_cache', 'Use Caching&#63;', '', 'Would you like to use the caching system&#63; Recommended for larger databases.', 'radio', 0, '', 'general', 0, ''),
 	('facebook_app_id', 'Facebook App ID', '', 'Input your Facebook App ID', 'text', '250', '', 'social_media', '', ''),
 	('facebook_app_secret', 'Facebook App Secret', '', 'Input your Facebook App Secret.', 'text', '250', '', 'social_media', '', ''),
@@ -1007,6 +1012,7 @@ $inserts[] = "
 	('password_reset', '', 'zoid', '', 'Password Reset', '', '', 0, '0', '0', '', 0, 'Login', '', 0, 1, 2),
 	('invoice_pay', '', 'zoid', '', 'Make a Payment on an Invoice', '', '', 0, '0', '0', '', 0, 'Invoice', '', 0, 1, 2),
 	('reset_password', '', 'zoid', '', 'Reset Your Password', '', '', 0, '0', '0', '', 0, 'Login', '', 0, 1, 2),
+	('password_recovery', '', 'zoid', '', 'Lost Password Recovery', '', '', 0, '0', '0', '', 0, 'Login', '', 0, 1, 2),
 	('invoice_print', '', 'zoid', '', 'Print an Invoice', '', '', 0, '0', '0', '', 0, 'Invoice', '', 0, 1, 2),
 	('invoice', '', 'zoid', '', 'Viewing Invoice', '', '', 0, '0', '0', '', 0, 'Invoice', '', 0, 1, 2),
 	('header', '', 'zoid', '', 'Header', '', '', 0, '0', '0', '', 1, '', '', 0, 1, 2),
@@ -1113,7 +1119,7 @@ $inserts[] = "
 	('cart_subscription_no_card',  'Cart Subscription: No Card Notice',  '',  'Your subscription could not be renewed',  '',  '',  '',  '',  '',  '1',  '1',  '1',  '1',  '1',  '',  '',  '2',  '0', '" . $date . "',  '',  '',  '',  '',  'threefiveten',  'template'),
 	('cart_subscription_changed', 'Subscription Plan Change', '', 'Subscription No. %subscription:id% Plan Changed', '', '', '', '', '', '1', '1', '1', '0', '0', '', '0', '2', '1', '" . $date . "', '', '', '1', '', 'threefiveten', 'template'),
 
-	('cart_subscription_advanced_notice', 'Subscription: Upcoming Renewal Notice', '', 'Your subscription will renew in %days_until_renewal% days', '', '', '', '', '', 1, 1, 1, 1, 0, '', 0, 2, 0, '0000-00-00 00:00:00', '', '', 1, 0, 'threefiveten', 'template'),
+	('cart_subscription_advanced_notice', 'Subscription: Upcoming Renewal Notice', '', 'Your subscription will renew within %days_until_renewal% days.', '', '', '', '', '', 1, 1, 1, 1, 0, '', 0, 2, 0, '0000-00-00 00:00:00', '', '', 1, 0, 'threefiveten', 'template'),
 
 	('email_reg_complete', 'Registration Complete', '', 'Registration Complete', '', '', '', '', '', 1, 1, 1, 1, 0, '', 0, 2, 0, '" . $date . "', '', '', 1, 0, 'threefiveten', 'template'),
 	('email_await_activation', 'Application Awaiting Activation', '', 'Your application has been received', '', '', '', '', '', 1, 1, 1, 0, 0, '', 0, 2, 0, '" . $date . "', '', '', 1, 0, 'threefiveten', 'template'),

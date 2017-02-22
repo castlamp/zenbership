@@ -57,6 +57,7 @@ if (! empty($_GET['action']) && $_GET['action'] == 'reset') {
 
 // ID?
 if (empty($_GET['id'])) {
+
     $form      = new form();
     $get_forms = $form->public_list();
 
@@ -73,11 +74,13 @@ if (empty($_GET['id'])) {
     exit;
 
 } else {
+
     // Load stuff
     // if (strpos($_GET['id'],'register') === false) {
     //     $_GET['id'] = 'register-' . $_GET['id'];
     // }
     $this_form = new form('', '', $_GET['id']);
+
     if ($this_form->formdata['error'] == '1') {
         $db->show_error_page('F028');
         exit;
@@ -104,6 +107,7 @@ if (empty($_GET['id'])) {
             // Send from admin?
         }
     }
+
     // Send from admin?
     if (!empty($_GET['mid']) && !empty($_GET['s']) && ($this_form->formdata['type'] == 'dependency' || $this_form->formdata['type'] == 'update')) {
         //$user = new user;
@@ -116,17 +120,22 @@ if (empty($_GET['id'])) {
         }
         // }
     }
+
     if (empty($mem_id)) {
         $mem_id = $ses['member_id'];
     }
+
     $_GET['id'] = str_replace('register-', '', $_GET['id']);
     $form       = new form('', 'register', $_GET['id'], $mem_id, '1', $req_login);
     $check      = $form->check_session();
+
     if ($check != 1) {
         $form->start_session();
     }
+
     $form_session = $form->get_session();
     $use_id       = $form_session['form_id'];
+
     if ($req_login == '1') {
         if (empty($ses['member_id'])) {
             $db->show_error_page('F035');
@@ -135,6 +144,7 @@ if (empty($_GET['id'])) {
     }
 
 }
+
 if (empty($_GET['step'])) {
     $step = $form->step;
 } else {
@@ -148,6 +158,7 @@ if (empty($_GET['step'])) {
         }
     }
 }
+
 if (empty($step)) {
     $step = '1';
 }
@@ -155,10 +166,12 @@ if (empty($step)) {
 
 // Select a registration option!
 if ($this_form->formdata['type'] == 'register-paid' && (empty($form_session['products']) || $step == 'membership_option')) {
+
     $all_products = '';
     $cart         = new cart;
     $all_products = $form->format_products($this_form->formdata['products'], '1');
     $addons       = $form->format_products($this_form->formdata['products'], '2');
+
     /*
     foreach ($this_form->{'formdata'}['products'] as $aProd) {
         $aprod = $cart->get_product($aProd);
@@ -190,12 +203,15 @@ if ($this_form->formdata['type'] == 'register-paid' && (empty($form_session['pro
     exit;
 
 } else {
+
     $sn      = 's' . $step;
     $data    = unserialize($form_session[$sn]);
     $page    = $use_id . '-' . $step;
+
     $field   = new field;
     $genform = $field->generate_form($page, $data);
     $step_ul = $form->generate_step_array($this_form->formdata, $step);
+
     if ($this_form->formdata['captcha'] == '1') {
         $id       = $db->issue_captcha(get_ip(), 'user');
         $cap_url  = PP_ADMIN . "/cp-functions/generate_captcha.php?c=" . $id;
@@ -207,6 +223,7 @@ if ($this_form->formdata['type'] == 'register-paid' && (empty($form_session['pro
     } else {
         $captcha = '';
     }
+
     $changes = array(
         'form'          => $genform,
         'data'          => $this_form->formdata,
@@ -217,6 +234,7 @@ if ($this_form->formdata['type'] == 'register-paid' && (empty($form_session['pro
         'step_list'     => $step_ul,
         'pass_strength' => $db->get_option('required_password_strength'),
     );
+
     $wrapper = new template($temp, $changes, '1');
     echo $wrapper;
     exit;

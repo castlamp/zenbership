@@ -65,35 +65,45 @@ if (empty($theuser) || empty($cdata['data']['cell']) || empty($cdata['data']['ce
         </div>
         <h1>Send SMS</h1>
 
-        <div class="pad24t popupbody">
-            <div class="field">
-                <label class="less">User</label>
+        <div class="popupbody">
 
-                <div class="field_entry_less">
-                    <?php echo $theuser; ?>
+            <p class="highlight">Use this form to send an SMS message to a member or contact.</p>
+
+            <fieldset>
+                <div class="pad fullForm">
+
+                    <div class="field">
+                        <label class="less">User</label>
+
+                        <div class="field_entry_less">
+                            <?php echo $theuser; ?>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="less">Cell</label>
+
+                        <div class="field_entry_less">
+                            <?php echo $cdata['data']['cell'] . " (" . $cdata['data']['cell_carrier'] . ")"; ?>
+                        </div>
+                    </div>
+
+                    <div class="space"></div>
+                    <div class="field">
+                        <label class="top">Text Message</label>
+
+                        <div class="field_entry_top">
+                            <input type="text" name="message" id="sms-message" style="width:100%;" maxlength="160"/>
+
+                            <p class="contact_frequency_dets">Limit 160 characters. Caller tags are available for use. Use any
+                                caller tag with the %fIelD_nAmE% syntax. So for example, to include the "First Name", use
+                                %first_name%. Any field on file for this user can be used as a caller tag.</p>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
+            </fieldset>
 
-            <div class="field">
-                <label class="less">Cell</label>
-
-                <div class="field_entry_less">
-                    <?php echo $cdata['data']['cell'] . " (" . $cdata['data']['cell_carrier'] . ")"; ?>
-                </div>
-            </div>
-
-            <div class="space"></div>
-            <div class="field">
-                <label class="top">Text Message</label>
-
-                <div class="field_entry_top">
-                    <input type="text" name="message" id="sms-message" style="width:100%;" maxlength="160"/>
-
-                    <p class="contact_frequency_dets">Limit 160 characters. Caller tags are available for use. Use any
-                        caller tag with the %fIelD_nAmE% syntax. So for example, to include the "First Name", use
-                        %first_name%. Any field on file for this user can be used as a caller tag.</p>
-                </div>
-            </div>
         </div>
 
     </form>

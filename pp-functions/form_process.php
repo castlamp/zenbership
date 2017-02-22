@@ -47,6 +47,7 @@ if (empty($_POST['session'])) {
             $data['type'] = str_replace('-paid', '', $data['type']);
             $formA        = new form('', $data['type'], $put_id, $ses['member_id'], '', '1');
             $formA->start_session();
+            $formA->setType($data['type']);
             $use_ses = $formA->session_id;
         } else {
             $db->show_error_page('F017');
@@ -438,6 +439,7 @@ if (empty($form->salt)) {
             // from a successful cart
             // purchase to complete the
             // registration process.
+
             $check_salt = md5(md5($form->session_info['id']) . md5($form->session_info['salt'])) . md5($form->session_info['act_id']);
             if (! empty($_GET['s'])) {
                 if ($check_salt == $_GET['s']) {

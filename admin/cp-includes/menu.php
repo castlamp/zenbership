@@ -663,8 +663,7 @@ if ($employee['permissions']['admin'] == '1' || ! empty($employee['permissions']
         <!--<li><a href="null.php" onclick="return popup('extension_store','','1');">Extension Store</a></li>
         <li><a href="index.php?l=modules">Modules</a></li>-->
         <li>
-            <!--<a href="index.php?l=plugins">Plugins</a>-->
-            Plugins
+            <a href="">Plugins</a>
             <ul>
                 <li><a href="null.php" onclick="return command('plugin_installer', '', '');">Run Installer</a></li>
             </ul>
