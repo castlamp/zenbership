@@ -40,6 +40,20 @@ $ses     = $session->check_session();
 
 // Reset?
 if (! empty($_GET['action']) && $_GET['action'] == 'reset') {
+    /*
+        foreach ($_COOKIE as $name => $value) {
+            if (strlen($name) > 25) {
+                $db->delete_cookie($name);
+            }
+        }
+        if (! empty($_GET['id'])) {
+            $url = $db->current_url(0) . '?id=' . $_GET['id'];
+        } else {
+            $url = PP_URL . '/register.php';
+        }
+        header('Location: ' . $url);
+        exit;
+     */
     if (!empty($_GET['redirect'])) {
         $redirect = '1';
     } else {

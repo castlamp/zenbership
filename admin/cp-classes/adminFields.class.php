@@ -212,7 +212,7 @@ class adminFields {
 
 
     /**
-     * @deprecated
+     * @deprecated But still used by some plugins. So leave it be.
      *
      * @param $field
      * @param string $displayName
@@ -222,9 +222,6 @@ class adminFields {
      */
     public function wrap($field, $displayName = '', $description = '')
     {
-        return $field;
-
-        /*
         $return = '<div class="field">
             <label class="top">' . $displayName . '</label>
             <div class="field_entry_top">' . $field . '</div>';
@@ -236,7 +233,6 @@ class adminFields {
         $return .= '</div>';
 
         return $return;
-        */
     }
 
 

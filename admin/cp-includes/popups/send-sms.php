@@ -43,10 +43,22 @@ if ($_POST['type'] == 'contact') {
         $theuser = '';
     }
 }
-if (empty($theuser) || empty($cdata['data']['cell']) || empty($cdata['data']['cell_carrier']) || $cdata['data']['cell_carrier'] == 'SMS Unavailable') {
-    $admin->show_popup_error('Cell phone or cell carrier not available.');
-} else if ($cdata['data']['sms_optout'] == '1') {
-    $admin->show_popup_error('User has been opted out of SMS services.');
+
+$sms_plugin = $db->get_option('sms_plugin');
+
+$showSMS = false;
+if (! empty($sms_plugin)) {
+    if (! empty($cdata['data']['cell']) && $cdata['data']['sms_optout'] != '1') {
+        $showSMS = true;
+    }
+} else {
+    if (! empty($cdata['data']['cell']) && !empty($cdata['data']['cell_carrier']) && $cdata['data']['cell_carrier'] != 'SMS Unavailable' && $cdata['data']['sms_optout'] != '1') {
+        $showSMS = true;
+    }
+}
+
+if (! $showSMS) {
+    $admin->show_popup_error('Cell phone or cell carrier not available, or the user has opted out of SMS services.');
 } else {
     ?>
 

@@ -36,9 +36,34 @@ $db->clear_temp_data();
 $user = new user;
 $user->check_inactive();
 
+
+// Clean up some potential incorrect member IDs
+// on orders
+$cart = new cart;
+$last_run = $db->get_option('cron_last_run');
+$orders = $db->run_query("
+    SELECT
+        `id`,`member_id`,`member_type`
+    FROM
+        ppSD_cart_sessions
+    WHERE
+        `date_completed` >= '" . $db->mysql_clean($last_run) . "' AND
+        `member_type`='member'
+");
+while ($row = $orders->fetch()) {
+    if (! empty($row['member_id'])) {
+        $find_user = $user->get_username($row['member_id']);
+        if (empty($find_user)) {
+            $updated = $cart->updateOrderUserType($row['id'], 'contact');
+        }
+    }
+}
+
+
 // Re-secure key folders.
 secure_folder(PP_PATH . '/admin/sd-system/attachments');
 secure_folder(PP_PATH . '/admin/sd-system/exports');
+
 /**
  * Creates "off-limits" security for
  * folders that cannot be accessed from

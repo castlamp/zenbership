@@ -114,6 +114,8 @@ require "invoice_reminders.php";
 // Attachments?
 // QR Codes?
 
+// Clean DB
+require "db_clean.php";
 
 
 // ----------------------------

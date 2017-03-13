@@ -278,7 +278,19 @@ else {
             'query'               => $query,
             'pagination'          => $paginate->rendered_pages
         );
-        $template = new template('catalog', $catalog, '1');
+
+        // Can use custom templates for different
+        // catalog categories!
+        $theme = $db->get_theme();
+        $page_check = 'catalog-' . $final_category;
+        $customCatalog = PP_PATH . '/pp-templates/html/' . $theme['name'] . '/' . $db->determine_language() . '/' . $page_check . '.php';
+        if (file_exists($customCatalog)) {
+            $templateUse = $page_check;
+        } else {
+            $templateUse = 'catalog';
+        }
+
+        $template = new template($templateUse, $catalog, '1');
         echo $template;
         exit;
 

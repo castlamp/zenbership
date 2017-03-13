@@ -117,8 +117,17 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $('input[type=submit]').attr('disabled', false);
+    $('#fadeOverlay').hide();
+
     $('#zen_form').submit(function(){
         $('input[type=submit]').attr('disabled', true);
+        $('#fadeOverlay').show();
     });
 });
 </script>
+
+<div id="fadeOverlay" style="z-index:999;position:fixed;top:0;left:0;height:100vh;width:100vw;background-color:rgba(0,0,0,.25);text-align:center;">
+    <div style="z-index:1000;position:fixed;top:50%;left:50%;width:16px;height:11px;margin-top:-5px;margin-left:-8px;">
+        <img src="%theme_url%/imgs/loading.gif" width="16" height="11" border="0" />
+    </div>
+</div>

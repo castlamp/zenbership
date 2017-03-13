@@ -2012,13 +2012,13 @@ function doQuickSearch(query)
 
                 $('#ajax_search').remove();
                 $('body').append(data);
+
+                close_loading();
             } else {
                 handle_error(returned['1']);
             }
         });
     }
-
-    close_loading();
 
     return false;
 }

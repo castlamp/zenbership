@@ -29,9 +29,6 @@
  */
 require dirname(dirname(__FILE__)) . '/sd-system/config.php';
 
-// Clean DB
-require "db_clean.php";
-
 // Perform the backup.
 $backup = new backup('1', '1', '0');
 // Generic user checks

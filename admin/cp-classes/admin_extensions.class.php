@@ -237,6 +237,7 @@ qq;
             $settings = $this->settings;
             $obj = $this;
             // $rendered = $this->formatFields($_POST);
+
             include $this->path . '/' . $space . '/' . $task . '.php';
             $content = ob_get_contents();
             ob_end_clean();

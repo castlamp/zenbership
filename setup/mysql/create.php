@@ -1304,7 +1304,7 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_note_labels` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
 $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_options` (
   `id` varchar(50),
-  `display` varchar(30),
+  `display` varchar(75),
   `value` varchar(255),
   `description` varchar(255),
   `type` enum('text','select','radio','checkbox','timeframe','special','file_size','textarea'),
@@ -1315,6 +1315,20 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_options` (
   `class` varchar(25),
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
+$create[] = "CREATE TABLE `ppSD_reminders` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `created` datetime DEFAULT NULL,
+  `remind_on` date DEFAULT NULL,
+  `user_id` varchar(30) DEFAULT NULL,
+  `user_type` enum('member','contact','account','invoice','transaction','event','other') DEFAULT 'other',
+  `title` varchar(100) DEFAULT NULL,
+  `message` mediumtext,
+  `for` int(11) DEFAULT NULL,
+  `seen` tinyint(1) DEFAULT '0',
+  `seen_on` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `for` (`for`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_pages` (
   `id` varchar(14),
   `title` varchar(35),
