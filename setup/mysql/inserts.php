@@ -578,7 +578,7 @@ $inserts[] = "
 	('employee-add', 'admin_cp', '', '', 'Add Employee', '', 0, '$date', 1, 1, '', 0, 0, '', '', '', '', '', 0, 1, 0, 0, 0, 0),
 	('employee-edit', 'admin_cp', '', '', 'Edit Employee', '', 0, '$date', 1, 1, '', 0, 0, '', '', '', '', '', 0, 1, 0, 0, 0, 0),
 	('update-account', 'update_account', '', '', 'Basic Account Update', '', 0, '$date', 1, 1, '', 1, 0, '', '', '', '', '', 0, 0, 0, 0, 0, 0),
-	('billing_form',  'admin_cp',  '',  '',  'Billing Form',  '',  '',  '',  '1',  '0',  '',  '',  '',  '',  '',  '',  '',  '',  '',  '',  '1',  '',  '',  '',  '',  '',  '',  '',  '',  '',  '');
+    ('billing_form',  'admin_cp',  '',  '',  'Billing Form',  '',  '',  '',  '1',  '0',  '',  '',  '',  '',  '',  '',  '',  '',  '',  '',  '1',  '',  '',  '');
 ";
 $inserts[] = "
 	INSERT INTO `ppSD_homepage_widgets` (`id`, `options`, `title`, `perms`, `static`, `employee`, `add_fields`, `hide`) VALUES
@@ -633,17 +633,18 @@ $inserts[] = "INSERT INTO `ppSD_pipeline` (`id`,`name`,`position`) VALUES (4, 'C
 */
 $inserts[] = "
 	INSERT INTO `ppSD_note_labels` (`label`, `color`, `fontcolor`, `static_lookup`) VALUES
+	('Miscellaneous', 'F1F1F1', '', 'misc'),
 	('Important', 'DD1C1A', '', 'important'),
-	('Support', 'FC6C58', '', ''),
-	('Initial Lead Call', '54A7FF', '', ''),
-	('Cold Call', '63DBDB', '', ''),
-	('Phone Followup', 'F7E188', '', ''),
+	('Support', 'FC6C58', '', 'support'),
+	('Initial Lead Call', '54A7FF', '', 'initial_lead'),
+	('Cold Call', '63DBDB', '', 'cold_call'),
+	('Phone Followup', 'F7E188', '', 'phone_followup'),
 	('E-Mail Received', 'CCC', '', 'emailin'),
 	('E-Mail Sent', 'efd64a', '', 'emailout'),
-	('E-Mail Followup', 'CB81F0', '', ''),
-	('Specifications', '85A2A6', '', ''),
-	('Services Rendered', '0BBF0B', '', ''),
-	('Miscellaneous', 'F1F1F1', '', 'misc'),
+	('E-Mail Followup', 'CB81F0', '', 'email_followup'),
+	('Specifications', '85A2A6', '', 'specs'),
+	('Services Requested', '0BBF0B', '', 'services_requested'),
+	('Services Rendered', '0BBF0B', '', 'services_rendered'),
 	('Appointment', 'DD4E3F', 'fff', 'appointment'),
 	('To Do', 'FFBF00', '', 'todo');
 ";
@@ -1174,23 +1175,23 @@ $inserts[] = "
 
 $inserts[] = "
 	INSERT INTO `ppSD_widgets_menus` (`widget_id`, `submenu`, `title`, `link`, `link_type`, `link_target`, `position`) VALUES
-	('user_manage_menu', 0, 'Your Content','" . $use_url . "'/manage', 2, 'same', 1),
-	('user_manage_menu', 0, 'Update Account','" . $use_url . "'/manage/update_account.php', 2, 'same', 2),
-	('user_manage_menu', 0, 'Announcements','" . $use_url . "'/manage/announcements.php', 2, 'same', 3),
-	('user_manage_menu', 0, 'Billing History','" . $use_url . "'/manage/billing_history.php', 2, 'same', 4),
-	('user_manage_menu', 0, 'Subscriptions','" . $use_url . "'/manage/subscriptions.php', 2, 'same', 5),
-	('user_manage_menu', 0, 'Credit Cards','" . $use_url . "'/manage/credit_cards.php', 2, 'same', 6),
-	('user_manage_menu', 0,  'Invoices','" . $use_url . "'/manage/invoices.php',  2,  'same',  7),
-	('user_manage_menu', 0, 'Event Registrations','" . $use_url . "'/manage/events.php', 2, 'same', 8),
-	('user_manage_menu', 0, 'Uploads','" . $use_url . "'/manage/uploads.php', 2, 'same', 9),
-	('user_manage_menu', 0, 'Logout','" . $use_url . "'/logout.php', 2, 'same', 10),
-	('site_topbar', 0, 'Members','" . $use_url . "'/manage', 2, 'same', 1),
-	('site_topbar', 0, 'Events','" . $use_url . "'/calendar.php', 2, 'same', 2),
-	('site_topbar', 0, 'Shop','" . $use_url . "'/catalog.php', 2, 'same', 3),
-	('site_topbar', 0, 'Cart','" . $use_url . "'/cart.php', 2, 'same', 4),
+	('user_manage_menu', 0, 'Your Content','" . $use_url . "/manage', 2, 'same', 1),
+	('user_manage_menu', 0, 'Update Account','" . $use_url . "/manage/update_account.php', 2, 'same', 2),
+	('user_manage_menu', 0, 'Announcements','" . $use_url . "/manage/announcements.php', 2, 'same', 3),
+	('user_manage_menu', 0, 'Billing History','" . $use_url . "/manage/billing_history.php', 2, 'same', 4),
+	('user_manage_menu', 0, 'Subscriptions','" . $use_url . "/manage/subscriptions.php', 2, 'same', 5),
+	('user_manage_menu', 0, 'Credit Cards','" . $use_url . "/manage/credit_cards.php', 2, 'same', 6),
+	('user_manage_menu', 0,  'Invoices','" . $use_url . "/manage/invoices.php',  2,  'same',  7),
+	('user_manage_menu', 0, 'Event Registrations','" . $use_url . "/manage/events.php', 2, 'same', 8),
+	('user_manage_menu', 0, 'Uploads','" . $use_url . "/manage/uploads.php', 2, 'same', 9),
+	('user_manage_menu', 0, 'Logout','" . $use_url . "/logout.php', 2, 'same', 10),
+	('site_topbar', 0, 'Members','" . $use_url . "/manage', 2, 'same', 1),
+	('site_topbar', 0, 'Events','" . $use_url . "/calendar.php', 2, 'same', 2),
+	('site_topbar', 0, 'Shop','" . $use_url . "/catalog.php', 2, 'same', 3),
+	('site_topbar', 0, 'Cart','" . $use_url . "/cart.php', 2, 'same', 4),
 	('site_topbar_logged_in', 0, 'Welcome %username%', 'manage', 2, 'same', 1),
-	('site_topbar_logged_in', 0, 'Events','" . $use_url . "'/calendar.php', 2, 'same', 2),
-	('site_topbar_logged_in', 0, 'Shop','" . $use_url . "'/catalog.php', 2, 'same', 3),
-	('site_topbar_logged_in', 0, 'Cart','" . $use_url . "'/cart.php', 2, 'same', 4),
-	('site_topbar_logged_in', 0, 'Logout','" . $use_url . "'/logout.php', 2, 'same', 5);
+	('site_topbar_logged_in', 0, 'Events','" . $use_url . "/calendar.php', 2, 'same', 2),
+	('site_topbar_logged_in', 0, 'Shop','" . $use_url . "/catalog.php', 2, 'same', 3),
+	('site_topbar_logged_in', 0, 'Cart','" . $use_url . "/cart.php', 2, 'same', 4),
+	('site_topbar_logged_in', 0, 'Logout','" . $use_url . "/logout.php', 2, 'same', 5);
 ";

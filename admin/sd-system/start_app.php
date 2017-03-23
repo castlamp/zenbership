@@ -99,3 +99,23 @@ if (file_exists(PP_ADMINPATH . "/sd-system/salt.php")) {
     $salt = "jEvIDofjiaphFXewdrxQlkHUZHiqxlxhqtptjWeTwUCCrgAWaxnMjvgKDQBB";
     $salt1 = "706776904439455607889147503209456404237519557124014288199678";
 }
+
+
+/**
+ * Magic Quotes Solution
+ */
+if (get_magic_quotes_gpc()) {
+    $process = array(&$_GET, &$_POST, &$_COOKIE, &$_REQUEST);
+    while (list($key, $val) = each($process)) {
+        foreach ($val as $k => $v) {
+            unset($process[$key][$k]);
+            if (is_array($v)) {
+                $process[$key][stripslashes($k)] = $v;
+                $process[] = &$process[$key][stripslashes($k)];
+            } else {
+                $process[$key][stripslashes($k)] = stripslashes($v);
+            }
+        }
+    }
+    unset($process);
+}

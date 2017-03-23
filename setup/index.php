@@ -221,18 +221,26 @@ require "assets/header.php";
 
                 <p class="desc">Please provide some basic information about your company and membership site.</p>
 
+                <?php
+                if (empty($_SERVER['HTTP_HOST'])) {
+                    $name = $_SERVER['SERVER_NAME'];
+                } else {
+                    $name = $_SERVER['HTTP_HOST'];
+                }
+                ?>
+
                 <ul class="form">
                     <li>
                         <label>Company Name</label>
-                        <input type="text" name="company_name" placeholder="Acme Inc." autocomplete="off" value="" style="width:200px;"/>
+                        <input type="text" name="company_name" placeholder="Acme Inc." autocomplete="off" value="<?php echo $name; ?>" style="width:200px;"/>
                     </li>
                     <li>
                         <label>Company URL</label>
-                        <input type="text" name="company_url" placeholder="http://www.yoursite.com/" autocomplete="off" value="" style="width:200px;"/>
+                        <input type="text" name="company_url" placeholder="http://www.yoursite.com/" autocomplete="off" value="http://<?php echo $name; ?>" style="width:200px;"/>
                     </li>
                     <li>
                         <label>Company E-Mail</label>
-                        <input type="text" name="company_email" placeholder="info@yoursite.com" autocomplete="off" value="" style="width:200px;"/>
+                        <input type="text" name="company_email" placeholder="info@yoursite.com" autocomplete="off" value="noreply@<?php echo $name; ?>" style="width:200px;"/>
 
                         <p class="field_desc">Generic contact e-mail for your company.</p>
                     </li>
@@ -244,7 +252,7 @@ require "assets/header.php";
                     </li>
                     <li>
                         <label>Membership Site Name</label>
-                        <input type="text" name="site_name" autocomplete="off" placeholder="My Membership Site" value="" style="width:200px;"/>
+                        <input type="text" name="site_name" autocomplete="off" placeholder="My Membership Site" value="<?php echo $name; ?> Members" style="width:200px;"/>
 
                         <p class="field_desc">This is what your members will see in the header of the program's frontend when they access your membership website.</p>
                     </li>
@@ -294,23 +302,23 @@ require "assets/header.php";
                 <ul class="form">
                     <li>
                         <label>First Name</label>
-                        <input type="text" name="admin[first_name]" autocomplete="off" value="" style="width:200px;"/>
+                        <input type="text" name="admin[first_name]" autocomplete="off" value="Master" style="width:200px;"/>
                     </li>
                     <li>
                         <label>Last Name</label>
-                        <input type="text" name="admin[last_name]" autocomplete="off" value="" style="width:200px;"/>
+                        <input type="text" name="admin[last_name]" autocomplete="off" value="Administrator" style="width:200px;"/>
                     </li>
                     <li>
                         <label>E-Mail</label>
-                        <input type="text" name="admin[email]" autocomplete="off" value="" style="width:200px;"/>
+                        <input type="text" name="admin[email]" autocomplete="off" value="noreply@<?php echo $name; ?>" style="width:200px;"/>
                     </li>
                     <li>
                         <label>Username</label>
-                        <input type="text" name="admin[user]" autocomplete="off" value="" style="width:200px;"/>
+                        <input type="text" name="admin[user]" autocomplete="off" value="admin" style="width:200px;"/>
                     </li>
                     <li>
                         <label>Password</label>
-                        <input type="text" name="admin[pass]" autocomplete="off" value="" style="width:200px;"/>
+                        <input type="text" name="admin[pass]" autocomplete="off" value="<?php echo substr(str_shuffle('abcdefghijklmnopqrstuvwxyz*&^%$#@!()-_=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 12); ?>" style="width:200px;"/>
                         <p class="field_desc"><b>Important: your password will be visible as you type!</b></p>
                     </li>
                 </ul>
@@ -318,7 +326,15 @@ require "assets/header.php";
             </fieldset>
 
             <fieldset class="">
-            <legend>Anonymous Statistics?</legend>
+            <legend>Subscriptions</legend>
+
+                <p class="desc">Would you like to subscribe to the Zenbership newsletter to stay up-to-date with new updates, features, and news related to the product? You can unsubscribe at any time.</p>
+
+                <ul class="form">
+                    <li>
+                        <input type="checkbox" name="enroll_newsletter" value="1" checked="checked" /> Yes, keep me informed about all things Zenbership!
+                    </li>
+                </ul>
 
                 <p class="desc">In order to better understand how our software is used, we provide our users with the option to "opt in" to our
                     statistical collection program. This program is <b>completely anonymous</b> and only provides us with information
@@ -326,9 +342,9 @@ require "assets/header.php";
 
                 <ul class="form">
                     <li>
-                <input type="checkbox" name="enroll_stats" value="1" /> Opt-in to the anonymous stat collection program.
+                        <input type="checkbox" name="enroll_stats" value="1" checked="checked" /> Opt-in to the anonymous stat collection program.
                     </li>
-                    </ul>
+                </ul>
             </fieldset>
 
         <?php

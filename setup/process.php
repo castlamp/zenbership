@@ -135,20 +135,34 @@ $emp_last_name = $_POST['admin']['last_name'];
 
 // ----------------------------
 
+$queries = '';
 require "mysql/create.php";
 require "mysql/inserts.php";
 foreach ($create as $item) {
-    $STH = $DBH->prepare($item);
-    $STH->execute();
+    try {
+        $queries .= $item . "\n\n";
+        $STH = $DBH->prepare($item);
+        $STH->execute();
+    }
+    catch (PDOException $e) {
+        echo "<h1>MySQL Error</h1>";
+        var_dump($e);
+    }
 }
 foreach ($inserts as $item) {
-    $STH = $DBH->prepare($item);
-    $STH->execute();
+    try {
+        $queries .= $item . "\n\n";
+        $STH = $DBH->prepare($item);
+        $STH->execute();
+    }
+    catch (PDOException $e) {
+        echo "<h1>MySQL Error</h1>";
+        var_dump($e);
+    }
 }
 
 // ----------------------------
 
-$use_url = $url;
 //$use_url = str_replace('http://','//',$url);
 //$use_url = str_replace('https://','//',$use_url);
 
@@ -196,6 +210,23 @@ if (is_writable($path . '/admin/sd-system')) {
 @unlink($path . '/admin/sd-system/salt.sample.php');
 @unlink($path . '/admin/sd-system/license.sample.php');
 
+// ----------------------------
+//   Newsletter?
+// enroll_newsletter
+if (! empty($_POST['enroll_newsletter'])) {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL,"https://www.castlamp.com/clients/custom/newsletter_remote_enroll.php");
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, array(
+        'first_name' => $_POST['admin']['first_name'],
+        'last_name' => $_POST['admin']['last_name'],
+        'site' => $url,
+        'email' => $_POST['admin']['email'],
+    ));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $server_output = curl_exec($ch);
+    curl_close ($ch);
+}
 
 // ----------------------------
 //   Complete Process
@@ -253,6 +284,11 @@ include "assets/header.php";
 <div class="submit">
     <input type="button" onclick="window.location='<?php echo $url . '/admin'; ?>';" value="Access Administrative Control Panel" />
 </div>
+
+<h1>Queries Executed</h1>
+<textarea style="width:100%;height:300px;">
+<?php echo $queries; ?>
+</textarea>
 
 </form>
 

@@ -10,15 +10,15 @@ $pass = (! empty($_GET['pass'])) ? $_GET['pass'] : '';
 try {
     $DBH = new PDO("mysql:host=" . $host . ";dbname=" . $db, $user, $pass);
 
-    echo json_encode([
+    echo json_encode(array(
         'error' => false,
         'msg' => true,
-    ]);
+    ));
 }
 catch (PDOException $e) {
-    echo json_encode([
+    echo json_encode(array(
         'error' => true,
         'msg' => $e->getMessage()
-    ]);
+    ));
     exit;
 }

@@ -1105,6 +1105,7 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_logins` (
   `browser` VARCHAR(150),
   `browser_short` VARCHAR( 25 ),
   `attempt_no` smallint(3),
+  `type` TINYINT(1) DEFAULT '1',
   PRIMARY KEY  (`id`),
   KEY `member_id` (`member_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8";

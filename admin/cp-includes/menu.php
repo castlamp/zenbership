@@ -346,7 +346,7 @@ if ($employee['permissions']['admin'] == '1' || ! empty($employee['permissions']
         <?php
         if ($employee['permissions']['admin'] == '1' ||  ! empty($employee['permissions']['scopes']['cart-report'])) {
         ?>
-        <li><a href="index.php?l=shop_report">Report</a></li>
+        <li><a href="index.php?l=shop_report">Monthly Overview</a></li>
         <?php
         }
         if ($employee['permissions']['admin'] == '1' ||  ! empty($employee['permissions']['scopes']['categories'])) {
