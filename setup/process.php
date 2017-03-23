@@ -163,8 +163,8 @@ foreach ($inserts as $item) {
 
 // ----------------------------
 
-//$use_url = str_replace('http://','//',$url);
-//$use_url = str_replace('https://','//',$use_url);
+$use_url = str_replace('http://', '//', $url);
+$use_url = str_replace('https://', '//', $use_url);
 
 $config = "<?php\n";
 $config .= "define('PP_BASE_PATH','" . $base_path . "');\n";
