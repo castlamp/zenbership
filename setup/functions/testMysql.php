@@ -10,10 +10,35 @@ $pass = (! empty($_GET['pass'])) ? $_GET['pass'] : '';
 try {
     $DBH = new PDO("mysql:host=" . $host . ";dbname=" . $db, $user, $pass);
 
-    echo json_encode(array(
-        'error' => false,
-        'msg' => true,
-    ));
+    // Strict mode conflicts?
+    $error = false;
+
+    $STH = $DBH->prepare("SELECT @@sql_mode");
+    $result = $STH->execute();
+    $array = $STH->fetch();
+    $exp = explode(',', $array);
+
+    $problems = array(
+        'NO_ENGINE_SUBSTITUTION',
+        'NO_ZERO_DATE',
+        'NO_ZERO_IN_DATE',
+        'STRICT_TRANS_TABLES',
+    );
+
+    if (in_array($problems, $exp))
+        $error = true;
+
+    if ($error) {
+        echo json_encode(array(
+            'error' => true,
+            'msg' => 'Your MySQL appears to be in STRICT mode. Please request that this be turned off with your web hosting provider or server administrator.',
+        ));
+    } else {
+        echo json_encode(array(
+            'error' => false,
+            'msg' => true,
+        ));
+    }
 }
 catch (PDOException $e) {
     echo json_encode(array(

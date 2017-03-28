@@ -35,9 +35,10 @@ require "assets/header.php";
 
     <div class="col50l">
 
-        <p class="help">Need help installing the program?
-        <br /><br /><a href="http://documentation.zenbership.com/Basics/Installation-and-Setup" target="_blank">Click here</a> for documentation
-        <br /><a href="http://www.zenbership.com/Services/Installations-And-Implementations" target="_blank">Click here</a> for information on having our staff install or implement it for you.</p>
+        <h3 style="text-align:center;">Need help installing the program?</h3>
+        <p class="help">
+            We offer extensive documentation, including a full video walkthrough, available <a href="http://documentation.zenbership.com/Basics/Installation-and-Setup" target="_blank">here</a>. If you would prefer to have our staff take care of this for you, we are happy to offer affordable <a href="http://zenbership.com/Services/Installations-And-Implementations" target="_blank">installation and full implementation options</a>.
+        </p>
 
 
         <fieldset class="blue">
@@ -149,6 +150,19 @@ require "assets/header.php";
                     echo "<span class=$class>Extension: mcrypt [<a href=\"http://php.net/manual/en/book.mcrypt.php\" target=\"_blank\">Info</a>]</span>";
                     ?>
                 </li>
+                <li class="indent">
+                <?php
+                if (get_magic_quotes_gpc()) {
+                    $class = 'bad';
+                    $error = '1';
+                    $msg = 'Magic quotes are enabled on your server - contact your web hosting provider to have them turned off. Note that this feature has been removed from PHP since v5.4 and is not required any longer.';
+                } else {
+                    $class = 'good';
+                    $msg = 'Magic quotes are turned off.';
+                }
+                echo "<span class=$class>$msg [<a href=\"http://php.net/manual/en/security.magicquotes.php\" target=\"_blank\">Info</a>]</span>";
+                ?>
+                                </li>
                 <li class="indent">
                     <?php
                     //  && function_exists('gd_info')
