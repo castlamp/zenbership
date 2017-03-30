@@ -4,6 +4,7 @@
 <head>
     <title>%meta_title%</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="author" content="%pp_company%" />
     <meta name="description" content="%meta_desc%" />
     <meta name="generator" content="Zenbership Membership Software (www.zenbership.com)"/>

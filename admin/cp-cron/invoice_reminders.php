@@ -57,7 +57,7 @@ if (empty($reminder_pre) && empty($reminder_post)) {
             $days     = 86400 * substr($reminder_pre, 4, 2);
             $pre_date = date('Y-m-d H:i:s', strtotime($row['date_due']) - $days);
 
-            if ($pre_date <= current_date() && $row['last_reminder'] == '0000-00-00 00:00:00') {
+            if ($pre_date <= current_date() && $row['last_reminder'] == '1920-01-01 00:01:01') {
                 $data = $invoice->send_invoice($row['id'], '3');
 
                 // Update "Last Reminder"
@@ -83,7 +83,7 @@ if (empty($reminder_pre) && empty($reminder_post)) {
         // Overdue notices after due date
         if (current_date() >= $row['date_due'] && !empty($reminder_post)) {
             // Get the right date to check
-            if ($row['last_reminder'] != '0000-00-00 00:00:00') {
+            if ($row['last_reminder'] != '1920-01-01 00:01:01') {
                 $use_date = $row['last_reminder'];
             } else {
                 $use_date = $row['date_due'];

@@ -16,27 +16,35 @@ try {
     $STH = $DBH->prepare("SELECT @@sql_mode");
     $result = $STH->execute();
     $array = $STH->fetch();
-    $exp = explode(',', $array);
 
-    $problems = array(
-        'NO_ENGINE_SUBSTITUTION',
-        'NO_ZERO_DATE',
-        'NO_ZERO_IN_DATE',
-        'STRICT_TRANS_TABLES',
-    );
+    if (is_array($array)) {
+        $exp = explode(',', $array['@@sql_mode']);
 
-    if (in_array($problems, $exp))
-        $error = true;
+        $problems = array(
+            // 'NO_ENGINE_SUBSTITUTION',
+            'NO_ZERO_DATE',
+            'NO_ZERO_IN_DATE',
+            'STRICT_TRANS_TABLES',
+        );
 
-    if ($error) {
-        echo json_encode(array(
-            'error' => true,
-            'msg' => 'Your MySQL appears to be in STRICT mode. Please request that this be turned off with your web hosting provider or server administrator.',
-        ));
+        if (in_array($problems, $exp))
+            $error = true;
+
+        if ($error) {
+            echo json_encode(array(
+                'error' => true,
+                'msg' => 'Your MySQL appears to be in STRICT mode. Please request that this be turned off with your web hosting provider or server administrator.',
+            ));
+        } else {
+            echo json_encode(array(
+                'error' => false,
+                'msg' => true,
+            ));
+        }
     } else {
         echo json_encode(array(
             'error' => false,
-            'msg' => true,
+            'msg' => json_encode($array),
         ));
     }
 }

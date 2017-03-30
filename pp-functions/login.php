@@ -118,7 +118,7 @@ if ($case_sensitive == '1') {
     }
 }
 // Locked?
-if ($member['data']['locked'] != '0000-00-00 00:00:00') {
+if ($member['data']['locked'] != '1920-01-01 00:01:01') {
     $unlock = add_time_to_expires('000000001000', $member['data']['locked']);
     if ($unlock > current_date()) {
         $merr     = $db->get_error('L012');

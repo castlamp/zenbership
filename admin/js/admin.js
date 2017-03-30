@@ -1489,7 +1489,7 @@ function user_box() {
         final_content += '<li class=""><a href="index.php?l=calendar">My Calendar</a></li>';
         final_content += '<li class=""><a href="index.php?l=notes&filters[]=25||label||eq||ppSD_notes&filters[]=1||complete||neq||ppSD_notes&order=deadline&dir=ASC">My Appointments</a></li>';
         final_content += '<li class=""><a href="index.php?l=notes&filters[]=4||label||eq||ppSD_notes&filters[]=1||complete||neq||ppSD_notes">My To-Do List</a></li>';
-        final_content += '<li class=""><a href="index.php?l=notes&filters[]=0000-00-00%2000:00:00||deadline||neq||ppSD_notes&filters[]=1||complete||neq||ppSD_notes&order=deadline&dir=ASC">My Deadlines</a></li>';
+        final_content += '<li class=""><a href="index.php?l=notes&filters[]=1920-01-01%2000:01:01||deadline||neq||ppSD_notes&filters[]=1||complete||neq||ppSD_notes&order=deadline&dir=ASC">My Deadlines</a></li>';
         final_content += '<li class=""><a href="index.php?l=uploads">My Uploads</a></li>';
         final_content += '<li class="dividerpre"><a href="index.php?l=notes">My Notes</a></li>';
         final_content += '<li><a href="logout.php">Logout</a></li>';

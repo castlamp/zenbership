@@ -44,7 +44,7 @@ $q     = $db->run_query("
     WHERE
         ppSD_events.status='1' AND
         ppSD_event_reminders.send_date='" . $db->mysql_clean($check) . "' AND
-        ppSD_event_reminders.sent_on='0000-00-00'
+        ppSD_event_reminders.sent_on='1920-01-01'
 ");
 while ($row = $q->fetch()) {
 
