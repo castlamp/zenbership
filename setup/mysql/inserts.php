@@ -32,11 +32,11 @@ $date = date('Y-m-d H:i:s');
 $inserts   = array();
 $inserts[] = "
 	INSERT INTO `ppSD_accounts` (`id`, `name`, `contact_frequency`, `created`, `default`, `master_user`, `owner`, `public`, `last_updated`, `last_updated_by`, `last_action`, `source`, `status`) VALUES
-	('GEN_CONTAC', 'General Contacts', '000014000000', '" . $date . "', 1, '', 1, 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
-	('CASTLAMP', 'Castlamp', '000300000000', '" . $date . "', 0, '', 1, 0, '0000-00-00 00:00:00', 1, '0000-00-00 00:00:00', 0, 0),
-	('GEN_MEMBER', 'General Members', '990000000000', '" . $date . "', 3, '', 1, 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
-	('GEN_CAMPAI', 'Campaign Sign Ups', '990000000000', '" . $date . "', 4, '', 1, 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
-	('NON_MEMBER', 'Non-Member Cart Purchases', '990000000000', '" . $date . "', 0, '', 1, 1, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 1);
+	('GEN_CONTAC', 'General Contacts', '000014000000', '" . $date . "', 1, '', 1, 0, '1920-01-01 00:01:01', 0, '1920-01-01 00:01:01', 0, 0),
+	('CASTLAMP', 'Castlamp', '000300000000', '" . $date . "', 0, '', 1, 0, '1920-01-01 00:01:01', 1, '1920-01-01 00:01:01', 0, 0),
+	('GEN_MEMBER', 'General Members', '990000000000', '" . $date . "', 3, '', 1, 0, '1920-01-01 00:01:01', 0, '1920-01-01 00:01:01', 0, 0),
+	('GEN_CAMPAI', 'Campaign Sign Ups', '990000000000', '" . $date . "', 4, '', 1, 0, '1920-01-01 00:01:01', 0, '1920-01-01 00:01:01', 0, 0),
+	('NON_MEMBER', 'Non-Member Cart Purchases', '990000000000', '" . $date . "', 0, '', 1, 1, '1920-01-01 00:01:01', 0, '1920-01-01 00:01:01', 0, 1);
 ";
 $inserts[] = "
 	INSERT INTO `ppSD_account_data` (`account_id`, `address_line_1`, `address_line_2`, `city`, `state`, `zip`, `country`, `phone`, `office_phone`, `alt_phone`, `fax`, `company_name`, `url`, `industry`, `account_type`, `email_optout`, `facebook`, `twitter`, `linkedin`) VALUES
@@ -606,12 +606,12 @@ $inserts[] = "
 */
 $inserts[] = "
 	INSERT INTO `ppSD_plugins` (`id`, `status`, `date`, `path`, `db`, `db_host`, `db_user`, `db_pass`, `login`, `logout`, `table_prefix`, `options_array`) VALUES
-	('mybb', 0, '0000-00-00 00:00:00', '', '', '', '', '', 1, 1, '', ''),
-	('phpbb3', 0, '0000-00-00 00:00:00', '', '', '', '', '', 1, 1, '', ''),
-	('wordpress', 0, '0000-00-00 00:00:00', '', '', '', '', '', 1, 1, '', ''),
-	('drupal', 0, '0000-00-00 00:00:00', '', '', '', '', '', 1, 1, '', 'a:1:{s:3:\"rid\";s:1:\"3\";}'),
-	('joomla', 0, '0000-00-00 00:00:00', '', '', '', '', '', 1, 1, '', ''),
-	('kayako', 0, '0000-00-00 00:00:00', '', '', '', '', '', 1, 1, '', '');
+	('mybb', 0, '1920-01-01 00:01:01', '', '', '', '', '', 1, 1, '', ''),
+	('phpbb3', 0, '1920-01-01 00:01:01', '', '', '', '', '', 1, 1, '', ''),
+	('wordpress', 0, '1920-01-01 00:01:01', '', '', '', '', '', 1, 1, '', ''),
+	('drupal', 0, '1920-01-01 00:01:01', '', '', '', '', '', 1, 1, '', 'a:1:{s:3:\"rid\";s:1:\"3\";}'),
+	('joomla', 0, '1920-01-01 00:01:01', '', '', '', '', '', 1, 1, '', ''),
+	('kayako', 0, '1920-01-01 00:01:01', '', '', '', '', '', 1, 1, '', '');
 ";
 
 $inserts[] = "INSERT INTO `ppSD_pipeline` (`id`,`name`,`position`) VALUES (1, 'Contact', 1);";
@@ -620,16 +620,16 @@ $inserts[] = "INSERT INTO `ppSD_pipeline` (`id`,`name`,`position`) VALUES (3, 'O
 $inserts[] = "INSERT INTO `ppSD_pipeline` (`id`,`name`,`position`) VALUES (4, 'Customer', 4);";
 
 /*
-	('modxcms_evolution', 0, '0000-00-00 00:00:00', '', '', '', '', '', 1, 1, '', ''),
-	('phpfox', 0, '0000-00-00 00:00:00', '', '', '', '', '', 1, 1, '', ''),
-	('salesforce', 0, '0000-00-00 00:00:00', '', '', '', '', '', 0, 0, '', ''),
+	('modxcms_evolution', 0, '1920-01-01 00:01:01', '', '', '', '', '', 1, 1, '', ''),
+	('phpfox', 0, '1920-01-01 00:01:01', '', '', '', '', '', 1, 1, '', ''),
+	('salesforce', 0, '1920-01-01 00:01:01', '', '', '', '', '', 0, 0, '', ''),
 
-	('ipboard', 0, '0000-00-00 00:00:00', '', '', '', '', '', 1, 1, '', ''),
-	('sugarcrm', 0, '0000-00-00 00:00:00', '', '', '', '', '', 0, 0, '', ''),
-	('mailchimp', 0, '0000-00-00 00:00:00', '', '', '', '', '', 0, 0, '', ''),
-	('tikiwiki', 0, '0000-00-00 00:00:00', '', '', '', '', '', 1, 1, '', ''),
-	('typo3', 0, '0000-00-00 00:00:00', '', '', '', '', '', 1, 1, '', ''),
-	('sphider', 0, '0000-00-00 00:00:00', '', '', '', '', '', 0, 0, '', 'a:1:{s:4:\"host\";s:17:\"sphider.host.here\";}');
+	('ipboard', 0, '1920-01-01 00:01:01', '', '', '', '', '', 1, 1, '', ''),
+	('sugarcrm', 0, '1920-01-01 00:01:01', '', '', '', '', '', 0, 0, '', ''),
+	('mailchimp', 0, '1920-01-01 00:01:01', '', '', '', '', '', 0, 0, '', ''),
+	('tikiwiki', 0, '1920-01-01 00:01:01', '', '', '', '', '', 1, 1, '', ''),
+	('typo3', 0, '1920-01-01 00:01:01', '', '', '', '', '', 1, 1, '', ''),
+	('sphider', 0, '1920-01-01 00:01:01', '', '', '', '', '', 0, 0, '', 'a:1:{s:4:\"host\";s:17:\"sphider.host.here\";}');
 */
 $inserts[] = "
 	INSERT INTO `ppSD_note_labels` (`label`, `color`, `fontcolor`, `static_lookup`) VALUES
@@ -968,8 +968,8 @@ $inserts[] = "
 ";
 $inserts[] = "
 	INSERT INTO `ppSD_staff` (`id`, `username`, `password`, `salt`, `permission_group`, `signature`, `email`, `first_name`, `last_name`, `address_line_1`, `address_line_2`, `city`, `state`, `zip`, `country`, `phone`, `fax`, `alt_phone`, `office_phone`, `facebook`, `twitter`, `linkedin`, `department`, `occupation`, `locked`, `locked_ip`, `login_attempts`, `status`, `options`, `created`, `last_updated`, `owner`, `static`) VALUES
-	(1, 'system', 'xxx', 'nnn', 1, '', '', 'System Console', '', '', '', '', '', '', '', '', '', '', '', '0', '0', '0', '', '', '0000-00-00 00:00:00', '', 0, 1, '', '$date', '0000-00-00 00:00:00', 0, 1),
-	(2, '" . $_POST['admin']['user'] . "', '$admin_pass_encoded', '$admin_pass_salt', 1, '\n\n--\n$emp_name', '', '$emp_first_name', '$emp_last_name', '', '', '', '', '', '', '', '', '', '', '0', '0', '0', 'Administration', '', '0000-00-00 00:00:00', '', 0, 1, '', '$date', '0000-00-00 00:00:00', 0, 1);
+	(1, 'system', 'xxx', 'nnn', 1, '', '', 'System Console', '', '', '', '', '', '', '', '', '', '', '', '0', '0', '0', '', '', '1920-01-01 00:01:01', '', 0, 1, '', '$date', '1920-01-01 00:01:01', 0, 1),
+	(2, '" . $_POST['admin']['user'] . "', '$admin_pass_encoded', '$admin_pass_salt', 1, '\n\n--\n$emp_name', '', '$emp_first_name', '$emp_last_name', '', '', '', '', '', '', '', '', '', '', '0', '0', '0', 'Administration', '', '1920-01-01 00:01:01', '', 0, 1, '', '$date', '1920-01-01 00:01:01', 0, 1);
 ";
 $inserts[] = "
 	INSERT INTO `ppSD_templates` (`id`, `path`, `theme`, `subtemplate`, `title`, `desc`, `caller_tags`, `order`, `custom_header`, `custom_footer`, `custom_template`, `type`, `section`, `content`, `secure`, `static`, `owner`) VALUES
@@ -1120,7 +1120,7 @@ $inserts[] = "
 	('cart_subscription_no_card',  'Cart Subscription: No Card Notice',  '',  'Your subscription could not be renewed',  '',  '',  '',  '',  '',  '1',  '1',  '1',  '1',  '1',  '',  '',  '2',  '0', '" . $date . "',  '',  '',  '',  '',  'threefiveten',  'template'),
 	('cart_subscription_changed', 'Subscription Plan Change', '', 'Subscription No. %subscription:id% Plan Changed', '', '', '', '', '', '1', '1', '1', '0', '0', '', '0', '2', '1', '" . $date . "', '', '', '1', '', 'threefiveten', 'template'),
 
-	('cart_subscription_advanced_notice', 'Subscription: Upcoming Renewal Notice', '', 'Your subscription will renew within %days_until_renewal% days.', '', '', '', '', '', 1, 1, 1, 1, 0, '', 0, 2, 0, '0000-00-00 00:00:00', '', '', 1, 0, 'threefiveten', 'template'),
+	('cart_subscription_advanced_notice', 'Subscription: Upcoming Renewal Notice', '', 'Your subscription will renew within %days_until_renewal% days.', '', '', '', '', '', 1, 1, 1, 1, 0, '', 0, 2, 0, '1920-01-01 00:01:01', '', '', 1, 0, 'threefiveten', 'template'),
 
 	('email_reg_complete', 'Registration Complete', '', 'Registration Complete', '', '', '', '', '', 1, 1, 1, 1, 0, '', 0, 2, 0, '" . $date . "', '', '', 1, 0, 'threefiveten', 'template'),
 	('email_await_activation', 'Application Awaiting Activation', '', 'Your application has been received', '', '', '', '', '', 1, 1, 1, 0, 0, '', 0, 2, 0, '" . $date . "', '', '', 1, 0, 'threefiveten', 'template'),
@@ -1132,7 +1132,7 @@ $inserts[] = "
 	('invoice_updated', 'Invoice Updated', 'Sent when an invoice is updated.', 'Your invoice has been updated.', '', '', '', '', '', 1, 1, 1, 0, 0, '', 0, 2, 0, '" . $date . "', '', '', 1, 0, 'threefiveten', 'template'),
 	('invoice_due', 'Invoice payment reminder', '', 'Your invoice is due in %invoice:time_to_due_date%', '', '', '', '', '', 1, 1, 1, 0, 0, '', 0, 2, 0, '" . $date . "', '', '', 1, 0, 'threefiveten', 'template'),
 	('invoice_overdue', 'Overdue invoice notice', '', 'Overdue invoice notice', '', '', '', '', '', 1, 1, 1, 1, 0, '', 0, 2, 0, '" . $date . "', '', '', 1, 0, 'threefiveten', 'template'),
-	('employee_note_tagged', 'Employee Tagged In Note', '', '%by:first_name% has tagged you in a note.', '', '', '', '', '', 1, 1, 0, 0, 0, '', 0, 1, 1, '0000-00-00 00:00:00', 'html_header', 'html_footer', 0, 0, '', 'template'),
+	('employee_note_tagged', 'Employee Tagged In Note', '', '%by:first_name% has tagged you in a note.', '', '', '', '', '', 1, 1, 0, 0, 0, '', 0, 1, 1, '1920-01-01 00:01:01', 'html_header', 'html_footer', 0, 0, '', 'template'),
 	('invoice_closed', 'Invoice Settled', '', 'Your Invoice has Been Settled', '', '', '', '', '', 1, 1, 1, 0, 0, '', 0, 2, 0, '" . $date . "', '', '', 1, 0, 'threefiveten', 'template'),
 	('campaign_subscription', 'Campaign Subscription Confirmed', '', 'Subscription to %campaign:name% has been confirmed.', '', '', '', '', '', 1, 1, 1, 1, 0, '', 0, 0, 0, '" . $date . "', '', '', 1, 0, 'threefiveten', 'template'),
 	('campaign_double_optin', 'Campaign Double Opt-In Request', '', 'Please confirm your subscription to %campaign:name%', '', '', '', '', '', 1, 1, 0, 0, 0, '', 0, 0, 0, '" . $date . "', '', '', 0, 0, 'threefiveten', 'template'),
