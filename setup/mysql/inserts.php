@@ -577,7 +577,7 @@ $inserts[] = "
 	('contact-edit', 'admin_cp', '', '', 'Edit Contact', '', 0, '$date', 1, 1, '', 0, 0, '', '', '', '', '', 0, 1, 0, 0, 0, 0),
 	('employee-add', 'admin_cp', '', '', 'Add Employee', '', 0, '$date', 1, 1, '', 0, 0, '', '', '', '', '', 0, 1, 0, 0, 0, 0),
 	('employee-edit', 'admin_cp', '', '', 'Edit Employee', '', 0, '$date', 1, 1, '', 0, 0, '', '', '', '', '', 0, 1, 0, 0, 0, 0),
-	('update-account', 'update_account', '', '', 'Basic Account Update', '', 0, '$date', 1, 1, '', 1, 0, '', '', '', '', '', 0, 0, 0, 0, 0, 0),
+	('update-account', 'update_account', '', '', 'Basic Account Update', '', 0, '$date', 1, 1, '', 1, 0, '', '', '', '', '', 0, 1, 0, 0, 0, 0),
     ('billing_form',  'admin_cp',  '',  '',  'Billing Form',  '',  '',  '',  '1',  '0',  '',  '',  '',  '',  '',  '',  '',  '',  '',  '',  '1',  '',  '',  '');
 ";
 $inserts[] = "

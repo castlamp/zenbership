@@ -409,6 +409,10 @@ class adminFields {
      */
     public function date($fieldName, $val = '', $class = '', $placeholder = '')
     {
+        if (empty($val)) {
+            $val = $this->value;
+        }
+
         if ($class == 'req') {
             $req = 1;
         } else {
@@ -421,6 +425,25 @@ class adminFields {
     }
 
 
+    public function datetime($fieldName, $val = '', $class = '', $placeholder = '')
+    {
+        if (empty($val)) {
+            $val = $this->value;
+        }
+
+        if ($class == 'req') {
+            $req = 1;
+        } else {
+            $req = 0;
+        }
+
+        $admin = new admin;
+
+        //echo $admin->datepicker('event[starts]', '', '1', '250', '1', '10', '1', 'event_starts');
+        return $this->sendBack($admin->datepicker($fieldName, $val, '1', '250', '1', '10', $req, $this->id));
+    }
+
+
     /**
      * @param $fieldName
      * @param string $val
@@ -430,6 +453,12 @@ class adminFields {
      */
     public function string($fieldName, $val = '', $class = '', $placeholder = '', $style = '')
     {
+        if ($this->typeOverride == 'date') {
+            return $this->date($fieldName, $val, $class, $placeholder);
+        } else if ($this->typeOverride == 'datetime-local') {
+            return $this->datetime($fieldName, $val, $class, $placeholder);
+        }
+
         $id = $this->getId();
 
         $type = (! empty($this->typeOverride)) ? $this->typeOverride : 'text';

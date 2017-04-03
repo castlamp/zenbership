@@ -36,13 +36,15 @@ $DBH = new PDO(
     PP_MYSQL_USER,
     PP_MYSQL_PASS,
     array(
-        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
+        PDO::MYSQL_ATTR_INIT_COMMAND => "SET @@global.sql_mode= '';"
+        //SET NAMES utf8;
     )
 );
 
 // Strict mode.
-//define('ZEN_MYSQL_STRICT_MODE', false);
-$strictMode = $db->run_query("SET @@global.sql_mode= 'TRADITIONAL';");
+// define('ZEN_MYSQL_STRICT_MODE', false);
+$strictMode = $db->run_query("SET @@global.sql_mode= '';");
+// $strictMode = $db->run_query("SET @@global.sql_mode= 'TRADITIONAL';");
 
 /**
 * Basic classes
