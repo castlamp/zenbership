@@ -548,7 +548,7 @@ $create[] = "CREATE TABLE `ppSD_donations` (
   `public` tinyint(1) DEFAULT '1',
   `comments` mediumtext,
   PRIMARY KEY (`id`),
-  KEY `product_id` (`product_id`),
+  KEY `campaign_id` (`campaign_id`),
   KEY `member_id` (`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 $create[] = "CREATE TABLE `ppSD_donation_campaigns` (
@@ -1236,23 +1236,6 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_member_data` (
   PRIMARY KEY  (`member_id`),
   KEY `last_name` (`last_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
-/*
-$create[] = "CREATE TABLE IF NOT EXISTS `ppSD_modules` (
-  `id` varchar(20),
-  `status` tinyint(1) default '0',
-  `date` datetime default '1920-01-01 00:01:01',
-  `path` varchar(255),
-  `db` varchar(100),
-  `db_host` varchar(100),
-  `db_user` varchar(255),
-  `db_pass` varchar(255),
-  `login` tinyint(1) default '0',
-  `logout` tinyint(1) default '0',
-  `table_prefix` varchar(20),
-  `options_array` mediumtext,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8";
-*/
 $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_newsletters_subscribers` (
   `id` int(9) auto_increment,
   `user_id` varchar(20),
@@ -1928,8 +1911,7 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_tracking_activity` (
   KEY `track_id` (`track_id`),
   KEY `campaign_id` (`campaign_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
-$create[] = "
-CREATE TABLE IF NOT EXISTS `ppSD_trash_bin` (
+$create[] = "CREATE TABLE IF NOT EXISTS `ppSD_trash_bin` (
   `id` int(9) auto_increment,
   `act_id` varchar(35),
   `data` mediumtext,

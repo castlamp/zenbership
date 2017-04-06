@@ -22,6 +22,10 @@
         display: none;
     }
 
+    input, select, textarea {
+        width: 100% !important;
+    }
+
 }
 
 @media (max-width : 767px) {
@@ -61,7 +65,7 @@
         margin-bottom: 8px;
     }
 
-    .zen_field_entry input {
+    input, select, textarea {
         width: 100% !important;
     }
 

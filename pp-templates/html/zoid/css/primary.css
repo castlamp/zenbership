@@ -89,18 +89,20 @@ table.zen_basic, table.zen_cart {
     color: #444;
     margin: 12px 0 12px 0;
     width: 100%;
-    font-family: arial, verdana;
+    font-family: arial, Helvetica, sans-serif;
 }
 
 table.zen_cart thead {
     border: 1px solid #e1e1e1;
     background-color: #f9f9f9;
+    /*
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
     -moz-box-shadow: inset 0px 1px 6px #fff;
     -webkit-box-shadow: inset 0px 1px 6px #fff;
     box-shadow: inset 0px 1px 6px #fff;
+    */
 }
 
 table.zen_cart th {
@@ -226,14 +228,14 @@ a:hover {
 /* -------------- Headings -------------- */
 
 h1 {
-    font-family: 'Source Sans Pro', arial, verdana;
+    font-family: arial, Helvetica, sans-serif;
     font-size: 1.4em;
     color: #222;
     margin-bottom: 8px;
 }
 
 h2 {
-    font-family: 'Source Sans Pro', arial, verdana;
+    font-family: arial, Helvetica, sans-serif;
     font-size: 1.2em;
     color: #222;
     margin-bottom: 8px;
@@ -241,7 +243,7 @@ h2 {
 }
 
 h3 {
-    font-family: 'Source Sans Pro', arial, verdana;
+    font-family: arial, Helvetica, sans-serif;
     font-size: 1.0em;
     color: #222;
     margin-bottom: 8px;
@@ -251,9 +253,11 @@ h3 {
 /* -------------- Basics -------------- */
 
 body.zen {
+    /*
     line-height: 1;
     background: url('../imgs/bg.png') #f1f1f1;
     margin: 0 0 24px 0;
+    */
 }
 
 .zen_col25 {
@@ -304,7 +308,9 @@ body.zen {
 }
 
 .zen_pad {
+    /*
     padding: 24px !important;
+    */
 }
 
 .zen_padtop {
@@ -312,7 +318,9 @@ body.zen {
 }
 
 .zen_pad_more {
+    /*
     padding: 48px;
+    */
 }
 
 .zen_padtop_more {
@@ -384,15 +392,19 @@ img.zen_iconr {
 }
 
 .zen_round {
+    /*
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
+    */
 }
 
 .zen_box_shadow {
+    /*
     -moz-box-shadow: 0px 1px 4px #e1e1e1;
     -webkit-box-shadow: 0px 1px 4px #e1e1e1;
     box-shadow: 0px 1px 4px #e1e1e1;
+    */
 }
 
 .zen_search {
@@ -410,8 +422,8 @@ img.zen_iconr {
     height: 11px;
     width: 16px;
     padding: 4px;
-    background-color: #fff;
     border: 1px solid #999;
+    background-color: #fff;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
@@ -442,12 +454,14 @@ img.zen_iconr {
 #zen_overlay {
     background-color: #fff;
     border: 1px solid #999;
+    /*
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
     -moz-box-shadow: 0px 0px 12px #bbb;
     -webkit-box-shadow: 0px 0px 12px #bbb;
     box-shadow: 0px 0px 12px #bbb;
+    */
 }
 
 #zen_faded {
@@ -522,7 +536,7 @@ fieldset.zen span {
 }
 
 legend.zen {
-    font-family: 'Source Sans Pro', arial;
+    font-family: arial, Helvetica, sans-serif;
     padding: 0 12px 0 12px;
     margin: 0 0 0 24px;
     font-weight: bold;
@@ -554,14 +568,16 @@ p.zen_fieldset_description {
     -webkit-border-radius: 8px;
     border-radius: 8px;
     color: #fff;
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
     padding: 10px 12px 10px 12px;
     font-size: 0.8em;
     margin: 0 0 12px 0;
     text-align: center;
+    /*
     -moz-box-shadow: 1px 1px 0px #fff;
     -webkit-box-shadow: 1px 1px 0px #fff;
     box-shadow: 1px 1px 0px #fff;
+    */
     line-height: 1.4em;
 }
 
@@ -571,14 +587,16 @@ p.zen_fieldset_description {
     -webkit-border-radius: 8px;
     border-radius: 8px;
     color: #fff;
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
     padding: 10px 12px 10px 12px;
     font-size: 0.8em;
     margin: 0 0 12px 0;
     text-align: center;
+    /*
     -moz-box-shadow: 1px 1px 0px #fff;
     -webkit-box-shadow: 1px 1px 0px #fff;
     box-shadow: 1px 1px 0px #fff;
+    */
     line-height: 1.4em;
 }
 
@@ -605,7 +623,7 @@ span.zen_req_star {
 .zen_field_desc {
     color: #999 !important;
     font-size: 0.75em !important;
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
     padding: 4px 8px 4px 8px;
     margin: 6px 0 0 0 !important;
     background-color: #f1f1f1;
@@ -705,9 +723,11 @@ label.zen {
     border-radius: 8px;
     border: 1px solid #EFE69C;
     background-color: #FFF8BC;
+    /*
     -moz-box-shadow: inset 1px 1px 3px #fff;
     -webkit-box-shadow: inset 1px 1px 3px #fff;
     box-shadow: inset 1px 1px 3px #fff;
+    */
     padding: 8px 12px 8px 12px;
     font-size: 0.9em !important;
 }
@@ -729,7 +749,7 @@ label.zen {
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 4px;
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
     font-size: 0.8em;
     color: #222;
     position: fixed;
@@ -753,9 +773,11 @@ label.zen {
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     margin: -36px 0 0 -36px;
+    /*
     -moz-box-shadow: 0px 0px 8px #e1e1e1;
     -webkit-box-shadow: 0px 0px 8px #e1e1e1;
     box-shadow: 0px 0px 8px #e1e1e1;
+    */
 }
 
 /* Displays a block element error box. */
@@ -767,7 +789,7 @@ label.zen {
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 4px;
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
     font-size: 0.8em;
 }
 
@@ -781,16 +803,18 @@ input[type=text], input[type=password], select, textarea {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
-    font-family: arial, verdana;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    font-family: arial, Helvetica, sans-serif;
     font-size: 0.9em;
-    padding: 6px 10px 6px 10px;
+    padding: 12px 16px;
     border: 1px solid #ccc;
+    /*
     -moz-box-shadow: inset 0px 1px 3px #e1e1e1;
     -webkit-box-shadow: inset 0px 1px 3px #e1e1e1;
     box-shadow: inset 0px 1px 3px #e1e1e1;
+    */
     -webkit-appearance: none;
 }
 
@@ -799,9 +823,9 @@ input[type=submit], input[type=button] {
     color: #fff;
     cursor: pointer;
     padding: 8px 12px 8px 12px;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
     border-left: 1px solid #000;
     border-top: 1px solid #000;
     border-right: 1px solid #000;
@@ -811,9 +835,11 @@ input[type=submit], input[type=button] {
 input[type=submit]:hover, input[type=button]:hover {
     background-image: none !important;
     background-color: #3B3B3B;
+    /*
     -moz-box-shadow: 0px 0px 6px #000;
     -webkit-box-shadow: 0px 0px 6px #000;
     box-shadow: 0px 0px 6px #000;
+    */
     border-bottom: 3px solid #84C7FF;
 }
 
@@ -827,12 +853,12 @@ span.req {
 /* -------------- Fonts -------------- */
 
 .zen_fonts {
-    font-family: arial, verdana;
+    font-family: arial, Helvetica, sans-serif;
     color: #444;
 }
 
 .zen_base_form {
-    font-family: arial, verdana;
+    font-family: arial, Helvetica, sans-serif;
     color: #444;
     line-height: 1.4em;
     font-size: 0.9em;
@@ -848,7 +874,7 @@ span.req {
 }
 
 p.zen {
-    font-family: arial, verdana;
+    font-family: arial, Helvetica, sans-serif;
     color: #444;
     line-height: 1.4em;
     font-size: 0.9em !important;
@@ -856,7 +882,7 @@ p.zen {
 }
 
 p.zen_small {
-    font-family: arial, verdana;
+    font-family: arial, Helvetica, sans-serif;
     color: #444;
     line-height: 1.4em;
     font-size: 0.9em !important;
@@ -917,6 +943,7 @@ p.zen_small {
 
 .zen_gray_box {
     border: 1px solid #e1e1e1;
+    /*
     background-color: #f9f9f9;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -924,17 +951,20 @@ p.zen_small {
     -moz-box-shadow: inset 0px 1px 3px #fff;
     -webkit-box-shadow: inset 0px 1px 3px #fff;
     box-shadow: inset 0px 1px 3px #fff;
+    */
 }
 
 .zen_focus {
     background-color: #FFF8BC;
     border: 1px solid #F0E691;
+    /*
     -moz-box-shadow: inset 0px 1px 3px #fff;
     -webkit-box-shadow: inset 0px 1px 3px #fff;
     box-shadow: inset 0px 1px 3px #fff;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
+    */
     margin: 12px 0 12px 0;
     font-size: 0.8em;
 }
@@ -946,23 +976,31 @@ p.zen_small {
 /* -------------- Primary Components -------------- */
 
 #zen_header {
-    margin-bottom: 24px;
+    /*
     -moz-box-shadow: 0px 1px 6px #ccc;
     -webkit-box-shadow: 0px 1px 6px #ccc;
     box-shadow: 0px 1px 6px #ccc;
     background: url('../imgs/topbg.png') top left repeat-x #2B2B2B;
-    color: #fff;
     -moz-text-shadow: 1px 1px 0 rgba(0, 0, 0, 1);
     -webkit-text-shadow: 1px 1px 0 rgba(0, 0, 0, 1);
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 1);
-    font-family: 'Source Sans Pro', arial, verdana;
+    color: #fff;
+    */
+    font-family: arial, Helvetica, sans-serif;
     height: 53px;
     line-height: 53px;
+    margin: 12px 0 24px 0;
+}
+
+img.home_logo {
+    display: block;
+    height: 53px;
+    width: auto;
 }
 
 #zen_header ul {
     float: right;
-    font-family: 'Source Sans Pro', arial, verdana;
+    font-family: arial, Helvetica, sans-serif;
 }
 
 #zen_header ul li {
@@ -971,7 +1009,7 @@ p.zen_small {
 }
 
 #zen_header a {
-    color: #fff;
+    /* color: #fff; */
 }
 
 #zen_head_left {
@@ -998,8 +1036,12 @@ ul#zen_head_right li:hover {
 }
 
 #zen_content {
+    /*
     border: 1px solid #e1e1e1;
     background-color: #fff;
+    */
+    margin-top: 24px;
+    margin-bottom: 24px;
     position: relative;
     z-index: 10;
 }
@@ -1010,6 +1052,7 @@ ul#zen_head_right li:hover {
 
 #zen_section_header {
     padding: 8px 0 12px 0;
+    border-bottom: 1px solid #ccc;
 }
 
 #zen_breadcrumbs {
@@ -1044,8 +1087,8 @@ ul#zen_head_right li:hover {
 }
 
 #zen_footer {
-    text-align: right;
-    margin-top: 12px;
+    text-align: center;
+    margin-top: 24px;
     color: #ccc !important;
 }
 
@@ -1069,7 +1112,7 @@ ul#zen_head_right li:hover {
 }
 
 #zen_calendar_top {
-    font-family: arial, verdana;
+    font-family: arial, Helvetica, sans-serif;
     margin-bottom: 12px;
     text-align: center;
 }
@@ -1164,7 +1207,7 @@ p.zen_tagline {
 
 #zen_calendar_bottom {
     margin: 24px 40px 0 40px;
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
     font-size: 0.9em !important;
 }
 
@@ -1220,7 +1263,7 @@ ul.zen_tag_legend li {
 }
 
 #zen_event_left {
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
 }
 
 #zen_event_left dl, dl.less {
@@ -1254,7 +1297,7 @@ dl.lessLeft dt {
 }
 
 #zen_event_right {
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
     line-height: 1.4em;
 }
 
@@ -1269,7 +1312,7 @@ ul#zen_event_links {
     float: right;
     margin: 0;
     font-size: 0.8em;
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
 }
 
 ul#zen_event_links li {
@@ -1282,7 +1325,7 @@ ul#zen_event_links li {
     line-height: 1.6em;
     font-size: 1.5em !important;
     margin: 0 0 24px 0;
-    font-family: 'Source Sans Pro', arial, verdana;
+    font-family: arial, Helvetica, sans-serif;
     color: #444;
 }
 
@@ -1321,7 +1364,7 @@ ul#zen_event_links li {
 ul.zen_event_product_option {
     margin: 0 0 0 0;
     padding: 0;
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
     list-style: none;
 }
 
@@ -1330,12 +1373,14 @@ ul.zen_event_product_option li {
     padding: 12px;
     border: 1px solid #e1e1e1;
     background-color: #f9f9f9;
+    /*
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
     -moz-box-shadow: inset 0px 1px 3px #fff;
     -webkit-box-shadow: inset 0px 1px 3px #fff;
     box-shadow: inset 0px 1px 3px #fff;
+    */
     margin-bottom: 8px;
 }
 
@@ -1365,7 +1410,7 @@ p.zen_prod_desc {
 ul#zen_event_timeline {
     margin: 0 0 0 0;
     padding: 0;
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
     list-style: none;
 }
 
@@ -1392,7 +1437,7 @@ ul#zen_event_steps {
     -moz-border-radius: 6px;
     border-radius: 6px;
     font-size: 0.9em;
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
     margin-left: 0px;
 }
 
@@ -1400,12 +1445,14 @@ ul#zen_event_steps li {
     padding: 8px 12px 8px 12px;
     display: inline-block;
     border-right: 1px solid #d1d1d1;
+    /*
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
     border-radius: 8px;
     -moz-box-shadow: 1px 0 2px #e1e1e1;
     -webkit-box-shadow: 1px 0 2px #e1e1e1;
     box-shadow: 1px 0 2px #e1e1e1;
+    */
 }
 
 ul#zen_event_steps li.on {
@@ -1419,7 +1466,7 @@ ul#zen_event_steps li.last {
 ul#subscription_upgrade {
     width: 100%;
     font-size: 0.9em;
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
     list-style: none;
     margin: 0;
 }
@@ -1428,12 +1475,14 @@ ul#subscription_upgrade li {
     padding: 12px 16px;
     margin-bottom: 6px;
     border: 1px solid #d1d1d1;
+    /*
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
     border-radius: 8px;
     -moz-box-shadow: 1px 0 2px #e1e1e1;
     -webkit-box-shadow: 1px 0 2px #e1e1e1;
     box-shadow: 1px 0 2px #e1e1e1;
+    */
 }
 
 ul#subscription_upgrade li.on {
@@ -1474,7 +1523,7 @@ table.zen_event_reg_confirm td.zen_r {
 ul#zen_errors {
     list-style: square outside;
     margin: 24px 24px 24px 48px;
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
     font-size: 0.9em;
 }
 
@@ -1490,20 +1539,22 @@ span.zen_error_fname {
 /* -------------- Cart -------------- */
 
 #zen_cart_left {
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
 }
 
 #zen_cart_right {
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
 }
 
 .zen_featured_product {
     position: relative;
-    border: 1px solid #EFE69C !important;
+    border: 1px solid #ccc !important;
+    /*
     background-color: #FFF8BC !important;
     -moz-box-shadow: inset 1px 1px 3px #fff !important;
     -webkit-box-shadow: inset 1px 1px 3px #fff !important;
     box-shadow: inset 1px 1px 3px #fff !important;
+    */
 }
 
 .zen_featured_product:after {
@@ -1575,7 +1626,7 @@ ul.zen_catalog_product_list {
 
 ul.zen_catalog_product_list li {
     margin-top: 12px;
-    border: 4px solid #f1f1f1;
+    border: 1px solid #ccc;
     font-size: 0.9em;
     color: #444;
 }
@@ -1600,7 +1651,7 @@ ul.zen_catalog_product_list li.zen_empty {
 .zen_catalog_dets {
     color: #444;
     font-size: 0.9em;
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
 }
 
 .zen_catalog_dets h2 {
@@ -1619,7 +1670,7 @@ ul.zen_catalog_product_list li.zen_empty {
 
 .zen_pagination {
     margin-top: 12px;
-    font-family: tahoma, arial;
+    font-family: tahoma, arial, Helvetica, sans-serif;
     font-size: 0.7em !important;
     text-transform: uppercase;
 }
@@ -1655,11 +1706,11 @@ ul.zen_catalog_product_list li.zen_empty {
 
 
 #zen_catalog_left {
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
 }
 
 #zen_catalog_right {
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
     line-height: 1.4em;
 }
 
@@ -1668,7 +1719,7 @@ ul#zen_catalog_subcats {
     color: #444;
     margin: 8px 0 0 0;
     padding: 6px 24px 6px 24px !important;
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
 }
 
 ul#zen_catalog_subcats li {
@@ -1761,7 +1812,7 @@ h1.zen_pop_top {
     color: #fff;
     margin-bottom: 24px;
     background: url('../imgs/topbg.png') top left repeat-x #2B2B2B;
-    font-family: 'Source Sans Pro', arial, verdana;
+    font-family: arial, Helvetica, sans-serif;
     -moz-text-shadow: 1px 1px 0 rgba(0, 0, 0, 1);
     -webkit-text-shadow: 1px 1px 0 rgba(0, 0, 0, 1);
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 1);
@@ -1794,7 +1845,7 @@ h1.zen_pop_top {
     padding: 0 8px 0 4px;
     position: absolute;
     color: #fff;
-    font-family: 'Source Sans Pro', arial, verdana;
+    font-family: arial, Helvetica, sans-serif;
     font-size: 12px;
     left: 20px;
     top: 0;
@@ -1807,7 +1858,7 @@ h1.zen_pop_top {
 }
 
 #zen_prod_view_price {
-    font-family: 'Source Sans Pro', arial, verdana;
+    font-family: arial, Helvetica, sans-serif;
     font-size: 1.2em;
     margin: 24px 0 0 0;
 }
@@ -1828,7 +1879,7 @@ ul.zen_menu_vertical {
     font-size: 0.8em;
     color: #444;
     padding: 8px 0 8px 0;
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
 }
 
 ul.zen_menu_vertical li {
@@ -1847,7 +1898,7 @@ ul.zen_menu_horizontal {
     list-style: none;
     color: #444;
     padding: 0;
-    font-family: arial;
+    font-family: arial, Helvetica, sans-serif;
     font-size: 0.9em;
     margin: 0;
 }
@@ -1859,8 +1910,10 @@ ul.zen_menu_horizontal li {
 }
 
 ul.zen_menu_horizontal li:hover {
+    /*
     background-color: #000;
     border-bottom: 3px solid #2C98F4 !important;
+    */
 }
 
 
@@ -1879,13 +1932,15 @@ ul.zen_submenu li {
 
 .zen_announce_new {
     border: 1px solid #EFE69C;
-    background-color: #FFF8BC;
+    /*
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
     border-radius: 8px;
+    background-color: #FFF8BC;
     -moz-box-shadow: inset 1px 1px 3px #fff;
     -webkit-box-shadow: inset 1px 1px 3px #fff;
     box-shadow: inset 1px 1px 3px #fff;
+    */
 }
 
 .zen_announce_viewed {

@@ -10,13 +10,24 @@
     <meta name="generator" content="Zenbership Membership Software (www.zenbership.com)"/>
     <link href="%theme_url%/css/primary.css" rel="stylesheet" type="text/css" />
     <link href="%theme_url%/css/media.css" rel="stylesheet" type="text/css" />
-    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" type="text/css" />
 </head>
 <body class="zen">
 
 <div id="zen_header" class="zen_edit_area" contenteditable="false">
     <div class="zen_holder">
-        <div id="zen_head_left"><a href="%home_link%">%pp_company%</a></div>
+        <div id="zen_head_left">
+            <a href="%home_link%">
+            <?php
+            $logo = $this->get_option('company_logo');
+            $company_name = $this->get_option('company_name');
+            if (! empty($logo)) {
+                echo "<img src=\"$logo\" class=\"home_logo\" alt=\"$company_name\" />";
+            } else {
+                echo $company_name;
+            }
+            ?>
+            </a>
+        </div>
         <?php
         $session = new session;
         $ses = $session->check_session();

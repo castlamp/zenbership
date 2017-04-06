@@ -43,7 +43,7 @@ $DBH = new PDO(
 
 // Strict mode.
 // define('ZEN_MYSQL_STRICT_MODE', false);
-$strictMode = $db->run_query("SET @@global.sql_mode= '';");
+// $strictMode = $db->run_query("SET @@global.sql_mode= '';");
 // $strictMode = $db->run_query("SET @@global.sql_mode= 'TRADITIONAL';");
 
 /**
