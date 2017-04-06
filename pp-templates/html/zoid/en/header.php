@@ -46,10 +46,12 @@
     </div>
 </div>
 
-<div class="zen_holder zen_edit_area">
-    %error_code%
-    %success_code%
-    <div id="zen_section_header" class="zen_fonts zen_shadow_light" contenteditable="false">
-        <p id="zen_breadcrumbs" class="zen_small">%pp_breadcrumbs%</p>
-        <h1 class="zen_shadow_light">%page_title%</h1>
-    </div>
+<div id="zen_overall_body" class="zen_holder zen_edit_area">
+    <div id="zen_primary_content">
+
+        %error_code%
+        %success_code%
+        <div id="zen_section_header" class="zen_fonts zen_shadow_light" contenteditable="false">
+            <p id="zen_breadcrumbs" class="zen_small">%pp_breadcrumbs%</p>
+            <h1 class="zen_shadow_light">%page_title%</h1>
+        </div>

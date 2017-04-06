@@ -24,6 +24,13 @@ time, mark, audio, video {
     vertical-align: baseline;
 }
 
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
     display: block;
@@ -219,6 +226,7 @@ div.zen_reset, div.zen_reset * {
 a {
     color: rgb(77, 102, 214);
     text-decoration: none;
+    cursor: pointer;
 }
 
 a:hover {
@@ -922,15 +930,19 @@ p.zen_small {
 }
 
 .zen_shadow {
+    /*
     -moz-text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
     -webkit-text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+    */
 }
 
 .zen_shadow_light {
+    /*
     -moz-text-shadow: 1px 1px 0 rgba(255, 255, 255, 1);
     -webkit-text-shadow: 1px 1px 0 rgba(255, 255, 255, 1);
     text-shadow: 1px 1px 0 rgba(255, 255, 255, 1);
+    */
 }
 
 .zen_space {
@@ -1033,6 +1045,10 @@ ul#zen_head_right li:hover {
     float: left;
     background-color: #222;
     padding: 0 12px 0 12px;
+}
+
+#zen_primary_content {
+
 }
 
 #zen_content {
