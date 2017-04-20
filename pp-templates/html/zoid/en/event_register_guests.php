@@ -34,6 +34,6 @@ if (!empty($this->changes['products_guests'])) {
 ?>
 
 <div class="zen_submit">
-    <input type="submit" value="Continue"/>
+    <input type="submit" value="Continue" class="zen_focus" />
 </div>
 </form>

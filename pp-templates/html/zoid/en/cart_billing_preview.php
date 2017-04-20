@@ -103,7 +103,7 @@
 
             <div class="zen_submit">
                 <input type="hidden" name="zen_complete_cart" value="1"/>
-                <input type="submit" value="Complete Order"/>
+                <input type="submit" value="Complete Order" class="zen_focus" />
             </div>
 
         </div>

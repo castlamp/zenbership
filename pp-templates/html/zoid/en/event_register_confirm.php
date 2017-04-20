@@ -17,7 +17,7 @@
 <div class="zen_clear"></div>
 
 <div class="zen_submit zen_right">
-    <input type="submit" class="save" value="Confirm and Continue &raquo;"/>
+    <input type="submit" class="zen_focus" value="Confirm and Continue &raquo;"/>
 </div>
 
 </form>

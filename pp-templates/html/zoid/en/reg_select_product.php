@@ -34,7 +34,7 @@
 
     <div id="zen_section_footer" class="zen_fonts zen_small zen_shadow_light zen_gray">
         <div class="zen_section_right" style="text-align:right;">
-            <input type="submit" value="Continue"/>
+            <input type="submit" value="Continue" class="zen_focus" />
         </div>
         <div class="zen_section_left">
             <span><a href="%pp_url%/register.php?action=reset&sp=%salt%&session=%session%">Cancel

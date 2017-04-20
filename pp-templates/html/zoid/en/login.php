@@ -64,15 +64,15 @@
                 <h2 class="zen_notopmargin">Need an Account?</h2>
 
                 <div class="zen_gray_box">
-                    <div class="zen_pad zen_medium">
+                    <div class="zen_pad_standard zen_medium">
                         <a href="%pp_url%/register.php">Click here</a> to register.
                     </div>
                 </div>
 
-                <h2>Need Help?</h2>
+                <h2 class="zen_margin_top">Need Help?</h2>
 
                 <div class="zen_gray_box">
-                    <div class="zen_pad zen_medium">
+                    <div class="zen_pad_standard zen_medium">
                         <a href="%pp_url%/lost_password.php">Lost password recovery</a>
                     </div>
                 </div>

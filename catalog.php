@@ -30,6 +30,16 @@
 require "admin/sd-system/config.php";
 
 $cart = new cart();
+
+// Are we forcing this session onto a member?
+if (! empty($_GET['mid'])) {
+    $id = $cart->getId();
+    $update = $cart->update_order($id, array(
+        'member_id' => $_GET['mid'],
+        'member_type' => (! empty($_GET['mtype'])) ? $_GET['mtype'] : 'member',
+    ));
+}
+
 /**
  * Permissions:
  * 0 : None
@@ -75,6 +85,7 @@ if (!empty($_GET['id'])) {
             $category    = $cart->get_category($product['data']['category']);
             $breadcrumbs = $cart->breadcrumbs($product['data']['category']);
             $catalog     = array(
+                'meta_title'  => $product['data']['name'],
                 'data'        => $product['data'],
                 'category'    => $category,
                 'breadcrumbs' => $breadcrumbs,
@@ -270,6 +281,7 @@ else {
          * Render the page
          */
         $catalog  = array(
+            'meta_title'          => $category['name'],
             'category'            => $category,
             'category_list'       => $category_list['0'],
             'total_subcategories' => $category_list['1'],

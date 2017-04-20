@@ -46,15 +46,21 @@ $(document).ready(function () {
         check_pwd_strength = 3;
     }
     $('#zen_form input[name=password]').blur(function (i) {
-        check = password_strength(this.value);
-        if (check < check_pwd_strength) {
-            error_found = 1;
-            applyError(this.id, 'Password is not strong enough.');
+        if ($(this).hasClass('req') || $(this).val().length > 0) {
+            check = password_strength(this.value);
+            if (check < check_pwd_strength) {
+                error_found = 1;
+                applyError(this.id, 'Password is not strong enough.');
+            } else {
+                removeError(this.id);
+            }
         }
     });
     // Username
     $('#zen_form input[name=repeat_pwd]').blur(function (i) {
-        match_passwords(this.id);
+        if ($(this).hasClass('req') || $(this).val().length > 0) {
+            match_passwords(this.id);
+        }
     });
 });
 /**
@@ -109,6 +115,7 @@ function password_strength(password) {
         overall_power -= 3;
     }
     // Return
+    // console.log('Password Strength = ' + overall_power + ' (' + password + ')');
     return overall_power;
 }
 /**
@@ -177,17 +184,21 @@ function verifyForm(formid) {
     });
     // E-Mails
     $('#' + formid + ' input.email').each(function (i) {
-        check_em = check_email($(this).val());
-        id = $(this).attr('id');
-        if (check_em != '1') {
-            error_found = 1;
-            applyError(id, 'Incorrect email format!');
-        } else {
-            removeError(id);
+        if ($(this).hasClass('req') || $(this).val().length > 0) {
+            check_em = check_email($(this).val());
+            id = $(this).attr('id');
+            if (check_em != '1') {
+                error_found = 1;
+                applyError(id, 'Incorrect email format!');
+            } else {
+                removeError(id);
+            }
         }
     });
     // Data Lengths
     if (error_found == 1) {
+        process_error('Errors detected. Please fix them and try again.');
+
         return false;
     } else {
         return true;

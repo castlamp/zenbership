@@ -7,6 +7,6 @@
 %content%
 
 <div class="zen_submit">
-    <input type="submit" value="Continue"/>
+    <input type="submit" value="Continue" class="zen_focus" />
 </div>
 </form>

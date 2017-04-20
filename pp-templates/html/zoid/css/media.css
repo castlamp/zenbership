@@ -5,6 +5,21 @@
         width: 100%;
     }
 
+    h1#zen_main_heading {
+        display: block;
+    }
+
+    p#zen_breadcrumbs {
+        display: block;
+        float: none;
+        text-align: left;
+        width: 100%;
+        margin-top: 0px;
+        border-bottom: 1px dotted #ccc;
+        padding-bottom: 4px;
+        font-size: 0.7em !important;
+    }
+
     table.zen_calendar {
         width: 100%;
     }
@@ -22,10 +37,16 @@
         display: none;
     }
 
-    input, select, textarea {
+    input:not([type=checkbox]):not([type=radio]),
+    select,
+    textarea
+    {
         width: 100% !important;
     }
 
+    fieldset {
+        padding: 24px !important;
+    }
 }
 
 @media (max-width : 767px) {
@@ -43,6 +64,25 @@
         float: none;
         clear: both;
         width: 100%;
+    }
+
+    h1#zen_main_heading {
+        display: block !important;
+    }
+
+    p#zen_breadcrumbs {
+        display: block;
+        float: none;
+        text-align: left;
+        width: 100%;
+        margin-top: 0px;
+        border-bottom: 1px dotted #ccc;
+        padding-bottom: 4px;
+        font-size: 0.7em !important;
+    }
+
+    #zen_header {
+        margin-bottom: 0px;
     }
 
     .col33l, .col34, .col33r {
@@ -65,7 +105,10 @@
         margin-bottom: 8px;
     }
 
-    input, select, textarea {
+    input:not([type=checkbox]):not([type=radio]),
+    select,
+    textarea
+    {
         width: 100% !important;
     }
 
@@ -121,6 +164,17 @@
 
     .zen_field_set_col_pad {
         padding: 0;
+    }
+
+    fieldset {
+        padding: 24px !important;
+    }
+
+    .news_player {
+        width: 1200px;
+        height: 180px !important;
+        max-width: 100%;
+        margin: 0 auto;
     }
 
 }

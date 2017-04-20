@@ -71,10 +71,21 @@
                     </div>
                 </div>
 
+                <h2 class="zen_topmargin">Payment Method</h2>
+
+                <div class="zen_shadow_light zen_gray_box">
+                    <div class="zen_pad">
+                        <ul id="zen_payment_methods">
+                            %payment_methods%
+                            %cards_on_file%
+                        </ul>
+                    </div>
+                </div>
+
                 <?php
                 if ($this->changes['invoice_active'] != '1') {
                     ?>
-                    <h2>Promotional Code</h2>
+                    <h2 class="zen_topmargin">Promotional Code</h2>
                     <div class="zen_shadow_light zen_gray_box">
                         <div class="zen_pad_tiny">
                             <input type="text" id="coupon" value="" style="width:192px;"/> <input type="button"
@@ -85,17 +96,6 @@
                 <?php
                 }
                 ?>
-
-                <h2>Payment Method</h2>
-
-                <div class="zen_shadow_light zen_gray_box">
-                    <div class="zen_pad">
-                        <ul id="zen_payment_methods">
-                            %payment_methods%
-                            %cards_on_file%
-                        </ul>
-                    </div>
-                </div>
 
             </div>
             <div id="zen_cart_right" class="col70r">
@@ -128,7 +128,7 @@
                 <div id="zen_form_match">%method_form%</div>
 
                 <div class="zen_submit">
-                    <input type="submit" value="Preview Order"/>
+                    <input type="submit" value="Preview Order" class="zen_focus" />
                 </div>
 
             </div>

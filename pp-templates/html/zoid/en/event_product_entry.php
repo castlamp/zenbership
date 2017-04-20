@@ -10,5 +10,5 @@
 
         <p class="zen_prod_desc zen_gray">%description%</p>
     </div>
-    <div class="clear"></div>
+    <div class="zen_clear"></div>
 </li>

@@ -73,6 +73,8 @@ if ($ses['error'] != '1') {
         $changes['member_registered'] = "<div id=\"zen_success_code\">" . $msg . "</div>";
     }
 }
+
+$changes['meta_title']           = $get_event['data']['name'];
 $changes['timeline']             = $get_event['timeline'];
 $changes['products_tickets']     = $event->format_products($get_event['products'], '0', 'tickets');
 $changes['products_guests']      = $event->format_products($get_event['products'], '0', 'guests');

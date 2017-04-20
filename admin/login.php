@@ -49,7 +49,22 @@ $version = $db->get_option('current_version');
     <div id="background"></div>
     <div id="foreground"></div>
     <div id="login_box">
-        <div id="login_error" class="error_div marginbottom"></div>
+        <div id="login_error" class="error_div marginbottom"<?php
+        if (! empty($_GET['incode'])) {
+            echo " style=\"display:block;\"";
+        }
+        ?>
+            >
+        <?php
+            if (! empty($_GET['incode'])) {
+                if ($_GET['incode'] == 'u01') {
+                    echo 'Account unlocked.';
+                }
+                else if ($_GET['incode'] == 'u99') {
+                    echo 'Account unlock failed.';
+                }
+            }
+            ?></div>
         <div id="login_box_inner">
             <div id="login_pad">
                 <div class="col50l">

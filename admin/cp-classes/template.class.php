@@ -554,10 +554,10 @@ class template extends db
             'pp_company' => COMPANY,
             'pp_company_url' => $this->get_option('company_url'),
             'meta_title' => $this->get_title(),
+            'page_title' => $this->get_title(true),
             'meta_desc' => $this->data['desc'],
             'pp_breadcrumbs' => $this->get_crumbs(),
             'template_name' => $this->data['id'],
-            'page_title' => $this->data['title'],
             'site_name' => $this->site_name,
             'query' => $query,
             'company_address' => $this->get_option('company_address'),
@@ -567,6 +567,7 @@ class template extends db
             'theme_url' => $this->theme['url'],
             'pp_url' => $this->use_link,
             'logo' => $this->get_logo(),
+            'lang' => $this->lang,
         );
         foreach ($basics as $name => $value) {
             $content = str_replace("%$name%", $value, $content);
@@ -627,29 +628,36 @@ class template extends db
      * Page Title
      * Site Name / Section / Page | Company Name
      */
-    function get_title()
+    function get_title($skip_padding = false)
     {
-        if (! empty($this->data['meta_title'])) {
-            return $this->data['meta_title'];
-        }
-        else if (! empty($this->changes['meta_title'])) {
+        if (! empty($this->changes['meta_title'])) {
             return $this->changes['meta_title'];
+        }
+        else if (! empty($this->data['meta_title'])) {
+            return $this->data['meta_title'];
         }
         else if ($this->lang != $this->def_lang) {
             $content = new content;
             return $content->language_title($this->data['id'], $this->lang);
         }
         else {
+            if ($skip_padding) {
+                return $this->data['title'];
+            }
+
             $title = $this->site_name;
+
             if (!empty($this->data['section'])) {
                 $sectitle = strip_tags($this->get_section_url()); // strip_tags()
                 if (!empty($sectitle)) {
                     $title .= $sectitle;
                 }
             }
+
             $title .= " / ";
             $title .= $this->data['title'];
             $title .= " | " . COMPANY;
+
             return $title;
         }
     }
@@ -763,7 +771,17 @@ class template extends db
                 } else {
                     $content = str_replace('{-form_' . $aWidget . '-}', '', $content);
                 }
-            } // Widget
+            }
+            else if (strpos($aWidget, 'news_') !== false) {
+                $aWidget = str_replace('news_', '', $aWidget);
+                // Zero means region defaults will take over.
+                $page = (! empty($_GET['page'])) ? $_GET['page'] : 0;
+                $display = (! empty($_GET['display'])) ? $_GET['display'] : 10;
+                $search = (! empty($_GET['search'])) ? $_GET['search'] : '';
+                $newsFeed = news($aWidget, $page, $display, $search);
+                $content = str_replace('{-news_' . $aWidget . '-}', $newsFeed, $content);
+            }
+             // Widget
             else {
                 $widget = new widget($aWidget, '0', $this->user_data);
                 $content = str_replace('{-' . $aWidget . '-}', $widget, $content);

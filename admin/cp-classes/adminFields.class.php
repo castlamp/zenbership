@@ -367,6 +367,45 @@ class adminFields {
 
 
     /**
+     * @param $name
+     */
+    public function upload($name)
+    {
+        $string = '<input type="file" name="' . $name . '" />';
+
+        return $this->sendBack($string);
+    }
+
+
+    /**
+     * @param array $options
+     * @param string $val
+     *
+     * @return string
+     */
+    public function checkGroup($fieldname, array $options, array $selectedFeeds)
+    {
+        $return = '<div class="fieldCheckboxOption">';
+
+        foreach ((array)$options as $value => $name) {
+            $id = uniqid();
+
+            $return .= '<input type="checkbox" id="' . $id . '" name="' . $fieldname . '[]" value="' . $value . '"';
+
+            if (in_array($value, $selectedFeeds)) {
+                $return .= ' checked="checked"';
+            }
+
+            $return .= ' /><label for="' . $id . '" class="checking1">' . $value . '</label>';
+        }
+
+        $return .= '</div>';
+
+        return $this->sendBack($return);
+    }
+
+
+    /**
      * @param $fieldName
      * @param string $val
      * @param string $class
@@ -537,7 +576,7 @@ class adminFields {
         }
 
         $this->rightText = "<a href=\"null.php\" onclick=\"return get_list('member','" . $id . "_id','" . $id . "');\"><img
-        src=\"imgs/icon-list.png\" alt=\"Select from list\" title=\"Select from list\" /></a>";
+        src=\"imgs/icon-list.png\" class=\"icon\" alt=\"Select from list\" title=\"Select from list\" /></a>";
 
         return $this->sendBack("<input placeholder=\"Begin typing the member's username or click the list icon to the right...\" type=\"text\" value=\"" . $username . "\" name=\"username_dud\" id=\"" . $id . "\"
 autocomplete=\"off\" onkeyup=\"return autocom(this.id,'id','username','ppSD_members','username','members');\"
@@ -596,7 +635,13 @@ style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\"
     }
 
 
-
+    /**
+     * @param $fieldName
+     * @param string $val
+     * @param string $class
+     *
+     * @return string
+     */
     public function contentList($fieldName, $val = '', $class = '')
     {
         $id = $this->getId();
@@ -618,7 +663,42 @@ style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\"
     }
 
 
+    /**
+     * @param $fieldName
+     * @param string $val
+     * @param string $class
+     *
+     * @return string
+     */
+    public function memberTypeList($fieldName, $val = '', $class = '')
+    {
+        $id = $this->getId();
 
+        if (! empty($val)) {
+            $user = new user;
+            $get = $user->get_member_type($val);
+            $name = $get['name'];
+        } else {
+            $name = '';
+        }
+
+        $this->rightText = "<a href=\"null.php\" onclick=\"return get_list('member_types','" . $id . "_id','" . $id . "');\"><img
+        src=\"imgs/icon-list.png\" class=\"icon\" width=16 height=16 alt=\"Select from list\" title=\"Select from list\"  /></a>";
+
+        return $this->sendBack("<input placeholder=\"Begin typing a member type or click the list icon to the right...\" type=\"text\" value=\"" . $name . "\" name=\"product_dud\" id=\"" . $id . "\"
+autocomplete=\"off\" onkeyup=\"return autocom(this.id,'id','name','ppSD_member_types','name','member_types');\"
+style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\" id=\"" . $id . "_id\"
+        value=\"" . $val . "\" />");
+    }
+
+
+    /**
+     * @param $fieldName
+     * @param string $val
+     * @param string $class
+     *
+     * @return string
+     */
     public function staffList($fieldName, $val = '', $class = '')
     {
         $id = $this->getId();

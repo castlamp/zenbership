@@ -83,7 +83,7 @@
                     </select><input type="submit" value="Sort"/>
                 </div>
                 </form>
-                <h1 class="zen_notopmargin">%category:name%</h1>
+                <!--<h1 class="zen_notopmargin">%category:name%</h1>-->
 
                 <p class="zen_catalog_crumbs"><span class="zen_catalog_browsing">Browsing &raquo;</span> %breadcrumbs%
                 </p>

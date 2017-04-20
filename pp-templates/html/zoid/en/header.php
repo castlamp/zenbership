@@ -1,9 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="%lang%">
 <head>
+    <meta charset="UTF-8" />
     <title>%meta_title%</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="author" content="%pp_company%" />
     <meta name="description" content="%meta_desc%" />
@@ -53,5 +52,5 @@
         %success_code%
         <div id="zen_section_header" class="zen_fonts zen_shadow_light" contenteditable="false">
             <p id="zen_breadcrumbs" class="zen_small">%pp_breadcrumbs%</p>
-            <h1 class="zen_shadow_light">%page_title%</h1>
+            <h1 id="zen_main_heading" class="zen_shadow_light">%page_title%</h1>
         </div>

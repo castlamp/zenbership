@@ -13,7 +13,7 @@
             </div>
 
 
-            <h2>Promotional Code</h2>
+            <h2 class="zen_topmargin">Promotional Code</h2>
 
             <div class="zen_gray_box">
                 <div class="zen_pad_topl zen_fonts">
@@ -87,7 +87,7 @@
                 <div class="zen_submit">
                     <div class="zen_section_right">
                         <input type="button" onclick="window.location='%pp_url%/pp-cart/checkout.php';"
-                               value="Proceed to Checkout"/>
+                               value="Proceed to Checkout" class="zen_focus"/>
                     </div>
                     <div class="zen_section_left">
                         <input type="submit" value="Update Order"/>

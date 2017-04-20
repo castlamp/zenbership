@@ -39,8 +39,8 @@
                             <div class="zen_field " id="">
                                 <label class="zen_left">Current Password<span class="zen_req_star">*</span></label>
                                 <div class="zen_field_entry">
-                                    <input type="password" id="" name="current_password" value="" style="" class=" req" />
-                                    <div id="blockerror5f4dcc3b5aa765d61d8327deb882cf99" class="zen_error_block"></div>
+                                    <input type="password" id="current_password" name="current_password" value="" style="" class=" req" />
+                                    <div id="blockerrorcurrent_password" class="zen_error_block"></div>
                                 </div>
                                 <div class="zen_clear"></div>
                             </div>

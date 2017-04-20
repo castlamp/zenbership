@@ -81,7 +81,7 @@ if (empty($_GET['id'])) {
     }
 
     $changes   = array(
-        'forms' => $get_forms['forms'],
+        'forms' => (! empty($get_forms['forms'])) ? $get_forms['forms'] : '',
     );
 
     $wrapper   = new template('register_list', $changes, '1');
@@ -205,7 +205,9 @@ if ($this_form->formdata['type'] == 'register-paid' && (empty($form_session['pro
     */
 
     $step_ul  = $form->generate_step_array($this_form->formdata, 'product');
+
     $template = 'reg_select_product';
+
     $changes  = array(
         'products'       => $all_products,
         'addon_products' => $addons,
@@ -213,7 +215,9 @@ if ($this_form->formdata['type'] == 'register-paid' && (empty($form_session['pro
         'salt'           => md5($form->salt),
         'step_list'      => $step_ul,
     );
+
     $wrapper  = new template($template, $changes, '1');
+
     echo $wrapper;
     exit;
 
@@ -240,6 +244,7 @@ if ($this_form->formdata['type'] == 'register-paid' && (empty($form_session['pro
     }
 
     $changes = array(
+        'meta_title'    => $this_form->formdata['name'],
         'form'          => $genform,
         'data'          => $this_form->formdata,
         'session'       => $form->session_id,

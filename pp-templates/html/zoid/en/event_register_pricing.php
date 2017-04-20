@@ -13,7 +13,7 @@ if ($this->changes['early_bird'] == '1') {
 }
 ?>
 
-<h2>Tickets</h2>
+<h2 class="zen_topmargin">Tickets</h2>
 <?php
 if (!empty($this->changes['products_tickets'])) {
     ?>
@@ -33,7 +33,7 @@ if (!empty($this->changes['products_tickets'])) {
 <?php
 if (!empty($this->changes['products_others'])) {
     ?>
-    <h2>Additional Options</h2>
+    <h2 class="zen_topmargin">Additional Options</h2>
     <ul class="zen_event_product_option">
         %products_others%
     </ul>
@@ -43,6 +43,6 @@ if (!empty($this->changes['products_others'])) {
 
 
 <div class="zen_submit">
-    <input type="submit" value="Continue"/>
+    <input type="submit" value="Continue" class="zen_focus"/>
 </div>
 </form>

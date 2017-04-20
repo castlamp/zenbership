@@ -1,5 +1,5 @@
-<h1 class="zen_notopmargin">Event Registration</h1>
-<ul id="zen_event_steps">
+<!--<h1 class="zen_notopmargin">Event Registration</h1>-->
+<ul id="zen_event_steps" class="zen_notopmargin">
     <?php
     if ($this->changes['total_ticket_products'] > 0) {
         ?>
@@ -17,11 +17,9 @@
             <?php
             }
             ?>
-        </li>
-    <?php
+        </li><?php
     }
-    ?>
-    <li<?php if ($this->changes['step'] == '2') {
+    ?><li<?php if ($this->changes['step'] == '2') {
         echo " class=\"on\"";
     } ?>>
         <?php
@@ -34,12 +32,10 @@
             Registration
         <?php
         }
-        ?>
-    </li>
+        ?></li>
     <?php
     if ($this->changes['allow_guests'] == 1) {
-        ?>
-        <li<?php if ($this->changes['step'] == '3' || $this->changes['step'] == '4') {
+        ?><li<?php if ($this->changes['step'] == '3' || $this->changes['step'] == '4') {
             echo " class=\"on\"";
         } ?>>
             <?php
@@ -52,19 +48,15 @@
                 Guest Registration
             <?php
             }
-            ?>
-        </li>
+            ?></li>
     <?php
     }
-    ?>
-    <li<?php if ($this->changes['step'] == '5') {
+    ?><li<?php if ($this->changes['step'] == '5') {
         echo " class=\"on\"";
-    } ?>>Confirmation
-    </li>
+    } ?>>Confirmation</li>
     <?php
     if ($this->changes['total_products'] > 0) {
-        ?>
-        <li>Payment</li>
+        ?><li>Payment</li>
     <?php
     }
     ?>

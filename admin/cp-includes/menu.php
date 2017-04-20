@@ -231,12 +231,13 @@ if ($employee['permissions']['admin'] == '1' || ! empty($employee['permissions']
         <li>
             <a href="index.php?l=announcements">News</a>
             <ul>
-                <li><a href="index.php?l=announcements">View All</a></li>
+                <li><a href="index.php?l=announcements">View Posts</a></li>
+                <li><a href="index.php?l=news_regions">Regions</a></li>
                 <?php
                 if ($employee['permissions']['admin'] == '1') {
                     ?>
                     <li class="div"></li>
-                    <li><a href="returnnul.php" onclick="return popup('options','type=announcements');">Options</a></li>
+                    <li><a href="returnnull.php" onclick="return popup('options','type=announcements');">Options</a></li>
                 <?php
                 }
                 ?>

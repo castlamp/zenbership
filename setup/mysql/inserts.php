@@ -280,6 +280,7 @@ $inserts[] = "
 	('L032', 'Miscellaneous'),
 	('L033', 'Your form session is invalid or corrupt. Please try again.'),
 	('L034', 'Current password is incorrect.'),
+	('L035', 'Please log in to access this post.'),
 	
 	('N001', 'Could not confirm campaign subscription.'),
 	('N002', 'Could not find campaign.'),
@@ -364,7 +365,9 @@ $inserts[] = "
 ";
 $inserts[] = "
 	INSERT INTO `ppSD_fields` (`id`, `display_name`, `type`, `special_type`, `logic`, `logic_dependent`, `desc`, `label_position`, `options`, `styling`, `default_value`, `encrypted`, `sensitive`, `maxlength`, `settings`, `permissions_group`, `primary`, `static`, `data_type`, `min_len`, `scope_member`, `scope_contact`, `scope_rsvp`, `scope_account`) VALUES
+	('title', 'Title', 'select', '', 0, 0, '', 'left', 'Mr\nMrs\nMiss\nMs\nMx\nJr\nSr\nMaster\nHon\nSir\nDame\nDr\nProf', 'width: 100px;', '', 0, 0, 10, '', 0, 0, 1, 0, 0, 1, 1, 1, 1),
 	('first_name', 'First Name', 'text', '', 0, 0, '', 'left', '', 'width: 225px;', '', 0, 0, 40, '', 0, 0, 1, 0, 0, 1, 1, 1, 1),
+	('middle_name', 'Middle Name', 'text', '', 0, 0, '', 'left', '', 'width: 225px;', '', 0, 0, 40, '', 0, 0, 1, 0, 0, 1, 1, 1, 1),
 	('last_name', 'Last Name', 'text', '', 0, 0, '', 'left', '', 'width: 225px;', '', 0, 0, 40, '', 0, 0, 1, 0, 0, 1, 1, 1, 1),
 	('address_line_1', 'Address Line 1', 'text', '', 0, 0, '', 'left', '', 'width: 250px;', '', 0, 0, 80, '', 0, 0, 1, 0, 0, 1, 1, 1, 1),
 	('address_line_2', 'Address Line 2', 'text', '', 0, 0, '', 'left', '', 'width: 250px;', '', 0, 0, 30, '', 0, 0, 1, 0, 0, 1, 1, 1, 1),
@@ -377,6 +380,7 @@ $inserts[] = "
 	('office_phone', 'Office Phone', 'text', 'phone', 0, 0, '', 'left', '', '', '', 0, 0, 20, '', 0, 0, 1, 0, 0, 1, 1, 0, 1),
 	('alt_phone', 'Alternate Phone', 'text', 'phone', 0, 0, '', 'left', '', '', '', 0, 0, 20, '', 0, 0, 1, 0, 0, 1, 1, 0, 1),
 	('cell_carrier', 'Cell Carrier', 'select', 'cell_carriers', 0, 0, '', 'left', '', '', '', 0, 0, 25, '', 0, 0, 1, 0, 0, 1, 1, 1, 0),
+	('gender', 'Gender', 'select', '', 0, 0, '', 'left', 'Male\nFemale\nOther', 'width: 100px;', '', 0, 0, 10, '', 0, 0, 1, 0, 0, 1, 1, 1, 1),
 	('username', 'Username', 'text', '', 0, 0, '', 'left', '', '', '', 0, 0, 100, '', 0, 1, 1, 0, 0, 0, 0, 0, 0),
 	('password', 'Password', 'text', 'password', 0, 0, '', 'left', '', '', '', 0, 1, 50, '', 0, 1, 1, 0, 0, 0, 0, 0, 0),
 	('repeat_pwd', 'Repeat Password', 'text', 'password', 0, 0, '', 'left', '', '', '', 0, 1, 50, '', 0, 1, 1, 0, 0, 0, 0, 0, 0),
@@ -411,53 +415,63 @@ $inserts[] = "
 	('check_no', 'Check Number', 'text', '', 0, 0, '', 'left', '', 'width:100px;', '', 0, 0, 10, '', 0, 1, 1, 3, 0, 0, 0, 0, 0),
 	('ship_directions', 'Special Directions', 'textarea', '', 0, 0, '', 'left', '', 'width:100%;height:50px;', '', 0, 0, 0, '', 0, 1, 1, 0, 0, 0, 0, 0, 0);
 ";
+
 $inserts[] = "
 	INSERT INTO `ppSD_fieldsets` (`id`, `name`, `desc`, `order`, `columns`, `logic_dependent`, `static`, `owner`, `billing`) VALUES
 	(1, 'Contact Information', '', 1, 1, 0, 1, 0, 0),
 	(2, 'Phones', '', 2, 1, 0, 1, 0, 0),
-	(8, 'Registration Basics', '', 1, 1, 0, 0, 0, 0),
-	(9, 'Credit Card Details', '', 1, 1, 0, 1, 0, 1),
 	(3, 'Company Details', '', 3, 1, 0, 1, 0, 0),
 	(4, 'Social Media', 'Inputing this data will activate social media features for this user.', 2, 1, 0, 1, 0, 0),
 	(5, 'Account Overview', '', 1, 1, 0, 1, 0, 0),
 	(6, 'Account Specifics', '', 2, 1, 0, 1, 0, 0),
 	(7, 'Cell Phone', 'If a cell phone and cell carrier are provided, SMS features will become available.', 4, 1, 0, 1, 0, 0),
-	(10, 'Registration Basics', '', 1, 1, 0, 1, 0, 0),
+	(8, 'Registration Basics', '', 1, 1, 0, 0, 0, 0),
+	(9, 'Credit Card Details', '', 1, 1, 0, 1, 0, 1),
 	(11, 'Billing Information', '', 1, 1, 0, 1, 0, 1),
 	(12, 'Check Details', '', 1, 1, 0, 1, 0, 1),
 	(13, 'Invoice Details', '', 1, 1, 0, 1, 0, 1),
 	(14, 'Shipping Information', '', 1, 1, 0, 1, 0, 0),
 	(15, 'Password', '', 1, 1, 0, 1, 0, 0),
-	(16, 'Test Update', '', 2, 0, 0, 1, 0, 0),
+	(22, 'Password Update', 'Would you like to update your password?', 1, 1, 0, 1, 0, 0),
 	(17, 'Username Selection', 'Please select a username and password for your account.', 1, 1, 0, 1, 0, 0),
 	(18, 'Miscellaneous Member Fields', '', 999, 1, 0, 1, 0, 0),
 	(19, 'Miscellaneous Contact Fields', '', 999, 1, 0, 1, 0, 0),
 	(20, 'Miscellaneous Account Fields', '', 999, 1, 0, 1, 0, 0),
-	(21, 'Miscellaneous RSVP Fields', '', 999, 1, 0, 1, 0, 0),
-	(22, 'Contact Basics', '', '1', '1', '', '1', '2', '');
+	(21, 'Miscellaneous RSVP Fields', '', 999, 1, 0, 1, 0, 0);
 ";
+
 $inserts[] = "
 	INSERT INTO `ppSD_fieldsets_fields` (`fieldset`, `field`, `order`, `req`, `column`, `tabindex`, `autoadd_product`, `autoadd_value`) VALUES
+	(1, 'title', 0, 0, 1, 1, '', ''),
 	(1, 'first_name', 1, 1, 1, 1, '', ''),
-	(1, 'last_name', 2, 1, 1, 2, '', ''),
-	(1, 'email', 3, 1, 1, 0, '', ''),
-	(1, 'address_line_1', 4, 0, 1, 0, '', ''),
-	(1, 'address_line_2', 5, 0, 1, 0, '', ''),
-	(1, 'city', 6, 0, 1, 0, '', ''),
-	(1, 'state', 7, 0, 1, 0, '', ''),
-	(1, 'zip', 8, 0, 1, 0, '', ''),
-	(1, 'country', 8, 0, 1, 0, '', ''),
+	(1, 'middle_name', 2, 0, 1, 2, '', ''),
+	(1, 'last_name', 3, 1, 1, 2, '', ''),
+	(1, 'address_line_1', 5, 1, 1, 0, '', ''),
+	(1, 'address_line_2', 6, 0, 1, 0, '', ''),
+	(1, 'city', 7, 1, 1, 0, '', ''),
+	(1, 'state', 8, 1, 1, 0, '', ''),
+	(1, 'zip', 9, 1, 1, 0, '', ''),
+	(1, 'country', 10, 1, 1, 0, '', ''),
+	(1, 'email', 11, 1, 1, 0, '', ''),
+	(1, 'phone', 12, 0, 1, 0, '', ''),
+	(1, 'gender', 13, 0, 1, 1, '', ''),
+
 	(2, 'phone', 1, 0, 1, 0, '', ''),
-	(7, 'cell', 2, 0, 1, 0, '', ''),
-	(7, 'cell_carrier', 3, 0, 1, 0, '', ''),
-	(2, 'office_phone', 4, 0, 1, 0, '', ''),
-	(2, 'alt_phone', 5, 0, 1, 0, '', ''),
+	(2, 'office_phone', 2, 0, 1, 0, '', ''),
+	(2, 'alt_phone', 3, 0, 1, 0, '', ''),
+	(2, 'fax', 4, 0, 1, 0, '', ''),
+	(2, 'cell', 5, 0, 1, 0, '', ''),
+	(2, 'cell_carrier', 6, 0, 1, 0, '', ''),
+	(2, 'sms_optout', 7, 0, 1, 0, '', ''),
+
 	(3, 'company_name', 1, 0, 1, 0, '', ''),
 	(3, 'url', 2, 0, 1, 0, '', ''),
+	(3, 'occupation', 3, 0, 1, 0, '', ''),
+
 	(4, 'facebook', 1, 0, 1, 0, '', ''),
 	(4, 'twitter', 2, 0, 1, 0, '', ''),
 	(4, 'linkedin', 3, 0, 1, 0, '', ''),
-	(3, 'occupation', 3, 0, 1, 0, '', ''),
+
 	(5, 'company_name', 1, 1, 1, 0, '', ''),
 	(5, 'url', 9, 0, 1, 0, '', ''),
 	(5, 'address_line_1', 3, 0, 1, 0, '', ''),
@@ -468,20 +482,24 @@ $inserts[] = "
 	(5, 'country', 8, 0, 1, 0, '', ''),
 	(6, 'industry', 2, 0, 1, 0, '', ''),
 	(6, 'account_type', 1, 0, 1, 0, '', ''),
-	(2, 'fax', 4, 0, 1, 0, '', ''),
+
+	(7, 'cell', 2, 0, 1, 0, '', ''),
+	(7, 'cell_carrier', 3, 0, 1, 0, '', ''),
 	(7, 'sms_optout', 3, 0, 1, 0, '', ''),
-	(8, 'first_name', 1, 1, 1, 0, '', ''),
-	(8, 'last_name', 2, 1, 1, 0, '', ''),
-	(8, 'email', 3, 1, 1, 0, '', ''),
-	(8, 'fav_team', 4, 0, 1, 0, '', ''),
-	(11, 'first_name', 1, 1, 1, 0, '', ''),
+
+	(8, 'username', 1, 1, 1, 0, '', ''),
+	(8, 'password', 2, 1, 1, 0, '', ''),
+	(8, 'repeat_pwd', 3, 1, 1, 0, '', ''),
+	(8, 'first_name', 4, 1, 1, 0, '', ''),
+	(8, 'last_name', 5, 1, 1, 0, '', ''),
+	(8, 'email', 6, 1, 1, 0, '', ''),
+
 	(9, 'cc_number', 2, 1, 1, 0, '', ''),
 	(9, 'card_exp', 3, 1, 1, 0, '', ''),
-	(9, 'cvv', 4, 1, 1, 0, '', ''),
-	(11, 'last_name', 2, 1, 1, 0, '', ''),
-	(10, 'first_name', 1, 1, 1, 0, '', ''),
-	(10, 'last_name', 2, 1, 1, 0, '', ''),
-	(10, 'email', 3, 1, 1, 0, '', ''),
+	(9, 'cvv', 4, 1, 1, 0, '', ''),,
+
+	(11, 'first_name', 1, 1, 1, 0, '', ''),
+	(11, 'last_name', 2, 1, 1, 0, '', '')
 	(11, 'address_line_1', 3, 1, 1, 0, '', ''),
 	(11, 'address_line_2', 4, 0, 1, 0, '', ''),
 	(11, 'city', 5, 1, 1, 0, '', ''),
@@ -490,15 +508,18 @@ $inserts[] = "
 	(11, 'country', 8, 1, 1, 0, '', ''),
 	(11, 'email', 9, 1, 1, 0, '', ''),
 	(11, 'phone', 10, 0, 1, 0, '', ''),
+
 	(12, 'accttype', 1, 1, 1, 0, '', ''),
 	(12, 'bank_name', 2, 1, 1, 0, '', ''),
 	(12, 'bank_routing', 4, 1, 1, 0, '', ''),
 	(12, 'bank_account_name', 3, 1, 1, 0, '', ''),
 	(12, 'bank_account_number', 5, 1, 1, 0, '', ''),
-	(13, 'invoice_memo', 1, 0, 1, 0, '', ''),
-	(12, 'driver_license_no', 6, 1, 1, 0, '', ''),
+    (12, 'driver_license_no', 6, 1, 1, 0, '', ''),
 	(12, 'driver_license_state', 7, 1, 1, 0, '', ''),
 	(12, 'check_no', 8, 1, 1, 0, '', ''),
+
+	(13, 'invoice_memo', 1, 0, 1, 0, '', ''),
+
 	(14, 'first_name', 1, 1, 1, 0, '', ''),
 	(14, 'last_name', 2, 1, 1, 0, '', ''),
 	(14, 'address_line_1', 3, 1, 1, 0, '', ''),
@@ -508,35 +529,39 @@ $inserts[] = "
 	(14, 'zip', 7, 1, 1, 0, '', ''),
 	(14, 'country', 8, 1, 1, 1, '', ''),
 	(14, 'ship_directions', 9, 0, 1, 0, '', ''),
+
 	(15, 'password', 2, 1, 1, 0, '', ''),
 	(15, 'repeat_pwd', 3, 1, 1, 0, '', ''),
+
+	(22, 'password', 2, 0, 1, 0, '', ''),
+	(22, 'repeat_pwd', 3, 0, 1, 0, '', ''),
+
 	(17, 'username', 1, 1, 1, 0, '', ''),
-	(16, 'dob', 1, 1, 1, 0, '', ''),
-	(16, 'industry', 2, 1, 1, 0, '', ''),
 	(17, 'password', 2, 1, 1, 0, '', ''),
-	(17, 'repeat_pwd', 3, 1, 1, 0, '', ''),
-	(22, 'email',  '1',  '1',  '1',  '',  '',  ''),
-	(22, 'first_name',  '2',  '1',  '1',  '',  '',  ''),
-	(22, 'last_name',  '3',  '1',  '1',  '',  '',  '');
+	(17, 'repeat_pwd', 3, 1, 1, 0, '', '');
 ";
 $inserts[] = "
 	INSERT INTO `ppSD_fieldsets_locations` (`location`, `order`, `col`, `fieldset_id`) VALUES
 	('contact-add', 1, 2, 3),
 	('contact-add', 2, 1, 2),
-	('contact-add', 1, 1, 1),
-	('contact-add', 2, 2, 4),
+	('contact-add', 3, 1, 1),
+	('contact-add', 4, 2, 4),
+	('contact-add', 5, 2, 19),
 	('contact-edit', 1, 2, 3),
 	('contact-edit', 2, 1, 2),
-	('contact-edit', 1, 1, 1),
-	('contact-edit', 2, 2, 4),
-	('contact-edit', 3, 1, 7),
+	('contact-edit', 3, 1, 1),
+	('contact-edit', 4, 2, 4),
+	('contact-edit', 5, 1, 7),
+	('contact-edit', 6, 2, 19),
 	('contact-add', 3, 1, 7),
 	('member-add', 3, 1, 7),
 	('member-edit', 3, 1, 7),
-	('member-add', 1, 1, 1),
-	('member-edit', 1, 1, 1),
+	('member-add', 1, 2, 1),
+	('member-edit', 1, 2, 1),
 	('member-add', 2, 1, 2),
 	('member-edit', 2, 1, 2),
+	('member-add', 4, 2, 18),
+	('member-edit', 4, 2, 18),
 	('account-add', 1, 1, 5),
 	('account-add', 1, 2, 6),
 	('account-add', 2, 1, 2),
@@ -551,7 +576,7 @@ $inserts[] = "
 	('check_form', 1, 1, 12),
 	('invoice_form', 1, 1, 13),
 	('shipping_form', 1, 1, 14),
-	('update-account', 1, 1, 15),
+	('update-account', 1, 1, 22),
 	('update-account', 2, 1, 1),
 	('member-add', 1, 1, 17),
 	('employee-add', 1, 1, 1),
@@ -604,6 +629,7 @@ $inserts[] = "
 	('contacts_unassigned', 'a:5:{s:5:\"limit\";s:2:\"10\";s:4:\"unit\";s:3:\"day\";s:10:\"increments\";s:1:\"7\";s:5:\"graph\";s:1:\"1\";s:6:\"fields\";a:3:{i:0;s:9:\"last_name\";i:1;s:10:\"first_name\";i:2;s:6:\"source\";}}', 'Unassigned Contacts', 'admin', 1, 0, '', 1),
 	('invoices_upcoming', 'a:5:{s:5:\"limit\";s:1:\"5\";s:4:\"unit\";s:3:\"day\";s:10:\"increments\";s:1:\"7\";s:5:\"graph\";s:1:\"1\";s:4:\"list\";s:1:\"1\";}', 'Upcoming Invoice', 'all', 1, 0, '', 1);
 */
+/*
 $inserts[] = "
 	INSERT INTO `ppSD_plugins` (`id`, `status`, `date`, `path`, `db`, `db_host`, `db_user`, `db_pass`, `login`, `logout`, `table_prefix`, `options_array`) VALUES
 	('mybb', 0, '1920-01-01 00:01:01', '', '', '', '', '', 1, 1, '', ''),
@@ -613,17 +639,22 @@ $inserts[] = "
 	('joomla', 0, '1920-01-01 00:01:01', '', '', '', '', '', 1, 1, '', ''),
 	('kayako', 0, '1920-01-01 00:01:01', '', '', '', '', '', 1, 1, '', '');
 ";
-
+*/
 $inserts[] = "INSERT INTO `ppSD_pipeline` (`id`,`name`,`position`) VALUES (1, 'Contact', 1);";
 $inserts[] = "INSERT INTO `ppSD_pipeline` (`id`,`name`,`position`) VALUES (2, 'Lead', 2);";
 $inserts[] = "INSERT INTO `ppSD_pipeline` (`id`,`name`,`position`) VALUES (3, 'Opportunity', 3);";
 $inserts[] = "INSERT INTO `ppSD_pipeline` (`id`,`name`,`position`) VALUES (4, 'Customer', 4);";
 
+$inserts[] = "INSERT INTO `ppSD_login_announcement_regions` (`id`, `name`, `tag`, `display`) VALUES
+    (1, 'Homepage', 'homepage', 5),
+	(2, 'Member Dashboard', 'dashboard', 10),
+	(3, 'News Page', 'news_homepage', 10);
+";
+
 /*
 	('modxcms_evolution', 0, '1920-01-01 00:01:01', '', '', '', '', '', 1, 1, '', ''),
 	('phpfox', 0, '1920-01-01 00:01:01', '', '', '', '', '', 1, 1, '', ''),
 	('salesforce', 0, '1920-01-01 00:01:01', '', '', '', '', '', 0, 0, '', ''),
-
 	('ipboard', 0, '1920-01-01 00:01:01', '', '', '', '', '', 1, 1, '', ''),
 	('sugarcrm', 0, '1920-01-01 00:01:01', '', '', '', '', '', 0, 0, '', ''),
 	('mailchimp', 0, '1920-01-01 00:01:01', '', '', '', '', '', 0, 0, '', ''),
@@ -689,7 +720,9 @@ $inserts[] = "
 
 	('additional_search_members', '', 'phone,fax', 'Make additional custom fields searchable in the quick ajax search.', 'text', 0, '', 'system', 0, ''),
 	('price_format', 'Price Format', '1', 'What format should prices be displayed in&#63;', 'select', 150, '1:1,000.00|2:1 000,00|3:1000.00|4:1000', 'cart', 0, ''),
-	('language', 'Language', 'en', 'Default language for the program?', 'select', '200', 'en:English|fr:Francais|es:Espanol|dr:Deutsch|pt:Portugues|ru:Russian', 'general', '', ''),
+
+	('language', 'Language', 'en', 'Default language for the program?', 'select', '200', 'ar:Arabic|bn:Bengali|zh:Chinese|de:Deutsch|en:English|es:Espanol|fr:Francais|hi:Hindi|ja:Japanese|pt:Portuguese|pa:Punjabi|ru:Russian', 'general', '', ''),
+
 	('homepage', 'Homepage Location', '/index.php', 'Where should the \"homepage\" link redirect to&#63;', 'text', 0, '', 'site', 0, ''),
 	('order_id_format', 'Order Number Format', 'LLL-nnnnnnnnnn', 'L = Upper case letter, l = lower case letter, n = Number', 'text', 200, '', 'cart', 20, ''),
 	('extend_type', 'Renewal Extension Type', 'today', 'Should renewals be based on today\'s date or the date the subscription expired?', 'radio', 0, 'today:Today|expires:Previous Next Renewal Date', 'subscriptions', 0, ''),
@@ -948,7 +981,7 @@ $inserts[] = "
 	('3', 'Events', 'Events', 'Events', 'event.php', '1', 'section'),
 	('4', 'Shopping Cart', 'Cart', 'Cart', 'cart.php', '', 'section'),
 	('5', 'Login', 'Login', 'Login', 'login.php', '', 'section'),
-	('6', 'Account Management', 'Account Management', 'Account_Management', 'manage/index.php', '', 'section'),
+	('6', 'Member Dashboard', 'Member Dashboard', 'Account_Management', 'manage/index.php', '', 'section'),
 	('7', 'Shop', 'Catalog', 'Catalog', 'catalog.php', '', 'section'),
 	('8', 'Membership', 'Register', 'Register', 'register.php', '', 'section'),
 	('9', 'Invoice', 'Invoice', 'Invoice', 'invoice.php', '', 'section');
@@ -988,22 +1021,11 @@ $inserts[] = "
 	('activation_code_sent', '', 'zoid', '', 'Activation Code Sent!', '', '', 0, '0', '0', '', 0, 'Login', '', 0, 1, 2),
 	('email_confirmed', '', 'zoid', '', 'E-mail Confirmation Complete', '', '', 0, '0', '0', '', 0, 'Login', '', 0, 1, 2),
 	('update', '', 'zoid', '', 'Membership Update Form', 'Used for any update form other than the primary update form.', '', '', '', '', '', '0', 'Home', '', '', '1', '2'),
-	('manage_home', '', 'zoid', '', 'Manage Home', '', '', 0, '0', '0', '', 0, 'Account Management', '', 1, 1, 2),
-	('manage_update_account', '', 'zoid', '', 'Update Account', '', '', 0, '0', '0', '', 0, 'Account Management', '', 1, 1, 2),
-	('manage_announcements', '', 'zoid', '', 'Announcements and News', '', '', 0, '0', '0', '', 0, 'Account Management', '', 1, 1, 2),
-	('manage_billing_history', '', 'zoid', '', 'Billing History', '', '', 0, '0', '0', '', 0, 'Account Management', '', 1, 1, 2),
-	('manage_invoices',  '',  'zoid',  '',  'Invoice Management',  '',  '',  '',  '',  '',  '',  '0',  'Account Management',  '',  '',  '1',  '2'),
-	('manage_calendar',  '',  'zoid',  '',  'Your Calendar',  '',  '',  '',  '',  '',  '',  '0',  'Account Management	',  '',  '',  '1',  '2'),
-	('cart_receipt', '', 'zoid', '', 'Order Complete', '', '', 0, '0', '0', '', 0, 'Cart', '', 0, 1, 2),
-	('manage_event_rsvps', '', 'zoid', '', 'Event Registration History', '', '', 0, '0', '0', '', 0, 'Account Management', '', 1, 1, 2),
-	('manage_subscriptions', '', 'zoid', '', 'Subscriptions', '', '', 0, '0', '0', '', 0, 'Account Management', '', 1, 1, 2),
-	('manage_credit_cards', '', 'zoid', '', 'Credit Cards on File', '', '', 0, '0', '0', '', 0, 'Account Management', '', 1, 1, 2),
-	('manage_uploads', '', 'zoid', '', 'File Manager', '', '', '', '', '', '', '0', 'Account Management', '', '', '1', '2'),
-	('cart_view_order', '', 'zoid', '', 'View Order', '', '', 0, '0', '0', '', 0, 'Cart', '', 0, 1, 2),
-	('cart_add_card',  '',  'zoid',  '',  'Add Credit Card',  '',  '',  '',  '',  '',  '',  '0',  'Cart',  '',  '',  '1',  '2'),
+    ('cart_view_order', '', 'zoid', '', 'View Order', '', '', 0, '0', '0', '', 0, 'Cart', '', 0, 1, 2),
+	('cart_add_card',  '',  'zoid',  '',  'Add Credit Card',  '',  '',  '',  '',  '',  '',  '0',  'Member Dashboard',  '',  '',  '1',  '2'),
 	('cart_manage_subscription', '', 'zoid', '', 'Manage Subscription', '', '', 0, '0', '0', '', 0, 'Cart', '', 0, 1, 2),
 	('cart_upsell_checkout', '', 'zoid', '', 'Related Products', '', '', '', '', '', '', '0', 'Cart', '', '', '1', '2'),
-	('cart_product_entry_upsell', '', 'zoid', '', 'Cart Upsell Product Entry (Checkout)', '', '', '', '', '', '', '0', '', '', '', '1', '2'),
+	('cart_product_entry_upsell', '', 'zoid', '', 'Cart Upsell Product Entry (Checkout)', '', '', '', '', '', '', '0', 'Cart', '', '', '1', '2'),
 	('register_list_entry', '', 'zoid', '', 'Registration Form List Entry', '', '', 0, '0', '0', '', 0, 'Register', '', 0, 1, 2),
 	('reg_complete', '', 'zoid', '', 'Registration Complete', '', '', 0, '0', '0', '', 0, 'Register', '', 0, 1, 2),
 	('reg_activation_code', '', 'zoid', '', 'E-Mail Confirmation Required', '', '', 0, '0', '0', '', 0, 'Register', '', 0, 1, 2),
@@ -1027,7 +1049,21 @@ $inserts[] = "
 	('page-2col-7030', '', 'zoid', '', 'Two Column: 70-30', '', '', 0, '0', '0', '', 3, '', '', 0, 0, 2),
 	('page-2col-3070', '', 'zoid', '', 'Two Column: 30-70', '', '', 0, '0', '0', '', 3, '', '', 0, 0, 2),
 	('page-3col-333', '', 'zoid', '', 'Three Column: 33-34-33', '', '', 0, '0', '0', '', 3, '', '', 0, 0, 2),
-	
+
+	('manage_home', '', 'zoid', '', 'Manage Home', '', '', 0, '0', '0', '', 0, 'Member Dashboard', '', 1, 1, 2),
+	('manage_update_account', '', 'zoid', '', 'Update Account', '', '', 0, '0', '0', '', 0, 'Member Dashboard', '', 1, 1, 2),
+	('manage_announcements', '', 'zoid', '', 'Announcements and News', '', '', 0, '0', '0', '', 0, 'Member Dashboard', '', 1, 1, 2),
+	('manage_billing_history', '', 'zoid', '', 'Billing History', '', '', 0, '0', '0', '', 0, 'Member Dashboard', '', 1, 1, 2),
+	('manage_invoices',  '',  'zoid',  '',  'Invoice Management',  '',  '',  '',  '',  '',  '',  '0',  'Member Dashboard',  '',  '',  '1',  '2'),
+	('manage_calendar',  '',  'zoid',  '',  'Your Calendar',  '',  '',  '',  '',  '',  '',  '0',  'Member Dashboard	',  '',  '',  '1',  '2'),
+	('cart_receipt', '', 'zoid', '', 'Order Complete', '', '', 0, '0', '0', '', 0, 'Cart', '', 0, 1, 2),
+	('manage_event_rsvps', '', 'zoid', '', 'Event Registration History', '', '', 0, '0', '0', '', 0, 'Member Dashboard', '', 1, 1, 2),
+	('manage_subscriptions', '', 'zoid', '', 'Subscriptions', '', '', 0, '0', '0', '', 0, 'Member Dashboard', '', 1, 1, 2),
+	('manage_credit_cards', '', 'zoid', '', 'Credit Cards on File', '', '', 0, '0', '0', '', 0, 'Member Dashboard', '', 1, 1, 2),
+	('manage_uploads', '', 'zoid', '', 'File Manager', '', '', '', '', '', '', '0', 'Member Dashboard', '', '', '1', '2'),
+
+
+
 	('reg_preview', '', 'zoid', '', 'Registration Preview', '', '', 0, '', '', '', 0, 'Register', '', 0, 1, 0),
 	('register_list', '', 'zoid', '', 'Registration Options', '', '', 0, '', '', '', 0, 'Register', '', 0, 1, 0),
 	('popup_cart_added', '', 'zoid', '', 'Cart Popup: Item Added To Cart', '', '', '', '', '', '', '0', 'Cart', '', '', '1', '2'),
@@ -1044,6 +1080,16 @@ $inserts[] = "
 ";
 //	('cart_manage_card', '', 'zoid', '', 'Add a Credit Card', '', '', 0, '0', '0', '', 0, 'Cart', '', 0, 1, 2),
 
+
+$inserts[] = "
+INSERT INTO `ppSD_templates` (`id`, `path`, `theme`, `subtemplate`, `title`, `desc`, `caller_tags`, `order`, `custom_header`, `custom_footer`, `custom_template`, `type`, `section`, `content`, `secure`, `static`, `owner`, `encrypt`, `meta_title`, `lang`) VALUES
+	('news', '', 'zoid', '', 'News Homepage', '', '', 0, '0', '0', '', 0, 'News', '', 0, 1, 2, 0, '', 'en'),
+	('news_post', '', 'zoid', '', 'News: Standard Post', '', '', 1, '0', '0', '', 0, 'News', '', 0, 1, 2, 0, '', 'en'),
+	('news_video', '', 'zoid', '', 'News: Video Post', '', '', 2, '0', '0', '', 0, 'News', '', 0, 1, 2, 0, '', 'en'),
+	('news_entry_none', '', 'zoid', '', 'News Entry: No Posts', '', '', 3, '0', '0', '', 0, 'News', '', 0, 1, 2, 0, '', 'en'),
+	('news_entry_post', '', 'zoid', '', 'News Entry: Standard Post', '', '', 4, '0', '0', '', 0, 'News', '', 0, 1, 2, 0, '', 'en'),
+	('news_entry_video', '', 'zoid', '', 'News Entry: Video Post', '', '', 5, '0', '0', '', 0, 'News', '', 0, 1, 2, 0, '', 'en');
+";
 
 $inserts[] = "
 	INSERT INTO `ppSD_templates` (`id`, `theme`, `title`, `type`, `section`, `static`, `owner`)  VALUES
@@ -1071,24 +1117,24 @@ $inserts[] = "
 	('invoice_entry', 'zoid', 'Entry: Invoice Component: Product', '0', 'Invoice', '1', '2'),
 	('invoice_payment_entry', 'zoid', 'Entry: Invoice Component: Payment', '0', 'Invoice', '1', '2'),
 	('invoice_time_entry', 'zoid', 'Entry: Invoice Component: Hourly', '0', 'Invoice', '1', '2'),
-	('manage_announcement_entry', 'zoid', 'Manage: Entry: Announcement', '0', 'Account Management? ', '1', '2'),
-	('manage_billing_history_entry', 'zoid', 'Manage: Entry: Transaction', '0', 'Account Management? ', '1', '2'),
-	('manage_credit_cards_entry', 'zoid', 'Manage: Entry: Credit Card', '0', 'Account Management? ', '1', '2'),
-	('manage_event_rsvps_entry', 'zoid', 'Manage: Entry: Event Registration', '0', 'Account Management? ', '1', '2'),
-	('manage_home_content_entry', 'zoid', 'Manage: Entry: Content', '0', 'Account Management? ', '1', '2'),
-	('manage_invoice_entry', 'zoid', 'Manage: Entry: Invoice', '0', 'Account Management? ', '1', '2'),
-	('manage_subscriptions_entry', 'zoid', 'Manage: Entry: Subscription', '0', 'Account Management? ', '1', '2'),
-	('manage_uploads_entry', 'zoid', 'Manage: Entry: Upload File', '0', 'Account Management? ', '1', '2'),
+	('manage_announcement_entry', 'zoid', 'Manage: Entry: Announcement', '0', 'Member Dashboard ', '1', '2'),
+	('manage_billing_history_entry', 'zoid', 'Manage: Entry: Transaction', '0', 'Member Dashboard ', '1', '2'),
+	('manage_credit_cards_entry', 'zoid', 'Manage: Entry: Credit Card', '0', 'Member Dashboard ', '1', '2'),
+	('manage_event_rsvps_entry', 'zoid', 'Manage: Entry: Event Registration', '0', 'Member Dashboard ', '1', '2'),
+	('manage_home_content_entry', 'zoid', 'Manage: Entry: Content', '0', 'Member Dashboard ', '1', '2'),
+	('manage_invoice_entry', 'zoid', 'Manage: Entry: Invoice', '0', 'Member Dashboard ', '1', '2'),
+	('manage_subscriptions_entry', 'zoid', 'Manage: Entry: Subscription', '0', 'Member Dashboard ', '1', '2'),
+	('manage_uploads_entry', 'zoid', 'Manage: Entry: Upload File', '0', 'Member Dashboard ', '1', '2'),
 	('popup_cart_added_withupsell', 'zoid', 'Popup: Post-Add: Upsell List', '0', 'Cart', '1', '2'),
 	('popup_cart_upgrade_subscription', 'zoid', 'Popup: Upgrade Subscription', '0', 'Cart', '1', '2'),
 	('popup_cart_upsell', 'zoid', 'Popup: Entry: Upsell Option', '0', 'Cart', '1', '2'),
-	('popup_login_error', 'zoid', 'Popup: Login Error', '0', 'Cart', '1', '2'),
 	('reg_select_product_entry', 'zoid', 'Registration: Entry: Product Option', '0', 'Register', '1', '2'),
 	('register', 'zoid', 'Form', '0', 'Register', '1', '2'),
 	('register_list', 'zoid', 'Registration: List Forms', '0', 'Register', '1', '2'),
 	('register_list_entry', 'zoid', 'Registration: Entry: Form Option', '0', 'Register', '1', '2'),
 	('register_list_entry_none', 'zoid', 'Registration: No form options', '0', 'Register', '1', '2');
 ";
+// ('popup_login_error', 'zoid', 'Popup: Login Error', '0', 'Cart', '1', '2'),
 // CC or BCC staff:
 // staff:1  (1 being the ID of the staff member)
 // CC or BCC Email:
@@ -1160,6 +1206,10 @@ $inserts[] = "
 ";
 
 $inserts[] = "
+    INSERT INTO `ppSD_widgets` (`id`, `name`, `type`, `menu_type`, `content`, `active`, `add_class`, `author`, `author_url`, `author_twitter`, `version`, `installed`, `original_creator`, `original_creator_url`, `description`) VALUES ('not_a_member_box', 'Not a Member Box', 'html', '', '\n            <h2 class=\"\">Not a Member?</h2>\n            <div class=\"zen_gray_box\">\n                <div class=\"zen_pad_topl\">\n                    <p class=\"zen\">Not a problem! Non-members can use our automated online registration system to join.</p>\n\n                    <p class=\"zen\"><a href=\"%pp_url%/register.php?action=reset\">Click here to join!</a></p>\n                </div>\n            </div>', 1, '', '', '', '', '', '1920-01-01 00:01:01', '', '', '');
+";
+
+$inserts[] = "
     INSERT INTO `ppSD_departments` (`name`, `head_employee`) VALUES
     ('Administration', '1'),
     ('Employees', '');
@@ -1185,13 +1235,15 @@ $inserts[] = "
 	('user_manage_menu', 0, 'Event Registrations','" . $use_url . "/manage/events.php', 2, 'same', 8),
 	('user_manage_menu', 0, 'Uploads','" . $use_url . "/manage/uploads.php', 2, 'same', 9),
 	('user_manage_menu', 0, 'Logout','" . $use_url . "/logout.php', 2, 'same', 10),
-	('site_topbar', 0, 'Members','" . $use_url . "/manage', 2, 'same', 1),
-	('site_topbar', 0, 'Events','" . $use_url . "/calendar.php', 2, 'same', 2),
-	('site_topbar', 0, 'Shop','" . $use_url . "/catalog.php', 2, 'same', 3),
-	('site_topbar', 0, 'Cart','" . $use_url . "/cart.php', 2, 'same', 4),
+	('site_topbar', 0, 'News','" . $use_url . "/news.php', 2, 'same', 1),
+	('site_topbar', 0, 'Members','" . $use_url . "/manage', 2, 'same', 2),
+	('site_topbar', 0, 'Events','" . $use_url . "/calendar.php', 2, 'same', 3),
+	('site_topbar', 0, 'Shop','" . $use_url . "/catalog.php', 2, 'same', 4),
+	('site_topbar', 0, 'Cart','" . $use_url . "/cart.php', 2, 'same', 5),
 	('site_topbar_logged_in', 0, 'Welcome %username%', 'manage', 2, 'same', 1),
-	('site_topbar_logged_in', 0, 'Events','" . $use_url . "/calendar.php', 2, 'same', 2),
-	('site_topbar_logged_in', 0, 'Shop','" . $use_url . "/catalog.php', 2, 'same', 3),
-	('site_topbar_logged_in', 0, 'Cart','" . $use_url . "/cart.php', 2, 'same', 4),
-	('site_topbar_logged_in', 0, 'Logout','" . $use_url . "/logout.php', 2, 'same', 5);
+	('site_topbar_logged_in', 0, 'News', 'manage', 2, '" . $use_url . "/news.php', 2),
+	('site_topbar_logged_in', 0, 'Events','" . $use_url . "/calendar.php', 2, 'same', 3),
+	('site_topbar_logged_in', 0, 'Shop','" . $use_url . "/catalog.php', 2, 'same', 4),
+	('site_topbar_logged_in', 0, 'Cart','" . $use_url . "/cart.php', 2, 'same', 5),
+	('site_topbar_logged_in', 0, 'Logout','" . $use_url . "/logout.php', 2, 'same', 6);
 ";

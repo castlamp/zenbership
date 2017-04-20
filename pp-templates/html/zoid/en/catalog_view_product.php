@@ -43,7 +43,7 @@
 
                 <p class="zen_prog_crumbs"><span class="zen_catalog_browsing">Found In &raquo;</span> %breadcrumbs%</p>
 
-                <h1>%data:name%</h1>
+                <!--<h1>%data:name%</h1>-->
 
                 <p class="zen_gray zen_tiny">Product Code: %data:id%</p>
 

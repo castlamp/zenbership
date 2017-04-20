@@ -431,6 +431,9 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_contact_data` (
   `contact_id` varchar(20),
   `first_name` varchar(40),
   `last_name` varchar(40),
+  `title` varchar(10) default NULL,
+  `middle_name` varchar(40) default NULL,
+  `gender` varchar(10) default NULL,
   `address_line_1` varchar(80),
   `address_line_2` varchar(30),
   `city` varchar(40),
@@ -801,7 +804,7 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_fieldsets` (
 $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_fieldsets_fields` (
   `id` int(7) auto_increment,
   `fieldset` mediumint(5),
-  `field` varchar(25),
+  `field` varchar(60),
   `order` mediumint(4),
   `req` tinyint(1) DEFAULT '0',
   `column` tinyint(1) DEFAULT '1',
@@ -1113,19 +1116,41 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_logins` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
 $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_login_announcements` (
   `id` int(9) auto_increment,
-  `starts` datetime DEFAULT '1920-01-01 00:01:01',
-  `ends` datetime DEFAULT '1920-01-01 00:01:01',
+  `starts` datetime DEFAULT '1970-01-01 00:01:01',
+  `ends` datetime DEFAULT '1970-01-01 00:01:01',
   `title` varchar(100),
-  `content` mediumtext,
+  `content` MEDIUMTEXT,
   `show_criteria` int(9) COMMENT 'Matches ppSD_criteria_cache',
   `active` tinyint(1) default '1',
-  `created` DATETIME DEFAULT '1920-01-01 00:01:01',
+  `created` DATETIME DEFAULT '1970-01-01 00:01:01',
   `owner` MEDIUMINT( 5 ) ,
   `public` TINYINT( 1 ) default '0',
+  `region` varchar(50) DEFAULT 'login',
+  `type` enum('post','video','gallery','other') DEFAULT 'post',
+  `media_location` enum('top','left','right') DEFAULT 'top',
+  `media` varchar(150) DEFAULT NULL,
+  `media_token` varchar(50) DEFAULT NULL,
   PRIMARY KEY  (`id`),
   KEY `starts` (`starts`),
-  KEY `ends` (`ends`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
+  KEY `ends` (`ends`),
+  FULLTEXT KEY `content` (`content`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8";
+$create[] = "CREATE TABLE `ppSD_login_annoucement_location` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `news_id` int(10) DEFAULT NULL,
+  `region` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+$create[] = "CREATE TABLE `ppSD_login_announcement_regions` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `tag` varchar(50) DEFAULT NULL,
+  `display` mediumint(6) DEFAULT NULL,
+  `snippet_length` mediumint(4) DEFAULT '100',
+  `template_set_prefix` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `tag` (`tag`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_login_announcement_logs` (
   `id` int(9) auto_increment,
   `announcement_id` int(9),
@@ -1225,6 +1250,9 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_member_data` (
   `sms_optout` tinyint(1) DEFAULT '0',
   `email_optout` tinyint(1) DEFAULT '0',
   `dob` date DEFAULT '1920-01-01',
+  `title` varchar(10) default NULL,
+  `middle_name` varchar(40) default NULL,
+  `gender` varchar(10) default NULL,
   `industry` varchar(30),
   `facebook` varchar(100),
   `twitter` varchar(80),
@@ -1295,7 +1323,7 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_options` (
   `description` varchar(255),
   `type` enum('text','select','radio','checkbox','timeframe','special','file_size','textarea'),
   `width` mediumint(3),
-  `options` varchar(100),
+  `options` MEDIUMTEXT,
   `section` varchar(20),
   `maxlength` mediumint(5),
   `class` varchar(25),
