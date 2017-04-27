@@ -54,8 +54,8 @@ $url = current_url();
 // ----------------------------
 
 if (! is_writable($path . '/admin/sd-system')) {
-            echo "admin/sd-system not writable. Could not proceed.";
-            exit;
+        echo "admin/sd-system not writable. Could not proceed.";
+        exit;
 }
 
 // ----------------------------
@@ -163,8 +163,7 @@ foreach ($inserts as $item) {
 
 // ----------------------------
 
-$use_url = str_replace('http://', '//', $url);
-$use_url = str_replace('https://', '//', $use_url);
+$use_url = $url;
 
 $config = "<?php\n";
 $config .= "define('PP_BASE_PATH','" . $base_path . "');\n";
@@ -177,10 +176,6 @@ $config .= "define('PP_MYSQL_HOST','" . $_POST['mysql']['host'] . "');\n";
 $config .= "define('PP_MYSQL_DB','" . $_POST['mysql']['db'] . "');\n";
 $config .= "define('PP_MYSQL_USER','" . $_POST['mysql']['user'] . "');\n";
 $config .= "define('PP_MYSQL_PASS','" . addslashes($_POST['mysql']['pass']) . "');\n";
-//$config .= "define('COMPANY','" . $_POST['company_name'] . "');\n";
-//$config .= "define('COMPANY_EMAIL','" . $_POST['company_email'] . "');\n";
-//$config .= "define('COMPANY_URL','" . $_POST['company_url'] . "');\n";
-//$config .= "define('ZEN_PERFORM_TESTS','0');\n";
 $config .= "define('ZEN_SECRET_PHRASE','');\n";
 $config .= "define('ZEN_HIDE_DEBUG_TIME', false);\n";
 $config .= "define('DISABLE_CAPTCHA', false);\n";

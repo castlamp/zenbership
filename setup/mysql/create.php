@@ -1006,6 +1006,8 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_invoices` (
   `rsvp_id` varchar(21),
   `rolling_invoice` TINYINT(1) DEFAULT '0',
   `auto_inform` TINYINT( 1 ) DEFAULT '0',
+  `check_only` tinyint(1) DEFAULT '0',
+  `quote` tinyint(1) DEFAULT '0',
   `sub_id` VARCHAR(30) NULL,
   PRIMARY KEY  (`id`),
   KEY `rsvp_id` (`rsvp_id`)
@@ -1992,7 +1994,8 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_widgets` (
   `menu_type` enum('horizontal','vertical'),
   `content` longtext,
   `active` tinyint(1) DEFAULT '1',
-  `add_class` varchar(50),
+  `add_class` varchar(50) DEFAULT NULL,
+  `add_id` varchar(50) DEFAULT NULL,
   `author` VARCHAR( 35 ) ,
   `author_url` VARCHAR( 120 ) ,
   `author_twitter` VARCHAR( 120 ) ,

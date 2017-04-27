@@ -648,7 +648,7 @@ $inserts[] = "INSERT INTO `ppSD_pipeline` (`id`,`name`,`position`) VALUES (4, 'C
 $inserts[] = "INSERT INTO `ppSD_login_announcement_regions` (`id`, `name`, `tag`, `display`) VALUES
     (1, 'Homepage', 'homepage', 5),
 	(2, 'Member Dashboard', 'dashboard', 10),
-	(3, 'News Page', 'news_homepage', 10);
+	(3, 'News Page', 'posts_home', 10);
 ";
 
 /*
@@ -1088,7 +1088,9 @@ INSERT INTO `ppSD_templates` (`id`, `path`, `theme`, `subtemplate`, `title`, `de
 	('news_video', '', 'zoid', '', 'News: Video Post', '', '', 2, '0', '0', '', 0, 'News', '', 0, 1, 2, 0, '', 'en'),
 	('news_entry_none', '', 'zoid', '', 'News Entry: No Posts', '', '', 3, '0', '0', '', 0, 'News', '', 0, 1, 2, 0, '', 'en'),
 	('news_entry_post', '', 'zoid', '', 'News Entry: Standard Post', '', '', 4, '0', '0', '', 0, 'News', '', 0, 1, 2, 0, '', 'en'),
-	('news_entry_video', '', 'zoid', '', 'News Entry: Video Post', '', '', 5, '0', '0', '', 0, 'News', '', 0, 1, 2, 0, '', 'en');
+	('news_entry_video', '', 'zoid', '', 'News Entry: Video Post', '', '', 5, '0', '0', '', 0, 'News', '', 0, 1, 2, 0, '', 'en'),
+    ('invoice_quote', '', 'zoid', '', 'Project Quote', '', '', 0, '0', '0', '', 0, 'Invoice', '', 0, 1, 2, 0, '', 'en'),
+	('invoice_quote_print', '', 'zoid', '', 'Project Quote (Print)', '', '', 0, '0', '0', '', 0, 'Invoice', '', 0, 1, 2, 0, '', 'en');
 ";
 
 $inserts[] = "
