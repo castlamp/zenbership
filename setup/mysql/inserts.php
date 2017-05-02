@@ -496,10 +496,10 @@ $inserts[] = "
 
 	(9, 'cc_number', 2, 1, 1, 0, '', ''),
 	(9, 'card_exp', 3, 1, 1, 0, '', ''),
-	(9, 'cvv', 4, 1, 1, 0, '', ''),,
+	(9, 'cvv', 4, 1, 1, 0, '', ''),
 
 	(11, 'first_name', 1, 1, 1, 0, '', ''),
-	(11, 'last_name', 2, 1, 1, 0, '', '')
+	(11, 'last_name', 2, 1, 1, 0, '', ''),
 	(11, 'address_line_1', 3, 1, 1, 0, '', ''),
 	(11, 'address_line_2', 4, 0, 1, 0, '', ''),
 	(11, 'city', 5, 1, 1, 0, '', ''),
@@ -686,6 +686,10 @@ $inserts[] = "
 // Value A:Display A|Value B:Display B|Value C:Display C|etc.
 // 'value'
 // Standard replacements: %site% => PP_URL
+/*
+ * ('additional_search_contacts', '', 'phone,fax', 'Make additional custom fields searchable in the quick ajax search.', 'text', 0, '', 'system', 0, ''),
+('additional_search_members', '', 'phone,fax', 'Make additional custom fields searchable in the quick ajax search.', 'text', 0, '', 'system', 0, ''),
+ */
 $inserts[] = "
 	INSERT INTO `ppSD_options` (`id`, `display`, `value`, `description`, `type`, `width`, `options`, `section`, `maxlength`, `class`) VALUES
 	('sms_from', 'From Line', 'noreply@$domain', 'What address should SMS messages arrive from. This should be an email address.', 'text', 0, '', 'sms', 0, ''),
@@ -714,11 +718,12 @@ $inserts[] = "
 	('load_jquery', 'Load jQuery?', '1', 'Would you like to automatically load jQuery and jQuery UI on all templates?', 'radio', '', '', 'general', '', ''),
 	('session_inactivity_expiration', 'Session Length', '3600', 'How long, in seconds, before a user\'s session expires due to inactivity&#63;', 'text', 100, '', 'members', 6, 'zen_num'),
 	('session_admin_inactivity', 'Session Expiration', '7200', '', 'special', 0, '', 'admin', 0, 'zen_num'),
-	('additional_search_contacts', '', 'phone,fax', 'Make additional custom fields searchable in the quick ajax search.', 'text', 0, '', 'system', 0, ''),
+
+    ('additional_search_contacts', '', 'phone,fax', 'Make additional custom fields searchable in the quick ajax search.', 'text', 0, '', 'system', 0, ''),
+    ('additional_search_members', '', 'phone,fax', 'Make additional custom fields searchable in the quick ajax search.', 'text', 0, '', 'system', 0, ''),
 
     ('cc_expiring_notify', 'Notify Expiring Credit Cards?', '1', 'If set to yes, users will be notified of upcoming expiring credit cards one month before they expire.', 'radio', '0', '', 'cart', '0', ''),
 
-	('additional_search_members', '', 'phone,fax', 'Make additional custom fields searchable in the quick ajax search.', 'text', 0, '', 'system', 0, ''),
 	('price_format', 'Price Format', '1', 'What format should prices be displayed in&#63;', 'select', 150, '1:1,000.00|2:1 000,00|3:1000.00|4:1000', 'cart', 0, ''),
 
 	('language', 'Language', 'en', 'Default language for the program?', 'select', '200', 'ar:Arabic|bn:Bengali|zh:Chinese|de:Deutsch|en:English|es:Espanol|fr:Francais|hi:Hindi|ja:Japanese|pt:Portuguese|pa:Punjabi|ru:Russian', 'general', '', ''),
@@ -793,6 +798,7 @@ $inserts[] = "
 	('member_filters', 'Additional Member Filters', '', 'Display additional member filters for all employees? Input as a CSV of field IDs.', 'text', 250, '', 'members', 20, ''),
     ('contact_filters', 'Additional Contact Filters', '', 'Display additional contact filters for all employees? Input as a CSV of field IDs.', 'text', 250, '', 'contacts', 20, ''),
     ('account_filters', 'Additional Account Filters', '', 'Display additional account filters for all employees? Input as a CSV of field IDs.', 'text', 250, '', 'accounts', 20, ''),
+
 
 	('bounced_email_inbox', 'Bounced E-Mail Inbox', '', 'If you have set up an inbox to detect bounced emails, input the email (IE: bounced@yoursite.com) above as well as your SMTP credentials below.', 'text', '250', '', 'email', '', ''),
 	('bounced_smtp_server', 'Bounced SMTP Mail Server', '', 'Mail server for the bounced email account.', 'text', '250', '', 'email', '', ''),
@@ -1197,14 +1203,14 @@ $inserts[] = "
 ";
 $inserts[] = "
 	INSERT INTO `ppSD_widgets` (`id`, `name`, `type`, `menu_type`, `content`, `active`, `add_class`) VALUES
-	('user_manage_menu', 'Member Management Menu', 'menu', 'vertical', '', 1, 'zen_gray_box'),
+	('user_manage_menu', 'Member Management Menu', 'menu', 'vertical', '', 1, 'zen_menu_vertical zen_gray_box'),
 	('login_box', 'Login Box', 'html', '', '<form action=\"%pp_url%/pp-functions/login.php\" method=\"post\" id=\"zen_login_form\" onsubmit=\"return verifyLogin(\'zen_login_form\');\">\r\n    <h2 class=\"zen_notopmargin\">Member Login</h2>\r\n    <div id=\"zen_login_error\"></div>\r\n    <div class=\"zen_gray_box\">\r\n        <div class=\"zen_pad_topl\">\r\n            <ul id=\"zen_form\">\r\n                <li>\r\n                    <label class=\"zen_top zen_medium\">Username</label>\r\n                    <div class=\"zen_field_entry_top\">\r\n                        <input type=\"text\" name=\"username\" class=\"req\" style=\"width:100%;\" />\r\n                        <div id=\"error_username\" class=\"error\"></div>\r\n                    </div>\r\n                </li>\r\n                <li>\r\n                    <label class=\"zen_top zen_medium\">Password</label>\r\n                    <div class=\"zen_field_entry_top\">\r\n                        <input type=\"password\" name=\"password\" class=\"req\" style=\"width:100%;\" />\r\n                        <div id=\"error_password\" class=\"error\"></div>\r\n                    </div>\r\n                </li>\r\n                <li id=\"captcha_block\" class=\"notice\" style=\"display:none;\">\r\n                    <label class=\"zen_left zen_medium\">&nbsp;</label>\r\n                    <div class=\"zen_field_entry zen_medium\">\r\n                        <img width=\"200\" height=\"50\" id=\"captchaput\" class=\"imageout\" src=\"\" /><input type=\"text\" name=\"captcha\" value=\"\" class=\"home\" style=\"width:200px;\" />\r\n                    </div>\r\n                </li>\r\n                <li class=\"zen_center zen_topmargin_less\">\r\n<div class=\"zen_float_right zen_tiny zen_right zen_topmargin_less\"><a href=\"%pp_url%/lost_password.php\">Lost Password</a><br /><a href=\"%pp_url%/register.php\">Register</a></div>\r\n                    <div class=\"zen_float_left\"><input type=\"submit\" value=\"Login\" /></div>\r\n<div class=\"zen_clear\"></div>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</form>', 1, ''),
 	('featured_product', 'Feature Products Box', 'code', '', '', 1, ''),
 	('member_spotlight', 'Member Spotlight Box', 'code', '', '', 1, ''),
 	('upcoming_events', 'Upcoming Events Long List', 'code', '', '', 1, ''),
 	('user_uploads', 'User Uploads', 'upload_list', '', '', '1', ''),
-	('site_topbar', 'Website Top Navigation', 'menu', 'horizontal', '', '1', ''),
-	('site_topbar_logged_in', 'Website Top Navigation (Logged In)', 'menu', 'horizontal', '', '1', '');
+	('site_topbar', 'Website Top Navigation', 'menu', 'horizontal', '', '1', 'zen_menu_horizontal'),
+	('site_topbar_logged_in', 'Website Top Navigation (Logged In)', 'menu', 'horizontal', '', '1', 'zen_menu_horizontal');
 ";
 
 $inserts[] = "
