@@ -34,7 +34,7 @@ if ($ses['error'] == '1') {
     $filters = array(
         'ppSD_content_access.member_id' => array('scope' => 'AND', 'value' => $ses['member_id'], 'eq' => 'eq'),
         'ppSD_content_access.expires'   => array('scope' => 'AND', 'value' => current_date(), 'eq' => 'gt'),
-        'ppSD_content.display_on_usercp'   => array('scope' => 'AND', 'value' => '0', 'eq' => 'eq'),
+        'ppSD_content.display_on_usercp'   => array('scope' => 'AND', 'value' => '1', 'eq' => 'eq'),
     );
     $join    = array(
         'table'    => 'ppSD_content',
@@ -124,7 +124,6 @@ if ($ses['error'] == '1') {
         $last_section = $data['section'];
         $all_content[] = $changes;
     }
-
 
     $changes = array(
         'content'    => $formatted,
