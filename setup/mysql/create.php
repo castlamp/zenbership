@@ -364,7 +364,7 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_cart_sessions` (
   KEY `member_id` (`member_id`),
   KEY `invoice_id` (`invoice_id`),
   KEY `id` (`id`)
-) ENGINE=InnnoDb  DEFAULT CHARSET=utf8";
+) ENGINE=InnoDb  DEFAULT CHARSET=utf8";
 $create[] = "
 CREATE TABLE IF NOT EXISTS `ppSD_cart_session_totals` (
   `tid` int(9) AUTO_INCREMENT,
@@ -488,23 +488,26 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_content_access` (
   PRIMARY KEY  (`id`),
   KEY `member_id` (`member_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
-$create[] = "CREATE TABLE IF NOT EXISTS `ppSD_criteria_cache` (
-  `id` int(9) auto_increment,
-  `criteria` mediumtext,
-  `search_id` varchar(29),
-  `act_id` VARCHAR( 30 ),
-  `email_id` varchar(13),
+$create[] = "CREATE TABLE `ppSD_criteria_cache` (
+  `id` int(9) NOT NULL AUTO_INCREMENT,
+  `criteria` mediumtext NOT NULL,
+  `search_id` varchar(29) NOT NULL,
+  `act_id` varchar(30) NOT NULL,
+  `email_id` varchar(13) NOT NULL,
   `save` tinyint(1) DEFAULT '0',
-  `name` varchar(85),
-  `type` enum('member','contact','rsvp','account','campaign','transaction','subscription','invoice'),
-  `act` enum('email','search','print','campaign','export','other'),
-  `date` datetime DEFAULT '1920-01-01 00:01:01',
-  `inclusive` enum('or','and'),
+  `name` varchar(85) NOT NULL,
+  `type` enum('member','contact','rsvp','account','campaign','transaction','subscription','invoice') NOT NULL,
+  `act` enum('email','search','print','campaign','export','other') NOT NULL,
+  `date` datetime NOT NULL,
+  `inclusive` enum('or','and') NOT NULL,
   `public` tinyint(1) DEFAULT '0',
-  `owner` mediumint(5),
-  PRIMARY KEY  (`id`),
+  `owner` mediumint(5) NOT NULL,
+  `sort` varchar(60) DEFAULT 'last_name',
+  `sort_order` varchar(4) DEFAULT 'ASC',
+  `display_per_page` mediumint(5) DEFAULT '50',
+  PRIMARY KEY (`id`),
   KEY `search_id` (`search_id`,`email_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
+) ENGINE=InnoDB AUTO_INCREMENT=185 DEFAULT CHARSET=utf8;";
 $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_custom_actions` (
   `id` int(9) auto_increment,
   `name` VARCHAR( 75 ),
