@@ -226,25 +226,6 @@ if ($employee['permissions']['admin'] == '1' || ! empty($employee['permissions']
         </li>
         <?php
         }
-        if ($employee['permissions']['admin'] == '1'|| ! empty($employee['permissions']['scopes']['login_announcements'])) {
-        ?>
-        <li>
-            <a href="index.php?l=announcements">News</a>
-            <ul>
-                <li><a href="index.php?l=announcements">View Posts</a></li>
-                <li><a href="index.php?l=news_regions">Regions</a></li>
-                <?php
-                if ($employee['permissions']['admin'] == '1') {
-                    ?>
-                    <li class="div"></li>
-                    <li><a href="returnnull.php" onclick="return popup('options','type=announcements');">Options</a></li>
-                <?php
-                }
-                ?>
-            </ul>
-        </li>
-        <?php
-        }
         if ($employee['permissions']['admin'] == '1'|| ! empty($employee['permissions']['scopes']['member_types'])) {
         ?>
         <li><a href="null.php" onclick="return popup('member_types','');">Membership Types</a></li>
@@ -503,16 +484,43 @@ if ($employee['permissions']['admin'] == '1' || ! empty($employee['permissions']
         if ($employee['permissions']['admin'] == '1' ||  ! empty($employee['permissions']['scopes']['content'])) {
         ?>
         <li class="title">Content By Type</li>
+        <li><a href="index.php?l=content&filters[]=page||type||eq||ppSD_content">Pages</a></li>
         <li><a href="index.php?l=content&filters[]=folder||type||eq||ppSD_content">Secure Folders</a></li>
-        <li><a href="index.php?l=content&filters[]=page||type||eq||ppSD_content">Custom Pages</a></li>
         <li><a href="index.php?l=content&filters[]=redirect||type||eq||ppSD_content">Redirections</a></li>
-        <li class="div"></li>
-        <li class="title">CMS Components</li>
         <li><a href="index.php?l=content&filters[]=section||type||eq||ppSD_content">Sections</a></li>
+        <?php
+            if ($employee['permissions']['admin'] == '1') {
+                ?>
+                <!--<li class="div"></li>-->
+                <li><a href="returnnul.php" onclick="return popup('options','type=site');">Options</a></li>
+            <?php
+            }
+        }
+        if ($employee['permissions']['admin'] == '1'|| ! empty($employee['permissions']['scopes']['login_announcements'])) {
+            ?>
+            <li class="div"></li>
+            <li class="title">News</li>
+            <li><a href="index.php?l=announcements">View Posts</a></li>
+            <li><a href="index.php?l=news_regions">Regions</a></li>
+            <?php
+            if ($employee['permissions']['admin'] == '1') {
+                ?>
+                <!--<li class="div"></li>-->
+                <li><a href="returnnull.php" onclick="return popup('options','type=announcements');">Options</a></li>
+            <?php
+            }
+            ?>
         <?php
         }
         if ($employee['permissions']['admin'] == '1' ||  ! empty($employee['permissions']['scopes']['widgets'])) {
         ?>
+        <li class="div"></li>
+        <li class="title">Widgets</li>
+        <li><a href="index.php?l=widgets&filters[]=code||type||eq||ppSD_widgets">PHP Code</a></li>
+        <li><a href="index.php?l=widgets&filters[]=menu||type||eq||ppSD_widgets">Menus</a></li>
+        <li><a href="index.php?l=widgets&filters[]=html||type||eq||ppSD_widgets">HTML Block</a></li>
+        <li><a href="index.php?l=widgets&filters[]=upload_list||type||eq||ppSD_widgets">Upload List</a></li>
+            <!--
         <li>
             <a href="index.php?l=widgets">Widgets</a>
             <ul>
@@ -524,12 +532,7 @@ if ($employee['permissions']['admin'] == '1' || ! empty($employee['permissions']
                 <li><a href="null.php" onclick="return command('widget_installer', '', '');">Run Installer</a></li>
             </ul>
         </li>
-        <?php
-        }
-        if ($employee['permissions']['admin'] == '1') {
-            ?>
-            <li class="div"></li>
-            <li><a href="returnnul.php" onclick="return popup('options','type=site');">Options</a></li>
+            -->
         <?php
         }
         ?>
@@ -659,14 +662,39 @@ if ($employee['permissions']['admin'] == '1' || ! empty($employee['permissions']
 <li>
     <a href="index.php?l=integration">Integrate</a>
     <ul>
-        <li class="title">Extensions</li>
-        <li><a href="http://www.zenbership.com/Extensions/" target="_blank">Extension Store</a></li>
+        <!--<li class="title">Extensions</li>-->
+
+        <!--<li><a href="http://www.zenbership.com/Extensions/" target="_blank">Extension Store</a></li>-->
         <!--<li><a href="null.php" onclick="return popup('extension_store','','1');">Extension Store</a></li>
         <li><a href="index.php?l=modules">Modules</a></li>-->
         <li>
             <a href="">Plugins</a>
             <ul>
                 <li><a href="null.php" onclick="return command('plugin_installer', '', '');">Run Installer</a></li>
+                <?php
+                }
+                $extensionLinks = array();
+                $path = PP_PATH . '/custom/plugins';
+                $dh = opendir($path);
+                while (false !== ($filename = readdir($dh))) {
+                    $fullpath = $path . '/' . $filename;
+
+                    if ($filename == '.' || $filename == '..' || ! is_dir($fullpath)) continue;
+
+                    if (is_dir($path . '/' . $filename . '/admin')) {
+                        $package = require $path . '/' . $filename . '/admin/package.php';
+                        $extensionLinks[$package['menu']] = 'l=home&plugin=' . $filename;
+                    }
+                }
+                if (! empty($extensionLinks)) {
+                    echo "<li class=\"div\"></li>";
+                    //echo "<li class=\"title\">Extensions<ul>";
+                    foreach ($extensionLinks as $item => $link) {
+                        echo "<li><a href=\"?$link\">$item</a></li>";
+                    }
+                    //echo "</ul></li>";
+                }
+                ?>
             </ul>
         </li>
         <li>
@@ -747,29 +775,6 @@ if ($employee['permissions']['admin'] == '1' || ! empty($employee['permissions']
         ?>
     </ul>
 </li>
-<?php
-}
-$extensionLinks = array();
-$path = PP_PATH . '/custom/plugins';
-$dh = opendir($path);
-while (false !== ($filename = readdir($dh))) {
-    $fullpath = $path . '/' . $filename;
-
-    if ($filename == '.' || $filename == '..' || ! is_dir($fullpath)) continue;
-
-    if (is_dir($path . '/' . $filename . '/admin')) {
-        $package = require $path . '/' . $filename . '/admin/package.php';
-        $extensionLinks[$package['menu']] = 'l=home&plugin=' . $filename;
-    }
-}
-if (! empty($extensionLinks)) {
-    echo "<li>Extensions<ul>";
-    foreach ($extensionLinks as $item => $link) {
-        echo "<li><a href=\"?$link\">$item</a></li>";
-    }
-    echo "</ul></li>";
-}
-?>
 <li>
     <img src="imgs/icon-quickadd.png" id="quickadd" width="16" height="16" alt="Quick Add" title="Quick Add" class="icon_flat"/>
     <ul>

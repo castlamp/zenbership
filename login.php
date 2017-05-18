@@ -29,17 +29,38 @@
 
 require "admin/sd-system/config.php";
 
-$changes = array();
-if (!empty($_GET['r'])) {
-    if (strpos($_GET['r'], 'https://') === false && strpos($_GET['r'], 'http://') === false) {
-        $_GET['r'] = 'http://' . $_GET['r'];
+$session = new session;
+$check = $session->check_session();
+
+if ($check['error'] == '1') {
+
+    $changes = array();
+    if (!empty($_GET['r'])) {
+        $options = array(
+            'https://',
+            'http://',
+            '://',
+            '//',
+        );
+        if (substr(PP_URL, 0, 8) == 'https://') {
+            $rep = 'https://';
+        } else {
+            $rep = 'http://';
+        }
+        $r = $rep . str_replace($options, '', $_GET['r']);
+        $changes['url'] = $r;
+    } else {
+        $changes['url'] = '';
     }
-    $changes['url'] = $_GET['r'];
+
+    $template = new template('login', $changes, '1');
+
+    echo $template;
+    exit;
+
 } else {
-    $changes['url'] = '';
+
+    header('Location: ' . PP_URL . '/manage');
+    exit;
+
 }
-
-$template = new template('login', $changes, '1');
-
-echo $template;
-exit;

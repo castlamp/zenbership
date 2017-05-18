@@ -10,10 +10,32 @@
             {-news_homepage-}
         </div>
         <div class="col30r">
-            {-login_box-}
+            <?php
+            $session = new session;
+            $ses = $session->check_session();
+            if ($ses['error'] != '1') {
+                $user = new user;
+                $username = $user->get_username($ses['member_id']);
+            ?>
 
-            <div class="zen_space"></div>
-            {-not_a_member_box-}
+                <div class="zen_gray_box">
+                    <div class="zen_pad_topl">
+                        <p class="zen">Welcome back <b><?php echo $username; ?></b>!</p>
+
+                        <p class="zen"><a href="%pp_url%/manage">Visit the member's area &raquo;</a></p>
+                    </div>
+                </div>
+
+            <?php
+            } else {
+            ?>
+                {-login_box-}
+
+                <div class="zen_space"></div>
+                {-not_a_member_box-}
+            <?php
+            }
+            ?>
         </div>
         <div class="zen_clear"></div>
 

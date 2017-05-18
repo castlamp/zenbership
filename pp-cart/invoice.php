@@ -26,7 +26,9 @@
  * @license     http://www.gnu.org/licenses/gpl-3.0.en.html
  * @project     Zenbership Membership Software
  */
+
 require "../admin/sd-system/config.php";
+
 $invoice = new invoice();
 if (! empty($_GET['id'])) {
     $data    = $invoice->check_invoice($_GET['id'], $_GET['h']);
@@ -34,7 +36,24 @@ if (! empty($_GET['id'])) {
         $db->show_error_page('I006');
         exit;
     } else {
-        $printed = $invoice->generate_template($data['data']['id'], 'invoice', '1');
+
+        if ($data['data']['quote'] == '1') {
+            $template = 'invoice_quote';
+        } else {
+            $template = 'invoice';
+        }
+
+        if (empty($_GET['isp'])) {
+            $invoice->markSeen($data['data']['id']);
+        } else {
+            $substr = substr(SALT1, 4, 10);
+            if ($_GET['isp'] != $substr) {
+                $invoice->markSeen($data['data']['id']);
+            }
+        }
+
+
+        $printed = $invoice->generate_template($data['data']['id'], $template, '1');
         echo $printed;
         exit;
     }

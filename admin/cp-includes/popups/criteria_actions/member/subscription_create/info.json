@@ -1,0 +1,33 @@
+{
+  "id": "subscription_create",
+  "name": "Subscription Create",
+  "description": "Creates a subscription for the member.",
+  "input": [
+    {
+      "label": "Select a Product",
+      "name": "product",
+      "description": "",
+      "value": "",
+      "type": "productList",
+      "filterType": "subscriptions",
+      "class": "req"
+    },
+    {
+      "label": "Next Renewal Date",
+      "name": "next_renew",
+      "description": "When should the subscription next renew? If blank Zenbership will auto-calculate based on the product's settings.",
+      "value": "",
+      "type": "date",
+      "class": ""
+    },
+    {
+      "label": "Price Override?",
+      "name": "price_override",
+      "description": "If you would like to override the standard product price, input the price above.",
+      "value": "",
+      "type": "string",
+      "placeholder": "125.00",
+      "class": ""
+    }
+  ]
+}

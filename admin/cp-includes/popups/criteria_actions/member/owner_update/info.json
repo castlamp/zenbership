@@ -1,0 +1,15 @@
+{
+  "id": "owner_update",
+  "name": "Employee Assignment Change",
+  "description": "Updates which employee a member is assigned to.",
+  "input": [
+    {
+      "label": "Employee",
+      "name": "employee",
+      "description": "",
+      "value": "",
+      "type": "staffList",
+      "class": "req"
+    }
+  ]
+}

@@ -46,6 +46,37 @@
     </ul>
 </div>
 <div class="col75r">
+    <fieldset>
+        <div class="pad24 fullForm">
+            <label>Would you like to create a fieldset with these fields?</label>
+            <?php
+            echo $af->radio('create_fieldset', '1', array('1' => 'Yes', '0' => 'No'));
+            ?>
+            <div id="create_fieldset" style="display:block;">
+                <label>What is the name of this fieldset?</label>
+                <?php
+                echo $af->string('fieldset_name', '');
+                ?>
+
+                <label>Enter a description for this fieldset.</label>
+                <?php
+                echo $af->richtext('fieldset_desc', '', '100', '1');
+                ?>
+            </div>
+        </div>
+    </fieldset>
+
+    <script type="text/javascript">
+        $("input[type=radio][name='create_fieldset']").change(function() {
+            switch(this.value) {
+                case '1':
+                    return show_div('create_fieldset');
+                case '0':
+                    return hide_div('create_fieldset');
+            }
+        });
+    </script>
+
     <ul class="sortable" id="col">
         <li id="removecol" class="remove">Click a field-type to begin creating fields. Note that this is not a form
             creation tool. Once created, you will be able to add these fields to a form. Feel free to create more than

@@ -1,0 +1,39 @@
+{
+  "id": "update_status",
+  "name": "Update Status",
+  "description": "Updates the status of all selected members.",
+  "input": [
+    {
+      "label": "Select New Status",
+      "name": "status",
+      "description": "What should the new status for all of these members be set to?",
+      "options": {
+        "A": "Active",
+        "C": "Suspended/Paused",
+        "I": "Inactive",
+        "R": "Rejected",
+        "Y": "Pending Employee Approval",
+        "P": "Pending E-Mail Approval"
+      },
+      "value": "",
+      "type": "select",
+      "class": "req"
+    },
+    {
+      "label": "Reason For Change",
+      "name": "reason",
+      "description": "",
+      "value": "",
+      "type": "string",
+      "class": ""
+    },
+    {
+      "label": "E-Mail Members?",
+      "name": "email_users",
+      "description": "Would you like to inform the members via e-mail of this change",
+      "value": "Yes, inform members of this change via e-mail",
+      "type": "checkbox",
+      "class": ""
+    }
+  ]
+}

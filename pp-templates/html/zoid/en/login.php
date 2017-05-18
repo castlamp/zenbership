@@ -1,4 +1,4 @@
-<form action="%pp_url%/pp-functions/login.php" method="post" id="zen_form" onsubmit="return verifyLogin('zen_form');">
+<form action="%pp_url%/pp-functions/login.php" method="post" id="zen_form">
 
     <div id="zen_content" class="zen_fonts">
         <div class="zen_pad_more">

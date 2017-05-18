@@ -48,7 +48,7 @@ if (empty($reminder_pre) && empty($reminder_post)) {
     $STH       = $db->run_query("
         SELECT *
         FROM `ppSD_invoices`
-        WHERE `status`!='1'
+        WHERE `status`!='1' AND `quote`!='1'
     ");
     while ($row = $STH->fetch()) {
 

@@ -32,10 +32,13 @@ class adminFields {
 
     private $richtexts = 0;
 
+    private $label = '';
     private $leftText = '';
+    private $filterType = '';
     private $rightText = '';
     private $description = '';
     private $typeOverride = '';
+    private $selectOptions = array();
     private $id;
     private $min, $max, $maxlength;
     private $placeholder;
@@ -54,6 +57,13 @@ class adminFields {
     public function setMax($max)
     {
         $this->max = $max;
+
+        return $this;
+    }
+
+    public function setSelectOptions(array $options)
+    {
+        $this->selectOptions = $options;
 
         return $this;
     }
@@ -125,6 +135,22 @@ class adminFields {
         return $this;
     }
 
+    public function setFilter($filter)
+    {
+        $this->filterType = $filter;
+
+        return $this;
+    }
+
+
+    public function setLabel($name)
+    {
+        $this->label = $name;
+
+        return $this;
+    }
+
+
     public function setRightText($text)
     {
         $this->rightText = $text;
@@ -158,6 +184,10 @@ class adminFields {
         $yep = false;
 
         $send = '';
+
+        if (! empty($this->label)) {
+            $send .= '<label>' . $this->label . '</label>';
+        }
 
         if ($this->fieldBox && ! empty($this->description)) {
             $send .= '<div class="fieldBox">';
@@ -222,6 +252,10 @@ class adminFields {
      */
     public function wrap($field, $displayName = '', $description = '')
     {
+        if (! empty($this->label)) {
+            $displayName = $this->label;
+        }
+
         $return = '<div class="field">
             <label class="top">' . $displayName . '</label>
             <div class="field_entry_top">' . $field . '</div>';
@@ -273,6 +307,10 @@ class adminFields {
     public function select($fieldName, $val = '', $options = array(), $style = '')
     {
         $id = $this->getId();
+
+        if (! empty($this->selectOptions)) {
+            $options = $this->selectOptions;
+        }
 
         $return = '<select id="' . $id . '" name="' . $fieldName . '"';
         if (! empty($style)) {
@@ -628,7 +666,7 @@ style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\"
         $this->rightText = "<a href=\"null.php\" onclick=\"return get_list('forms','" . $id . "_id','" . $id . "');\"><img
         src=\"imgs/icon-list.png\" alt=\"Select from list\" title=\"Select from list\" /></a>";
 
-        return $this->sendBack("<input placeholder=\"Begin typing the form's name or click the list icon to the right...\" type=\"text\" value=\"" . $name . "\" name=\"product_dud\" id=\"" . $id . "\"
+        return $this->sendBack("<input placeholder=\"Begin typing the form's name or click the list icon to the right...\" type=\"text\" value=\"" . $name . "\" name=\"form_dud\" id=\"" . $id . "\"
 autocomplete=\"off\" onkeyup=\"return autocom(this.id,'id','name','ppSD_forms','name','forms');\"
 style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\" id=\"" . $id . "_id\"
         value=\"" . $val . "\" />");
@@ -656,7 +694,7 @@ style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\"
         $this->rightText = "<a href=\"null.php\" onclick=\"return get_list('content','" . $id . "_id','" . $id . "');\"><img
         src=\"imgs/icon-list.png\" alt=\"Select from list\" title=\"Select from list\" /></a>";
 
-        return $this->sendBack("<input placeholder=\"Begin typing the content's name or click the list icon to the right...\" type=\"text\" value=\"" . $name . "\" name=\"product_dud\" id=\"" . $id . "\"
+        return $this->sendBack("<input placeholder=\"Begin typing the content's name or click the list icon to the right...\" type=\"text\" value=\"" . $name . "\" name=\"content_dud\" id=\"" . $id . "\"
 autocomplete=\"off\" onkeyup=\"return autocom(this.id,'id','name','ppSD_content','name','content');\"
 style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\" id=\"" . $id . "_id\"
         value=\"" . $val . "\" />");
@@ -685,7 +723,7 @@ style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\"
         $this->rightText = "<a href=\"null.php\" onclick=\"return get_list('member_types','" . $id . "_id','" . $id . "');\"><img
         src=\"imgs/icon-list.png\" class=\"icon\" width=16 height=16 alt=\"Select from list\" title=\"Select from list\"  /></a>";
 
-        return $this->sendBack("<input placeholder=\"Begin typing a member type or click the list icon to the right...\" type=\"text\" value=\"" . $name . "\" name=\"product_dud\" id=\"" . $id . "\"
+        return $this->sendBack("<input placeholder=\"Begin typing a member type or click the list icon to the right...\" type=\"text\" value=\"" . $name . "\" name=\"member_type_dud\" id=\"" . $id . "\"
 autocomplete=\"off\" onkeyup=\"return autocom(this.id,'id','name','ppSD_member_types','name','member_types');\"
 style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\" id=\"" . $id . "_id\"
         value=\"" . $val . "\" />");
@@ -714,8 +752,35 @@ style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\"
         $this->rightText = "<a href=\"null.php\" onclick=\"return get_list('staff','" . $id . "_id','" . $id . "');\"><img
         src=\"imgs/icon-list.png\" alt=\"Select from list\" title=\"Select from list\"  /></a>";
 
-        return $this->sendBack("<input placeholder=\"Begin typing an employee's name or click the list icon to the right...\" type=\"text\" value=\"" . $name . "\" name=\"product_dud\" id=\"" . $id . "\"
+        return $this->sendBack("<input placeholder=\"Begin typing an employee's name or click the list icon to the right...\" type=\"text\" value=\"" . $name . "\" name=\"staff_dud\" id=\"" . $id . "\"
 autocomplete=\"off\" onkeyup=\"return autocom(this.id,'id','username','ppSD_staff','username,first_name,last_name','staff');\"
+style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\" id=\"" . $id . "_id\"
+        value=\"" . $val . "\" />");
+    }
+
+    /**
+     * @param $fieldName
+     * @param string $val
+     * @param string $class
+     *
+     * @return string
+     */
+    public function fieldList($fieldName, $val = '', $class = '')
+    {
+        $id = $this->getId();
+
+        if (! empty($val)) {
+            $field = new field;
+            $get = $field->get_field_name($val);
+        } else {
+            $name = '';
+        }
+
+        $this->rightText = "<a href=\"null.php\" onclick=\"return get_list('fields','" . $id . "_id','" . $id . "');\"><img
+        src=\"imgs/icon-list.png\" alt=\"Select from list\" title=\"Select from list\"  /></a>";
+
+        return $this->sendBack("<input placeholder=\"Begin typing a field name or click the list icon to the right...\" type=\"text\" value=\"" . $name . "\" name=\"staff_dud\" id=\"" . $id . "\"
+autocomplete=\"off\" onkeyup=\"return autocom(this.id,'id','display_name','ppSD_fields','display_name','fields');\"
 style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\" id=\"" . $id . "_id\"
         value=\"" . $val . "\" />");
     }
@@ -742,16 +807,28 @@ style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\"
         <img src=\"imgs/icon-quickadd.png\" alt=\"Add\" title=\"Add\" /></a>";
         }
 
-        return $this->sendBack("<input placeholder=\"Begin typing a source or click the list icon to the right...\" type=\"text\" value=\"" . $name . "\" name=\"product_dud\" id=\"" . $id . "\"
+        return $this->sendBack("<input placeholder=\"Begin typing a source or click the list icon to the right...\" type=\"text\" value=\"" . $name . "\" name=\"source_dud\" id=\"" . $id . "\"
 autocomplete=\"off\" onkeyup=\"return autocom(this.id,'id','source','ppSD_sources','source','sources');\"
 style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\" id=\"" . $id . "_id\"
         value=\"" . $val . "\" />");
     }
 
 
+    /**
+     * @param $fieldName
+     * @param string $val
+     * @param string $class
+     * @param string $filter
+     *
+     * @return string
+     */
     public function productList($fieldName, $val = '', $class = '', $filter = '')
     {
         $id = $this->getId();
+
+        if (! empty($this->filterType)) {
+            $filter = $this->filterType;
+        }
 
         if (! empty($val)) {
             $product = new product;
@@ -778,6 +855,7 @@ autocomplete=\"off\" onkeyup=\"return autocom(this.id,'id','name','ppSD_products
 style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\" id=\"" . $id . "_id\"
         value=\"" . $val . "\" />");
     }
+
 
 
 
@@ -814,7 +892,7 @@ style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\"
         src=\"imgs/icon-list.png\" alt=\"Select from list\" title=\"Select from list\" /></a><a href=\"null.php\" onclick=\"return popup('account-add','');\">
         <img src=\"imgs/icon-quickadd.png\" alt=\"Add\" title=\"Add\" /></a>";
 
-        return $this->sendBack("<input placeholder=\"Begin typing the account's name or click the list icon to the right...\" type=\"text\" value=\"" . $name . "\" name=\"product_dud\" id=\"" . $id . "\"
+        return $this->sendBack("<input placeholder=\"Begin typing the account's name or click the list icon to the right...\" type=\"text\" value=\"" . $name . "\" name=\"account_dud\" id=\"" . $id . "\"
 autocomplete=\"off\" onkeyup=\"return autocom(this.id,'id','name','ppSD_accounts','name','accounts');\"
 style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\" id=\"" . $id . "_id\"
         value=\"" . $val . "\" />");
@@ -841,7 +919,7 @@ style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\"
         $this->rightText = "<a href=\"null.php\" onclick=\"return get_list('labels','" . $id . "_id','" . $id . "');\"><img
         src=\"imgs/icon-list.png\" alt=\"Select from list\" title=\"Select from list\" /></a>";
 
-        return $this->sendBack("<input placeholder=\"Begin typing the label or click the list icon to the right...\" type=\"text\" value=\"" . $name . "\" name=\"product_dud\" id=\"" . $id . "\"
+        return $this->sendBack("<input placeholder=\"Begin typing the label or click the list icon to the right...\" type=\"text\" value=\"" . $name . "\" name=\"upload_dud\" id=\"" . $id . "\"
 autocomplete=\"off\" onkeyup=\"return autocom(this.id,'label','label','ppSD_uploads','label','uploads');\"
 style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\" id=\"" . $id . "_id\"
         value=\"" . $val . "\" />");
@@ -867,7 +945,7 @@ style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\"
 
         // $this->rightText = "<a href=\"null.php\" onclick=\"return get_list('labels','" . $id . "_id','" . $id . "');\"><img src=\"imgs/icon-list.png\" alt=\"Select from list\" title=\"Select from list\" /></a>";
 
-        return $this->sendBack("<input placeholder=\"Begin typing a transaction ID to select...\" type=\"text\" value=\"" . $name . "\" name=\"product_dud\" id=\"" . $id . "\"
+        return $this->sendBack("<input placeholder=\"Begin typing a transaction ID to select...\" type=\"text\" value=\"" . $name . "\" name=\"order_dud\" id=\"" . $id . "\"
 autocomplete=\"off\" onkeyup=\"return autocom(this.id,'id','id','ppSD_cart_sessions','id','transactions');\"
 style=\"\" class=\"" . $class . "\" /><input type=\"hidden\" name=\"$fieldName\" id=\"" . $id . "_id\"
         value=\"" . $val . "\" />");

@@ -1503,6 +1503,18 @@ function closeuserbox() {
     $('#user_boxli').fadeOut('fast').remove();
     $('#user_arrow').attr('src', 'imgs/down-arrow.png');
 }
+function show_criteria_actions() {
+    if ($("#criteria_actions").length > 0) {
+        if ($("#criteria_actions").is(":visible")) {
+            var imgsrc = 'imgs/down-arrow.png';
+        } else {
+            var imgsrc = 'imgs/up-arrow.png';
+        }
+        $('#filter_arrow1').attr('src', imgsrc);
+        $('#criteria_actions').slideToggle('fast');
+    }
+    return false;
+}
 function show_filters() {
     if ($("#filters").length > 0) {
         if ($("#filters").is(":visible")) {

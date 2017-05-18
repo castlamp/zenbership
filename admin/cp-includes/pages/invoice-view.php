@@ -50,8 +50,26 @@ if ($check != '1') {
                 <div class="pad24">
 
                     <dl>
+                        <dt>Type</dt>
+                        <dd><?php
+                            if ($data['data']['quote'] == '1') {
+                                echo "Quote";
+                            } else {
+                                echo "Invoice";
+                            }
+                            ?></dd>
+                        <dt>Payment Options</dt>
+                        <dd><?php
+                            if ($data['data']['check_only'] == '1') {
+                                echo "Check Only";
+                            } else {
+                                echo "Standard";
+                            }
+                            ?></dd>
                         <dt>Status</dt>
                         <dd><?php echo $data['data']['format_status']; ?></dd>
+                        <dt>Viewed?</dt>
+                        <dd><?php echo $data['data']['format_last_seen']; ?></dd>
                         <dt>Created</dt>
                         <dd><?php echo $data['data']['format_date']; ?></dd>
                         <dt>Due</dt>
@@ -66,6 +84,8 @@ if ($check != '1') {
                                 echo "<a href=\"return_null.php\" onclick=\"return load_page('contact','view','" . $data['data']['member_id'] . "');\">Contact ID " . $data['data']['member_id'] . "</a>";
                             }
                             ?></dd>
+                        <dt>Last Reminder</dt>
+                        <dd><?php echo $data['data']['format_last_reminder']; ?></dd>
                     </dl>
                     <div class="clear"></div>
 

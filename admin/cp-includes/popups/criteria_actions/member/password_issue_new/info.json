@@ -1,0 +1,23 @@
+{
+  "id": "password_issue_new",
+  "name": "Issue New Password",
+  "description": "Generates and e-mails new passwords to selected members. Please update the 'email_template.html' file found in the criteria action's directory if required. Note that the standard email header and footer will <u>NOT</u> be added to the outgoing email.",
+  "input": [
+    {
+      "label": "E-Mail Subject",
+      "name": "subject",
+      "description": "What should the outgoing email subject read as?",
+      "value": "We've issued you a new password.",
+      "type": "string",
+      "class": "req"
+    },
+    {
+      "label": "Custom Message",
+      "name": "message",
+      "description": "Would you like to include a custom message to members in the password reset email?",
+      "value": "",
+      "type": "richtext",
+      "class": ""
+    }
+  ]
+}

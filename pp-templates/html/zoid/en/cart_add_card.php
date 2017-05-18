@@ -1,9 +1,8 @@
 <div id="zen_content" class="zen_round">
     <div class="zen_pad zen_fonts">
 
-        <form action="/pp-cart/credit_card.php" method="post" id="zen_form"
+        <form action="%pp_url%/pp-cart/credit_card.php" method="post" id="zen_form"
               onsubmit="return verifyForm('zen_form');">
-
             <div class="zen_col75l">
                 <h2 class="zen_notopmargin">Credit Card Details</h2>
                 %billing_form%

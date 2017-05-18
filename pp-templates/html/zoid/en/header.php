@@ -40,7 +40,7 @@
             <?php
         }
         ?>
-        <div id="navExpand"><img src="%theme_url%/imgs/icon-menu.png" width="24" height="24" alt="Menu" /></div>
+        <div id="navExpand"><img src="%theme_url%/imgs/icon-menu-black.png" width="24" height="24" alt="Menu" /></div>
         <ul id="mobileMenu"></ul>
     </div>
 </div>

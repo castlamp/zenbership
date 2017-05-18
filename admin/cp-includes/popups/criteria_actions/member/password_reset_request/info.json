@@ -1,0 +1,15 @@
+{
+  "id": "password_reset_request",
+  "name": "Password Reset Request",
+  "description": "Sends a password reset request email to selected members.",
+  "input": [
+    {
+      "label": "Message",
+      "name": "message",
+      "description": "Would you like to include a custom message to members in the password reset email?",
+      "value": "",
+      "type": "string",
+      "class": ""
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "member_type_update",
+  "name": "Member Type Update",
+  "description": "Updates the member type of all selected members.",
+  "input": [
+    {
+      "label": "Select New Member Type",
+      "name": "member_type",
+      "description": "What should the new member type for all of these members be set to?",
+      "value": "",
+      "type": "memberTypeList",
+      "class": "req"
+    }
+  ]
+}

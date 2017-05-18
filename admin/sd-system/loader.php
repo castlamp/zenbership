@@ -24,19 +24,22 @@ define('PP_DEBUG_IP', '127.0.0.1');
 
 // Server Execution Time limits
 // set_time_limit(30);
+set_time_limit(300);
 
 // MySQL Timeout Prevention
 //ini_set('mysql.connect_timeout', 300);
 //ini_set('default_socket_timeout', 300);
 
 // Error Logging
-ini_set("memory_limit", "100M");
+ini_set("memory_limit", "128M");
 ini_set("log_errors", "1");
 ini_set("error_log", PP_PATH . "/custom/errors.txt");
 
 if (PP_DEBUG_IP == $_SERVER['REMOTE_ADDR']) {
+    define('DEBUG_IP', true);
     error_reporting(E_ALL);
 } else {
+    define('DEBUG_IP', false);
     error_reporting(0);
 }
 
@@ -61,6 +64,12 @@ function __autoload($class) {
             $file = PP_ADMINPATH . "/cp-classes/" . $class . ".contract.php";
             if (file_exists($file)) {
                 include_once(PP_ADMINPATH . "/cp-classes/" . $class . ".contract.php");
+            } else {
+                // Field Rule?
+                $file = PP_ADMINPATH . "/cp-functions/field_rules/" . $class . ".php";
+                if (file_exists($file)) {
+                    include_once(PP_ADMINPATH . "/cp-functions/field_rules/" . $class . ".php");
+                }
             }
         }
     }
@@ -183,6 +192,11 @@ else if ($cur == "GBP") {
 }
 else if ($cur == "JPY") {
     define("CURRENCY_SYMBOL", "&#165;");
+    define("CURRENCY_SYMBOL_AFTER", "0");
+    define("PRICE_FORMAT", "1");
+}
+else if ($cur == 'PHP') {
+    define("CURRENCY_SYMBOL", "&#8369;");
     define("CURRENCY_SYMBOL_AFTER", "0");
     define("PRICE_FORMAT", "1");
 }

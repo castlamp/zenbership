@@ -6,14 +6,13 @@
 
 <h1>Are you bringing any guests?</h1>
 
-<p>If you plan on bringing one or more guests, please tell us how many below, and if applicable, select a guest ticket.
-    Note that there is a limit of %max_guests% guest(s) per registrant.</p>
+<p>If you plan on bringing guests, please select a guest ticket for each below. Note that there is a limit of %max_guests% guest(s) per attendee.</p>
 
 <div class="zen_field " id="blockfirst_name">
-    <label class="zen_left">Guests<span class="zen_req_star">*</span></label>
-
+    <label class="zen_left">Guests</label>
     <div class="zen_field_entry">
-        <input type="text" id="guests" name="guests" value="%selected_guests%" maxlength="60" style="" class=" req"/>
+        <span id="guestsDisplay">0</span>
+        <input type="hidden" id="guests" name="guests" value="%selected_guests%" maxlength="60" style="" />
     </div>
 </div>
 <div class="zen_clear"></div>
@@ -37,3 +36,17 @@ if (!empty($this->changes['products_guests'])) {
     <input type="submit" value="Continue" class="zen_focus" />
 </div>
 </form>
+
+<script type="text/javascript">
+    var totalTickets = 0;
+    $(document).ready(function() {
+        $('.event_ticket_entry').change(function() {
+            totalTickets = 0;
+            $(".event_ticket_entry").each(function(index) {
+                totalTickets += parseInt($(this).val());
+            });
+            $('#guests').val(totalTickets);
+            $('#guestsDisplay').html(totalTickets);
+        });
+    });
+</script>

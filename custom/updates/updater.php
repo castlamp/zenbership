@@ -27,6 +27,9 @@
  * @version     v1.0
  */
 
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
 
 echo "<html><head><title>Zenbership Database Updater</title><style>";
 echo <<<qq
@@ -45,8 +48,12 @@ echo "</style></head><body>";
 require dirname(dirname(dirname(__FILE__))) . "/admin/sd-system/config.php";
 $db = new db();
 
-$current_version = $db->get_option('current_version');
-$current_version = str_replace('.', '', $current_version);
+if (! empty($_GET['cv'])) {
+    $current_version = $_GET['cv'];
+} else {
+    $current_version = $db->get_option('current_version');
+    $current_version = str_replace('.', '', $current_version);
+}
 
 $commands = array();
 

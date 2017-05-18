@@ -4,7 +4,7 @@
         <h2 class="zen_notopmargin">Registration Complete</h2>
 
         <p>Congratulations, you have completed the membership process and your account is now active. You can now access the
-            <a href="%pp_url%/manage/">member's area</a>.</p>
+            <a href="%pp_url%/manage/?first_login=1">member's area</a>.</p>
 
         <h2>Membership Overview</h2>
 

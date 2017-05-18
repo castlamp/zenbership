@@ -177,6 +177,7 @@ if ($use_username == $check_username && $encode_password == $member['data']['pas
         $merr       = str_replace('%link%', $reactivate, $merr);
         gen_error($merr);
     }
+
     // Create the session at this point.
     $session = new session;
     $check_session = $session->check_session();
@@ -217,7 +218,11 @@ if ($use_username == $check_username && $encode_password == $member['data']['pas
         $redirect = $member['account']['start_page'];
     }
     else if (!empty($_POST['url'])) {
-        $redirect = $_POST['url'];
+        $_POST['url'] = str_replace('http://', '', $_POST['url']);
+        $_POST['url'] = str_replace('https://', '', $_POST['url']);
+        $_POST['url'] = str_replace('//', '', $_POST['url']);
+        $proto = explode(':', PP_URL);
+        $redirect = $proto['0'] . '://' . $_POST['url'];
     }
     else {
         $redirect_opt = $db->get_option('default_login_redirect');
@@ -258,7 +263,13 @@ if ($use_username == $check_username && $encode_password == $member['data']['pas
         'content' => $member['areas'],
         'member' => $member,
     );
+
     $task   = $db->end_task($task_id, '1', '', 'login', '', $indata);
+
+    if ($member['data']['last_login'] == '1920-01-01 00:01:01' || $member['data']['last_login'] == '0000-00-00 00:00:00') {
+        $redirect .= '&first_login=1';
+    }
+
     if ($ajax == '1') {
         echo "1+++redirect+++" . $redirect;
         exit;
@@ -270,8 +281,14 @@ if ($use_username == $check_username && $encode_password == $member['data']['pas
 } // Incorrect credentials.
 else {
     $add_login = $user->add_login($member['data']['id'], '0', $current_attempt);
+    $max_failed = $db->get_option('max_failed_login_attempts');
+
+    if (empty($max_failed) || ! is_numeric($max_failed)) {
+        $max_failed = 5;
+    }
+
     // Lock account?
-    if ($current_attempt >= $db->get_option('max_failed_login_attempts')) {
+    if ($current_attempt >= $max_failed) {
         $user->lock($member['data']['id']);
         $merr   = $db->get_error('L012');
         $unlock = add_time_to_expires('000000001000');

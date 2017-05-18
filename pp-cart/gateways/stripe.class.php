@@ -71,6 +71,7 @@ class gw_stripe extends cart
         $this->set_required_fields();
     }
 
+
     /**
      * List of required fields for a customer
      * profile token.

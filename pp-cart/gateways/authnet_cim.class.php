@@ -84,9 +84,11 @@ class gw_authnet_cim extends cart
         } else {
             $this->profile_id = $this->billing['gateway_id_1'];
         }
+
         // Payment ID
         if (empty($this->billing['gateway_id_2'])) {
             $data = $this->build_payment_profile();
+
             if ($data['error'] == '1') {
                 $this->show_error = $data;
                 return $data;
@@ -155,6 +157,19 @@ class gw_authnet_cim extends cart
         return $reply;
     }
 
+
+    function add_card()
+    {
+        $data = $this->build_token();
+
+        if ($data['error'] == '1') {
+            return $data;
+        } else {
+            return array('error' => '0', 'gateway_id_1' => $data['cust_id']);
+        }
+    }
+
+
     /**
      * Build a token
      * Constructor always generates a profile and
@@ -172,8 +187,8 @@ class gw_authnet_cim extends cart
         else if (empty($this->profile_payment_id)) {
             return array(
                 'error' => '1',
-                'msg' => 'Could not validate credit card.',
-                'resp_code' => 'ZEN101',
+                'msg' => (! empty($this->return['msg'])) ? $this->return['resp_code'] . ': ' . $this->return['msg'] : 'Could not validate credit card.',
+                'resp_code' => (! empty($this->return['resp_code'])) ? $this->return['resp_code'] : 'ZEN101',
             );
         }
         else {
@@ -273,6 +288,7 @@ class gw_authnet_cim extends cart
         $content .= "</paymentProfile>" .
             "<validationMode>liveMode</validationMode>" .
             "</createCustomerPaymentProfileRequest>";
+
         // Create it
         $call  = $this->call_gateway($content);
         $reply = $this->handle_reply($call, array('customerPaymentProfileId'));
@@ -440,6 +456,8 @@ class gw_authnet_cim extends cart
                 $return[$name] = $this->split_xml($name, $result);
             }
         }
+
+        $this->return = $return;
 
         return $return;
     }

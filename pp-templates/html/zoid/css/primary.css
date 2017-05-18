@@ -45,7 +45,10 @@ footer, header, hgroup, menu, nav, section {
 }
 
 ol, ul {
-    margin: 12px 0 12px 24px;
+    /* margin: 12px 0 12px 24px; */
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 dl.zen {
@@ -683,6 +686,7 @@ ul#menu_user_manage_menu li:not(:last-child) {
 ul#zen_event_steps {
     list-style: none;
     margin-left: 0px;
+    margin-bottom: 12px;
 }
 
 .zen_base_form ul {

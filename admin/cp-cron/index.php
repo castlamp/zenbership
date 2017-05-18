@@ -39,8 +39,12 @@
 // 3. backup.php -> Re-builds entire cache and backups database.
 //      Recommended: every day.
 //      0 0 */1 * * php /full/server/path/to/members/admin/cp-cron/backup.php
-error_reporting(0);
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require dirname(dirname(__FILE__)) . '/sd-system/config.php';
+
 // ----------------------------
 //   Start timer.
 $cronObject = new cron();
@@ -56,7 +60,78 @@ $cronObject = new cron();
 //	-> Buys 25 points
 // require "stat_rebuild.php";
 // Event Reminders
+/*
+ob_start();
 require "event_reminders.php";
+$output = ob_get_contents();
+ob_end_clean();
+*/
+echo "<h1>Events</h1>";
+require "event_reminders.php";
+
+// Subscriptions
+// Subscriptions without a credit card
+// on file need to send a reminder email
+// with an invoice link.
+// -> Create invoice.
+// -> Send email.
+// Also send pre-formatted reminders
+// before a subscription is set to
+// expire.
+/*
+ob_start();
+require "subscriptions.php";
+$output = ob_get_contents();
+ob_end_clean();
+*/
+echo "<h1>Subscriptions</h1>";
+require "subscriptions.php";
+
+// Invoice reminders.
+// 	ppSD_invoices where status != '1'.
+//	Options for reminders.
+//  -> invoice_reminder_no1
+//  -> invoice_reminder_no2
+//  -> invoice_reminder_post
+/*
+ob_start();
+require "invoice_reminders.php";
+$output = ob_get_contents();
+ob_end_clean();
+*/
+echo "<h1>Invoices</h1>";
+require "invoice_reminders.php";
+
+
+// Campaigns:
+// Ignore if status != '1'
+// optin_type = single or double
+//  -> Not sent from cron. Sent from the admin control panel.
+// optin_type = criteria
+//  -> Send based on members or contacts matching the criteria_id, but not
+//     present in the "ppSD_campaign_unsubscribe" table.
+/*
+ob_start();
+require "campaigns.php";
+$output = ob_get_contents();
+ob_end_clean();
+*/
+echo "<h1>Campaigns</h1>";
+require "campaigns.php";
+
+
+// Delete old files
+// Attachments?
+// QR Codes?
+// Clean DB
+/*
+ob_start();
+require "db_clean.php";
+$output = ob_get_contents();
+ob_end_clean();
+*/
+echo "<h1>DB Clean</h1>";
+require "db_clean.php";
 
 // Stats
 // Rebuild today's stats to
@@ -80,43 +155,14 @@ require "event_reminders.php";
 //   rsvps-[CAMPAIGN_ID] -> Resulting from clicks from a campaign.
 //   link_clicks-[CAMPAIGN_ID]
 //   emails_read-[CAMPAIGN_ID]
+/*
+ob_start();
 require "stat_rebuild.php";
-
-// Subscriptions
-// Subscriptions without a credit card
-// on file need to send a reminder email
-// with an invoice link.
-// -> Create invoice.
-// -> Send email.
-// Also send pre-formatted reminders
-// before a subscription is set to
-// expire.
-require "subscriptions.php";
-
-// Campaigns:
-// Ignore if status != '1'
-// optin_type = single or double
-//  -> Not sent from cron. Sent from the admin control panel.
-// optin_type = criteria
-//  -> Send based on members or contacts matching the criteria_id, but not
-//     present in the "ppSD_campaign_unsubscribe" table.
-require "campaigns.php";
-
-// Invoice reminders.
-// 	ppSD_invoices where status != '1'.
-//	Options for reminders.
-//  -> invoice_reminder_no1
-//  -> invoice_reminder_no2
-//  -> invoice_reminder_post
-
-require "invoice_reminders.php";
-// Delete old files
-// Attachments?
-// QR Codes?
-
-// Clean DB
-require "db_clean.php";
-
+$output = ob_get_contents();
+ob_end_clean();
+*/
+echo "<h1>Stat Rebuild</h1>";
+require "stat_rebuild.php";
 
 // ----------------------------
 // Custom cron jobs
@@ -136,31 +182,39 @@ while (false !== ($filename = readdir($dh))) {
     }
 }
 
-
 // ----------------------------
 // Plugin cron jobs
 
-$dh  = opendir(PP_PATH . '/custom/plugins');
+$path = PP_PATH . '/custom/plugins';
+$dh  = opendir($path);
+// $pluginCrons = array();
 while (false !== ($filename = readdir($dh))) {
-    $path = PP_PATH . '/custom/plugins/cron';
-    if ($filename == '.' || $filename == '..' || ! is_dir($path)) {
-        continue;
-    } else {
-        if (file_exists($path . '/index.php')) {
-            ob_start();
-            include $path . '/index.php';
-            $output = ob_get_contents();
-            ob_end_clean();
+    if (is_dir($path) && $path != '.' && $path != '..') {
+        $checkPath = $path . '/' . $filename . '/cron';
+        if (is_dir($checkPath)) {
+            $files = scandir($checkPath);
+            foreach ($files as $aFile) {
+                if ($aFile != '.' && $aFile != '..' && $aFile != '.gitignore') {
+                    // $pluginCrons[] = $checkPath . '/' . $aFile;
+                    echo "<h1>Plugin cron: " . $checkPath . '/' . $aFile . '</h1>';
+                    ob_start();
+                    include $checkPath . '/' . $aFile;
+                    $output = ob_get_contents();
+                    ob_end_clean();
+                    echo $output;
+                }
+            }
         }
     }
 }
 
 
 
+
 // ----------------------------
 //   Complete timer.
 
-echo "Done.";
+echo "<hr>Done.";
 
 $cronObject->end();
 exit;

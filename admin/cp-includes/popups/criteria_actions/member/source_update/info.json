@@ -1,0 +1,15 @@
+{
+  "id": "source_update",
+  "name": "Source Update",
+  "description": "Updates a member's source.",
+  "input": [
+    {
+      "label": "New Source",
+      "name": "source",
+      "description": "",
+      "value": "",
+      "type": "sourceList",
+      "class": "req"
+    }
+  ]
+}

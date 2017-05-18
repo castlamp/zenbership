@@ -5,16 +5,31 @@
 
             <form action="%pp_url%/pp-cart/invoice_add.php" method="post">
 
-                <h1>How much would you like to pay?</h1>
-
                 <input type="hidden" name="id" value="%invoice:id%"/>
                 <input type="hidden" name="hash" value="%invoice:hash%"/>
 
+                <?php
+                if ($this->changes['invoice']['check_only'] == '1') {
+                ?>
+
+                    <h1>Check Payments Only Please!</h1>
+
+                    <p class="zen">%company_address%</p>
+
+                    <p class="zen">%company_contact%</p>
+
+                <?php
+                } else {
+                ?>
+                <h1>How much would you like to pay?</h1>
                 <div class="zen_gray_box zen_topmargin_less">
                     <div class="zen_pad_less zen_medium">
                         %payment_field% <input type="submit" value="Continue to Payment"/>
                     </div>
                 </div>
+                <?php
+                }
+                ?>
 
             </form>
 

@@ -50,8 +50,12 @@ if ($check != '1') {
         $STH           = $db->run_query("
 			SELECT `id`
 			FROM `ppSD_members`
-			WHERE `email`='" . $db->mysql_clean($_POST['email']) . "' OR `id`='" . $db->mysql_clean($_POST['email']) . "'
+			WHERE
+			    `username`='" . $db->mysql_clean($_POST['email']) . "' OR
+			    `email`='" . $db->mysql_clean($_POST['email']) . "' OR
+			    `id`='" . $db->mysql_clean($_POST['email']) . "'
 		");
+        // `email`='" . $db->mysql_clean($_POST['email']) . "' OR
         while ($row = $STH->fetch()) {
             $total++;
             $use_member_id = $row['id'];

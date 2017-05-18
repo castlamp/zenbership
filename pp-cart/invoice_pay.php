@@ -35,20 +35,18 @@ if (! empty($_GET['id'])) {
         exit;
     } else {
         $temp    = $invoice->generate_template($data['data']['id'], 'invoice_pay', '1');
+
         if ($db->get_option('invoice_allow_partial') == '1') {
             $payment_info = place_currency('<input type="text" name="amount" value="' . $data['totals']['due'] . '" style="width:100px;" />', '1');
             $temp         = str_replace('%payment_field%', $payment_info, $temp);
             echo $temp;
             exit;
         } else {
-
-
             $secure = $this->getSecureLink();
-            // $secure = str_replace('http://', 'https://', PP_URL);
-
             header('Location: ' . $secure . '/pp-cart/invoice_add.php?id=' . urlencode($data['data']['id']) . '&hash=' . urlencode($data['data']['hash']) . '&amount=' . urlencode($data['totals']['due']));
             exit;
         }
+
     }
 } else {
     $db->show_error_page('I006');

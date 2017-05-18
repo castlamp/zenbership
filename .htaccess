@@ -53,6 +53,28 @@ RewriteRule ^(.*)$ login.php [F,L]
 # ---------------------------------------------------------
 # Main rewrites
 
+# Clean links for standard pages
+RewriteRule ^cart/?$ cart.php [NC,QSA,L]
+RewriteRule ^login/?$ login.php [NC,QSA,L]
+RewriteRule ^logout/?$ logout.php [NC,QSA,L]
+RewriteRule ^events/view/(.*)/(.*)/?$ event.php?id=$2 [NC,QSA,L]
+RewriteRule ^events/(.*)/(.*)/?$ calendar.php?id=$2 [NC,QSA,L]
+RewriteRule ^manage/billing?$ manage/billing_history.php [NC,QSA,L]
+RewriteRule ^manage/credit_cards?$ manage/credit_cards.php [NC,QSA,L]
+RewriteRule ^manage/events_attended?$ manage/events.php [NC,QSA,L]
+RewriteRule ^manage/files?$ manage/uploads.php [NC,QSA,L]
+RewriteRule ^manage/invoices?$ manage/invoices.php [NC,QSA,L]
+RewriteRule ^manage/member_news?$ manage/announcements.php [NC,QSA,L]
+RewriteRule ^manage/subscriptions?$ manage/subscriptions.php [NC,QSA,L]
+RewriteRule ^manage/update?$ manage/update_account.php [NC,QSA,L]
+RewriteRule ^news/(.*)/(.*)/?$ news.php?id=$2 [NC,QSA,L]
+RewriteRule ^register/(.*)/(.*)/?$ register.php?id=$2&action=reset [NC,QSA,L]
+RewriteRule ^register/?$ register.php?action=reset [NC,QSA,L]
+RewriteRule ^shop/view/(.*)/(.*)/?$ catalog.php?id=$2 [NC,QSA,L]
+RewriteRule ^shop/(.*)/(.*)/?$ catalog.php?category=$2 [NC,QSA,L]
+
+
+# All Others
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?in=$1 [L,QSA]

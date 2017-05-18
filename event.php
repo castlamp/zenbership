@@ -31,6 +31,12 @@ require "admin/sd-system/config.php";
 // Check a user's session
 $session = new session;
 $ses     = $session->check_session();
+
+if (! empty($_GET['action']) && $_GET['action'] == 'reset') {
+    $form = new form;
+    $form->kill_session($redirect);
+}
+
 // Calendar ID
 if (empty($_GET['id'])) {
     $session->reject('calendar', 'C001');
@@ -77,7 +83,7 @@ if ($ses['error'] != '1') {
 $changes['meta_title']           = $get_event['data']['name'];
 $changes['timeline']             = $get_event['timeline'];
 $changes['products_tickets']     = $event->format_products($get_event['products'], '0', 'tickets');
-$changes['products_guests']      = $event->format_products($get_event['products'], '0', 'guests');
+$changes['products_guests']      = $event->format_products($get_event['products'], '0', 'guests', $get_event['data']['max_guests']);
 $changes['products_others']      = $event->format_products($get_event['products'], '0', 'other');
 $changes['products_early_bird']  = $event->format_products($get_event['products'], '0', 'early_bird');
 $changes['products_member_only'] = $event->format_products($get_event['products'], '0', 'member_only');
@@ -97,14 +103,14 @@ $changes['stats']                = $get_event['stats'];
 if ($act == 'register') {
     // Continue...
     if ($get_event['data']['members_only_rsvp'] == '1' && $ses['error'] == '1') {
-        $return = PP_URL . '/calendar.php?id=' . $get_event['data']['id'] . '&act=register';
+        $return = PP_URL . '/event.php?id=' . $get_event['data']['id'] . '&act=register';
         $session->reject('login', 'C002', $return);
         exit;
     } else {
         $task_id = $db->start_task('event_rsvp', 'user', $get_event['data']['id'], $ses['member_id']);
         // Generate the form session
         // and the form itself
-        $form  = new form('', 'event', $_GET['id'], $ses['member_id'], '', '1', true);
+        $form  = new form('', 'event', $_GET['id'], $ses['member_id'], '', '1');
         $check = $form->check_session();
 
         if ($check != 1) {

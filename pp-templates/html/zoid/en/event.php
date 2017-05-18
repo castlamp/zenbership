@@ -12,9 +12,11 @@
             <div class="zen_event_details">
                 <?php
                 if ($this->changes['reg_closed'] != '1') {
+                    if (empty($_GET['act']) || $_GET['act'] != 'register') {
                 ?>
                     <a class="zen_focus" href="%pp_url%/event.php?act=register&id=%id%">Register</a>
                 <?php
+                    }
                 }
                 ?>
 

@@ -35,7 +35,7 @@ if ($check != $_GET['s']) {
     if (! empty($_GET['id'])) {
         // Get the user data
         $member = $user->get_user($_GET['id'], '', '0');
-        if ($member['data']['status'] == 'I') {
+        if ($member['data']['status'] != 'A') {
             // Issue code
             $new_code = md5($member['data']['salt'] . md5(time()) . $member['data']['id'] . rand(100, 999999));
             // Update DB
@@ -62,7 +62,7 @@ if ($check != $_GET['s']) {
             echo $temp;
             exit;
         } else {
-            echo "Your account is not inactive.";
+            echo "Your account is active: " . $member['data']['status'];
             exit;
         }
     } else {

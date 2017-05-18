@@ -81,7 +81,7 @@ if (empty($_GET['id'])) {
     }
 
     $changes   = array(
-        'forms' => (! empty($get_forms['forms'])) ? $get_forms['forms'] : '',
+        'forms' => (! empty($get_forms['forms'])) ? $get_forms['list'] : '',
     );
 
     $wrapper   = new template('register_list', $changes, '1');

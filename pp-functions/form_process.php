@@ -146,6 +146,7 @@ if (empty($form->salt)) {
         //echo "<LI>$onstep";
         //pa($form);
         //echo $onstep . '>' . $form->{'step'};
+
         if ($onstep > $form->step) {
             header('Location: ' . $redirect . '&code=E001&step=' . $form->step);
             exit;
@@ -370,7 +371,7 @@ if (empty($form->salt)) {
                 unset($form_data_put['follow']);
                 // For the default member update form.
                 $user   = new user;
-                $member = $user->get_user($form->member_id);
+                $member = $user->get_user($ses['member_id']);
 
                 if ($formdata['id'] == 'update-account' || $_POST['__zen_type'] == 'update-primary') {
                     // Additional fieldsets based on
@@ -382,7 +383,7 @@ if (empty($form->salt)) {
                     }
 
                     $db = new db();
-                    $value = $db->encode_password($form_data_put['current_password'], $member['data']['salt']);
+                    $value = $db->encode_password(trim($form_data_put['current_password']), $member['data']['salt']);
 
                     if ($value != $member['data']['password']) {
                         header('Location: ' . PP_URL . '/manage/update_account.php?code=L034');

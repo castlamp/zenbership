@@ -1120,6 +1120,7 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_logins` (
   `browser_short` VARCHAR( 25 ),
   `attempt_no` smallint(3),
   `type` TINYINT(1) DEFAULT '1',
+  `notes` MEDIUMTEXT DEFAULT NULL,
   PRIMARY KEY  (`id`),
   KEY `member_id` (`member_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
@@ -1750,6 +1751,7 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_staff` (
   `signature` mediumtext,
   `email` varchar(150),
   `first_name` varchar(50),
+  `middle_name` varchar(50),
   `last_name` varchar(50),
   `address_line_1` varchar(80),
   `address_line_2` varchar(30),
@@ -1960,9 +1962,9 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_uploads` (
   `id` varchar(30),
   `item_id` varchar(35) COMMENT 'Matches either the ppSD_members id or ppSD_contacts id',
   `type` enum('member','contact','event','product','cart_category','digital_product','employee'),
-  `filename` varchar(150),
-  `name` varchar(50),
-  `description` varchar(255),
+  `filename` varchar(150) DEFAULT '',
+  `name` varchar(150) DEFAULT '',
+  `description` varchar(255) DEFAULT NULL,
   `date` datetime DEFAULT '1920-01-01 00:01:01',
   `downloaded` int(8),
   `label` varchar(25) COMMENT 'Optional label that can be sent from the hidden form.',

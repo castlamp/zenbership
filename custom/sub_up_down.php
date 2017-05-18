@@ -1,3 +1,0 @@
-<?php
-
-// pa($data); exit;

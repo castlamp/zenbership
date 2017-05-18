@@ -48,6 +48,7 @@ $q1   = $db->run_query("
       ppSD_campaigns.status='1' AND
       ppSD_campaigns.optin_type='criteria'
 ");
+
 while ($row = $q1->fetch()) {
 
     // ----------------------------
@@ -61,42 +62,61 @@ while ($row = $q1->fetch()) {
     // ----------------------------
     //   Get criteria and build the query.
     $criteria   = new criteria($row['criteria_id'], true);
+
     if ($criteria->error) {
         $cronObject->alert('Zenguin could not send a campaign! The criteria that was set up for campaign "' . $row['name'] . '" has been deleted or cannot be found.');
         continue;
     }
 
-    $applicable = $db->run_query($criteria->query);
+    if (strpos($criteria->query, 'ppSD_accounts') !== false) {
+        $cronObject->alert('Zenguin could not send a campaign! The criteria that was set up for campaign "' . $row['name'] . '" has is for accounts, not members or contacts.');
+        continue;
+    }
+
+    try {
+        $applicable = $db->run_query($criteria->query);
+    } catch (Exception $e) {
+        $cronObject->alert('Criteria for campaign "' . $row['name'] . '" failed: ' . $e->getMessage());
+        echo "<li>SKIPPING: " . $row['name'] . ' / ' . $e->getMessage();
+        continue;
+    }
+
 
     // ----------------------------
     //   "after_join" campaigns
     if ($row['when_type'] == 'after_join') {
         // Loop possible users.
-        while ($user = $applicable->fetch()) {
+        try {
+            while ($user = $applicable->fetch()) {
 
-            if ($row['user_type'] == 'member') {
-                $use_date = $user['joined'];
-            } else {
-                $use_date = $user['created'];
-            }
-
-            $dif = explode(' ', add_time_to_expires($msg_data['data']['when_timeframe'], $use_date));
-
-            // Correct date: proceed.
-            if ($dif['0'] == $date['0']) {
-                $check_log      = $campaign->check_log($user['id'], $row['user_type'], $row['id']);
-                $unsubscription = $campaign->find_unsubscription($user['id'], $row['user_type']);
-                if ($unsubscription['unsubscribed'] != '1' && $check_log <= 0) {
-                    // Queue email for sending...
-                    if ($row['type'] == 'email') {
-                        $add     = $connect->queue_email($user['id'], $row['user_type'], '0');
-                        $add_log = $campaign->add_log($user['id'], $row['user_type'], $row['id']);
-                    }
+                if ($row['user_type'] == 'member') {
+                    $use_date = $user['joined'];
+                } else {
+                    $use_date = $user['created'];
                 }
-            } else {
-                continue;
-            }
 
+                $dif = explode(' ', add_time_to_expires($msg_data['data']['when_timeframe'], $use_date));
+
+                // Correct date: proceed.
+                if ($dif['0'] == $date['0']) {
+                    $check_log = $campaign->check_log($user['id'], $row['user_type'], $row['id']);
+                    $unsubscription = $campaign->find_unsubscription($user['id'], $row['user_type']);
+                    if ($unsubscription['unsubscribed'] != '1' && $check_log <= 0) {
+                        // Queue email for sending...
+                        if ($row['type'] == 'email') {
+                            $add = $connect->queue_email($user['id'], $row['user_type'], '0');
+                            $add_log = $campaign->add_log($user['id'], $row['user_type'], $row['id']);
+                        }
+                    }
+                } else {
+                    continue;
+                }
+
+            }
+        } catch (Exception $e) {
+            $cronObject->alert('Failed to run criteria: ' . $e->getMessage());
+            echo "<li>SKIPPING: " . $row['name'] . ' / ' . $e->getMessage();
+            continue;
         }
 
     } // ----------------------------
@@ -106,18 +126,24 @@ while ($row = $q1->fetch()) {
         $bdate = explode(' ', $msg_data['data']['when_date']);
         if ($bdate['0'] == $date['0']) {
             // Loop possible users.
-            while ($user = $applicable->fetch()) {
-                $check_log      = $campaign->check_log($user['id'], $row['user_type'], $row['id']);
-                $unsubscription = $campaign->find_unsubscription($user['id'], $row['user_type']);
-                if ($unsubscription['unsubscribed'] != '1' && $check_log <= 0) {
-                    // Queue email for sending...
-                    if ($row['type'] == 'email') {
-                        $add     = $connect->queue_email($user['id'], $row['user_type'], '0');
-                        $add_log = $campaign->add_log($user['id'], $row['user_type'], $row['id']);
+            try {
+                while ($user = $applicable->fetch()) {
+                    $check_log = $campaign->check_log($user['id'], $row['user_type'], $row['id']);
+                    $unsubscription = $campaign->find_unsubscription($user['id'], $row['user_type']);
+                    if ($unsubscription['unsubscribed'] != '1' && $check_log <= 0) {
+                        // Queue email for sending...
+                        if ($row['type'] == 'email') {
+                            $add = $connect->queue_email($user['id'], $row['user_type'], '0');
+                            $add_log = $campaign->add_log($user['id'], $row['user_type'], $row['id']);
+                        }
+
                     }
 
                 }
-
+            } catch (Exception $e) {
+                $cronObject->alert('Failed to run criteria: ' . $e->getMessage());
+                echo "<li>SKIPPING: " . $row['name'] . ' / ' . $e->getMessage();
+                continue;
             }
 
         }
