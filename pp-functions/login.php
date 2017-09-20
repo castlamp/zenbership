@@ -267,7 +267,11 @@ if ($use_username == $check_username && $encode_password == $member['data']['pas
     $task   = $db->end_task($task_id, '1', '', 'login', '', $indata);
 
     if ($member['data']['last_login'] == '1920-01-01 00:01:01' || $member['data']['last_login'] == '0000-00-00 00:00:00') {
-        $redirect .= '&first_login=1';
+        if (strpos('?', $redirect) === false) {
+            $redirect .= '?first_login=1';
+        } else {
+            $redirect .= '&first_login=1';
+        }
     }
 
     if ($ajax == '1') {

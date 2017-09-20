@@ -51,6 +51,7 @@ if ($cart->order['data']['salt'] != $_GET['s']) {
 }
 
 // Owned by a member?
+/*
 if (! empty($cart->order['data']['member_id']) && $cart->order['data']['member_type'] == 'member') {
     $session = new session;
     $ses     = $session->check_session();
@@ -58,6 +59,7 @@ if (! empty($cart->order['data']['member_id']) && $cart->order['data']['member_t
         show_view_error('S031');
     }
 }
+*/
 
 $billing_data = $cart->order_card_info($cart->order['data']['card_id']);
 // Shipping

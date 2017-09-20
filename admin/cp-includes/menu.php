@@ -682,7 +682,7 @@ if ($employee['permissions']['admin'] == '1' || ! empty($employee['permissions']
                     if ($filename == '.' || $filename == '..' || ! is_dir($fullpath)) continue;
 
                     if (is_dir($path . '/' . $filename . '/admin')) {
-                        $package = require $path . '/' . $filename . '/admin/package.php';
+                        $package = include $path . '/' . $filename . '/admin/package.php';
                         $extensionLinks[$package['menu']] = 'l=home&plugin=' . $filename;
                     }
                 }
