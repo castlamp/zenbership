@@ -1,0 +1,51 @@
+version: "3"
+services:
+  zenbership:
+    image: castlamp/zenbership:latest
+    ports:
+      - "80:80"
+    environment:
+      MYSQL_DATABASE: zenbership
+      MYSQL_PASSWORD: "change_password"
+      MYSQL_USER: zenbership_user
+      MYSQL_ROOT_PASSWORD: "change_password"
+    networks:
+      - zenbership-net
+    depends_on:
+      - mysql
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: 300M
+        restart_policy:
+          condition: on-failure
+  mysql:
+    image: mysql:5.6.30
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: zenbership
+      MYSQL_PASSWORD: "change_password"
+      MYSQL_USER: zenbership_user
+      MYSQL_ROOT_PASSWORD: "change_password"
+    networks:
+      - zenbership-net
+    command: mysqld --sql_mode=NO_ENGINE_SUBSTITUTION
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8091:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - zenbership-net
+networks:
+  zenbership-net:
