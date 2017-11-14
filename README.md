@@ -8,13 +8,6 @@ Author: Castlamp (https://www.castlamp.com/)
 Online: [http://www.zenbership.com/](http://www.zenbership.com/)
 
 
-Alpha Software Warning
-======================
-
-*THIS IS ALPHA SOFTWARE AND IS NOT INTENDED FOR PRODUCTION/LIVE USE.
-USE THIS AT YOUR OWN RISK!*
-
-
 License
 =======
 
