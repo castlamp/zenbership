@@ -1,6 +1,11 @@
 <?php
 
 // error_reporting(E_ALL);
+if (get_magic_quotes_gpc()) {
+    function magicQuotes_awStripslashes(&$value, $key) {$value = stripslashes($value);}
+    $gpc = array(&$_GET, &$_POST, &$_COOKIE, &$_REQUEST);
+    array_walk_recursive($gpc, 'magicQuotes_awStripslashes');
+}
 
 ini_set('display_errors', 0);
 error_reporting(0);
@@ -36,7 +41,7 @@ error_reporting(0);
 
                 // ----------------------------------------
 
-                        $version = '111';
+                        $version = '115';
 
                 // ----------------------------------------
 
@@ -181,7 +186,7 @@ $config .= "define('ZEN_HIDE_DEBUG_TIME', false);\n";
 $config .= "define('DISABLE_CAPTCHA', false);\n";
 $config .= "define('DISABLE_PERFORMANCE_BOOSTS', false);\n";
 
-$config .= "require PP_ADMINPATH . \"/sd-system/loader.php\";";
+$config .= "require_once PP_ADMINPATH . \"/sd-system/loader.php\";";
 
 if (is_writable($path . '/admin/sd-system')) {
     $step1 = '';

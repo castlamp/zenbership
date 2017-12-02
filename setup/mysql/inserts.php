@@ -351,6 +351,8 @@ $inserts[] = "
 	('S067', 'This product is unavailable at this time.'),
 	('S068', 'Product has been added to your cart!'),
 	('S070', 'No card on file. You will be invoiced unless you add one below.'),
+	('S071', 'Could not change your subscription: %error%'),
+	('S072', 'Your subscription has been updated. The new details can be found below:'),
 	
 	('W001', 'Widget (%id%) does not exist.'),
 	('W002', 'Widget (%id%) is not active.'),
@@ -1173,7 +1175,7 @@ $inserts[] = "
 	('cart_subscription_renewed', 'Subscription Renewed', '', 'Your subscription has renewed!', '', '', '', '', '', 1, 1, 1, 0, 0, '', 0, 2, 0, '" . $date . "', '', '', 1, 0, 'threefiveten', 'template'),
 	('cart_subscription_no_card',  'Cart Subscription: No Card Notice',  '',  'Your subscription could not be renewed',  '',  '',  '',  '',  '',  '1',  '1',  '1',  '1',  '1',  '',  '',  '2',  '0', '" . $date . "',  '',  '',  '',  '',  'threefiveten',  'template'),
 	('cart_subscription_changed', 'Subscription Plan Change', '', 'Subscription No. %subscription:id% Plan Changed', '', '', '', '', '', '1', '1', '1', '0', '0', '', '0', '2', '1', '" . $date . "', '', '', '1', '', 'threefiveten', 'template'),
-
+    ('cart_subscription_options_changed', 'Subscription Options Changed', '', 'You subscription options have changed!', '', '', '', '', '', 1, 1, 1, 1, 0, '', 0, 2, 0, '1920-01-01 00:01:01', '', '', 1, 0, 'threefiveten', 'template'),
 	('cart_subscription_advanced_notice', 'Subscription: Upcoming Renewal Notice', '', 'Your subscription will renew within %days_until_renewal% days.', '', '', '', '', '', 1, 1, 1, 1, 0, '', 0, 2, 0, '1920-01-01 00:01:01', '', '', 1, 0, 'threefiveten', 'template'),
 
 	('email_reg_complete', 'Registration Complete', '', 'Registration Complete', '', '', '', '', '', 1, 1, 1, 1, 0, '', 0, 2, 0, '" . $date . "', '', '', 1, 0, 'threefiveten', 'template'),
