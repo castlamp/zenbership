@@ -1,0 +1,37 @@
+<h1>Subscription No. %subscription:id% Has Been Updated!</h1>
+
+<div class="box">
+    <div class="pad">
+        <p>%first_name%,</p>
+
+        <p>We are happy to report that the options on your subscription have been successfully updated. Here is your subscription's new information:</p>
+
+        <h2>Subscription Overview</h2>
+        <table border="0" cellspacing=0 cellpadding=0 class=basic>
+            <tr>
+                <td class="right" width="130"><b>Name</b></th>
+                <td>%product:name%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Option</b></th>
+                <td>%options:option1%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Description</b></th>
+                <td>%product:tagline%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Price</b></th>
+                <td>%subscription:format_next_price%</td>
+            </tr>
+            <tr>
+                <td class="right" width="130"><b>Manage</b></th>
+                <td><a href="%subscription:update_link%">Manage this subscription</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p>Please feel free to contact us with any questions you may have regarding this subscription.</p>
+
+    </div>
+</div>
