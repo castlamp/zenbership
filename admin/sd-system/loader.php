@@ -210,6 +210,11 @@ else if ($cur == "IDR") {
     define("CURRENCY_SYMBOL_AFTER", "0");
     define("PRICE_FORMAT", "1");
 }
+else if ($cur == "ZAR") {
+    define("CURRENCY_SYMBOL", "R");
+    define("CURRENCY_SYMBOL_AFTER", "0");
+    define("PRICE_FORMAT", "1");
+}
 else if ($cur == "SEK") {
     define("CURRENCY_SYMBOL", "kr");
     define("CURRENCY_SYMBOL_AFTER", "1");
