@@ -408,7 +408,7 @@ class gw_authnet_cim extends cart
         if ($this->gateway_data['test_mode'] == '1') {
             $url = 'https://apitest.authorize.net/xml/v1/request.api';
         } else {
-            $url = 'https://api.authorize.net/xml/v1/request.api';
+            $url = 'https://api2.authorize.net/xml/v1/request.api';
         }
         // Prep the data
         $call = $this->curl_call($url, $send_data, '1');
