@@ -405,7 +405,7 @@ $inserts[] = "
 	('cvv', 'CVV Code', 'text', '', 0, 0, 'A three or four digit verification code printed directly on your credit card.', 'left', '', 'width:60px;', '', 0, 0, 4, '', 0, 1, 1, 3, 3, 0, 0, 0, 0),
 	('name_on_card', 'Name on Card', 'text', '', 0, 0, '', 'left', '', '', '', 0, 0, 0, '', 0, 1, 1, 0, 0, 0, 0, 0, 0),
 	('accttype', 'Account Type', 'select', '', 0, 0, 'What type of account is this?', 'left', 'Personal Checking\r\nBusiness Checking\r\nSavings', '', '', 0, 0, 0, '', 0, 1, 1, 0, 0, 0, 0, 0, 0),
-	('bank_name', 'Bank Name', 'text', '', 0, 0, 'Input the name of the bank to which this account belongs.', '', 'width:250px;', '', '', 0, 0, 0, '', 0, 1, 1, 0, 0, 0, 0, 0, 0),
+	('bank_name', 'Bank Name', 'text', '', 0, 0, 'Input the name of the bank to which this account belongs.', 'left', '', 'width:250px;', '', 0, 0, 0, '', 0, 1, 1, 0, 0, 0, 0, 0, 0),
 	('bank_routing', 'Routing Number', 'text', '', 0, 0, 'Input the bank''s nine digit routing number. This appears on the check below the memo line.', 'left', '', 'width:250px;', '', 0, 0, 9, '', 0, 1, 1, 3, 9, 0, 0, 0, 0),
 	('bank_account_name', 'Account Name', 'text', '', 0, 0, 'Input a name for this account.', 'left', '', 'width:250px;', '', 0, 0, 0, '', 0, 1, 1, 0, 0, 0, 0, 0, 0),
 	('bank_account_number', 'Account Number', 'text', '', 0, 0, 'Input the account number. This appears on the check below the memo line, to the right of the routing number.', 'left', '', 'width:250px;', '', 0, 0, 25, '', 0, 1, 1, 3, 0, 0, 0, 0, 0),
