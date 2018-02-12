@@ -96,7 +96,7 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_activity_methods` (
   `id` varchar(35),
   `icon` varchar(35),
   `link` varchar(35),
-  `link_type` enum('popup','popup_large','link','slider'),
+  `link_type` enum('popup','popup_large','link','slider','alert'),
   `custom` tinyint(1) DEFAULT '1',
   `text` VARCHAR( 75 ),
   `in_feed` TINYINT( 1 ) DEFAULT '1',
