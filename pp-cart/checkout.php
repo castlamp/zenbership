@@ -64,7 +64,6 @@ if (empty($cart->id)) {
             }
 
         } else {
-
             // Update gateway
             $cart->update_order_gateway($primary_gateway['0']['code']);
 
@@ -75,25 +74,18 @@ if (empty($cart->id)) {
 
                 header('Location: ' . $ssl . '/pp-cart/payment.php');
                 exit;
-
             }
             // Not an API
             else {
-
                 // Shipping?
                 $cart->check_for_shipping();
 
-                // Load gateway
                 $gateway = new $primary_gateway['0']['code'];
                 $link = $gateway->checkout();
 
-                // echo "REDIRECT:" .  $link;
-
                 header("Location: " . $link);
                 exit;
-
             }
-
         }
     }
 }
