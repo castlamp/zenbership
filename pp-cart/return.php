@@ -37,11 +37,9 @@ $cart = new cart;
 $salt = $cart->return_salt();
 
 if ($_GET['in'] == $salt) {
-
     // complete_order
     // status
     $use_order = $cart->get_order($_COOKIE['zen_cart'], '1');
-
     // $dif = time() - strtotime($use_order['data']['return_time_out']);
     // Confirm code and confirm the user has been gone for
     // at least 15 seconds.
@@ -49,20 +47,18 @@ if ($_GET['in'] == $salt) {
         $use_order['data']['return_code'] == $_GET['s'] &&
         (! empty($_COOKIE['zen_ret']) && $_COOKIE['zen_ret'] == $_GET['s'])
     ) {
-
         if ($use_order['data']['status'] == '1') {
             $cart->remove_cookies();
             header('Location: ' . $use_order['data']['url']);
             exit;
         } else {
-            $cart->complete_order();
+            $cart->complete_order($use_order['data']['id']);
         }
 
     } else {
         echo "Error RET01 - unable to complete process.";
         exit;
     }
-
 } else {
     echo "Error RET02 - unable to complete process.";
     exit;

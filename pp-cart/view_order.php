@@ -40,42 +40,34 @@ if (!empty($_GET['id'])) {
 } else {
     show_view_error();
 }
-$cart = new cart($id, '0');
-if (empty($cart->order['data']['id'])) {
+$cart = new cart();
+$order = $cart->get_order($id);
+
+if (empty($order['data']['id'])) {
     show_view_error();
     exit;
 }
 // Salt?
-if ($cart->order['data']['salt'] != $_GET['s']) {
+if ($order['data']['salt'] != $_GET['s']) {
     show_view_error();
+    exit;
 }
 
-// Owned by a member?
-/*
-if (! empty($cart->order['data']['member_id']) && $cart->order['data']['member_type'] == 'member') {
-    $session = new session;
-    $ses     = $session->check_session();
-    if ($ses['member_id'] != $cart->order['data']['member_id']) {
-        show_view_error('S031');
-    }
-}
-*/
-
-$billing_data = $cart->order_card_info($cart->order['data']['card_id']);
+$billing_data = $cart->order_card_info($order['data']['card_id']);
 // Shipping
-if ($cart->order['data']['need_shipping'] == '1') {
+if ($order['data']['need_shipping'] == '1') {
     $f12           = new field('shipping', '0', '', '', '', '', '1');
-    $shipping_form = $f12->generate_form('shipping_form', $cart->order['shipping_info']);
+    $shipping_form = $f12->generate_form('shipping_form', $order['shipping_info']);
     // Shipped?
-    if ($cart->order['shipping_info']['shipped'] == '1') {
+    if ($order['shipping_info']['shipped'] == '1') {
         $status = $db->get_error('S032');
-        $status = str_replace('%ship_date%', format_date($cart->order['shipping_info']['ship_date']), $status);
-        $status = str_replace('%ship_provider%', $cart->order['shipping_info']['shipping_provider'], $status);
+        $status = str_replace('%ship_date%', format_date($order['shipping_info']['ship_date']), $status);
+        $status = str_replace('%ship_provider%', $order['shipping_info']['shipping_provider'], $status);
         // Tracking?
-        if ($cart->order['shipping_info']['trackable'] == '1') {
+        if ($order['shipping_info']['trackable'] == '1') {
             $tracking   = $db->get_error('S034');
-            $track_link = $cart->tracking_link($cart->order['shipping_info']['shipping_number'], $cart->order['shipping_info']['shipping_provider']);
-            $tracking   = str_replace('%tracking_number%', $cart->order['shipping_info']['shipping_number'], $tracking);
+            $track_link = $cart->tracking_link($order['shipping_info']['shipping_number'], $order['shipping_info']['shipping_provider']);
+            $tracking   = str_replace('%tracking_number%', $order['shipping_info']['shipping_number'], $tracking);
         } else {
             $tracking   = $db->get_error('S035');
             $track_link = $db->get_error('S037');
@@ -96,15 +88,15 @@ if ($cart->order['data']['need_shipping'] == '1') {
 }
 $f12           = new field('billing', '0', '', '', '', '', '1');
 $billing_form  = $f12->generate_form('billing_form', $billing_data);
-$show_products = $cart->build_product_blocks($cart->order['components'], '0', $cart->order['data']['state'], $cart->order['data']['country']);
+$show_products = $cart->build_product_blocks($order['components'], '0', $order['data']['state'], $order['data']['country']);
 $changes       = array(
-    'data'            => $cart->order['data'],
+    'data'            => $order['data'],
     'cart_components' => $show_products,
     'billing'         => $billing_data,
     'billing_form'    => $billing_form,
     'shipping_form'   => $shipping_form,
     'shipping'        => $cart->{'shipping'},
-    'pricing'         => $cart->order['pricing'],
+    'pricing'         => $order['pricing'],
 );
 $temp          = new template('cart_view_order', $changes, '1');
 echo $temp;
