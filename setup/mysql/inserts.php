@@ -1012,6 +1012,96 @@ $inserts[] = "
 	(1, 'system', 'xxx', 'nnn', 1, '', '', 'System Console', '', '', '', '', '', '', '', '', '', '', '', '0', '0', '0', '', '', '1920-01-01 00:01:01', '', 0, 1, '', '$date', '1920-01-01 00:01:01', 0, 1),
 	(2, '" . $_POST['admin']['user'] . "', '$admin_pass_encoded', '$admin_pass_salt', 1, '\n\n--\n$emp_name', '', '$emp_first_name', '$emp_last_name', '', '', '', '', '', '', '', '', '', '', '0', '0', '0', 'Administration', '', '1920-01-01 00:01:01', '', 0, 1, '', '$date', '1920-01-01 00:01:01', 0, 1);
 ";
+
+
+$inserts[] = "
+	INSERT INTO `ppSD_templates` (`id`, `path`, `theme`, `subtemplate`, `title`, `desc`, `caller_tags`, `order`, `custom_header`, `custom_footer`, `custom_template`, `type`, `section`, `content`, `secure`, `static`, `owner`) VALUES
+	('calendar', '', 'zoid', '', 'Viewing Calendar', '', '', 0, '0', '0', '', 0, 'Calendar', '', 0, 1, 2),
+	('calendar_long', '', 'zoid', '', 'Viewing Event Listings', '', '', 0, '0', '0', '', 0, 'Calendar', '', 0, 1, 2),
+	('event', '', 'zoid', '', 'Viewing Event', '', '', 0, '0', '0', '', 0, 'Events', '', 0, 1, 2),
+	('error', '', 'zoid', '', 'Error Processing Request', '', '', 0, '0', '0', '', 0, '', '', 0, 1, 2),
+	('cart_terms', '', 'zoid', '', 'Terms and Conditions', '', '', 0, '0', '0', '', 0, 'Cart', '', 0, 1, 2),
+	('cart_shipping', '', 'zoid', '', 'Shipping and Handling', '', '', 0, '0', '0', '', 0, 'Cart', '', 0, 1, 2),
+	('cart_billing', '', 'zoid', '', 'Checkout', '', '', 0, '0', '0', '', 0, 'Cart', '', 0, 1, 2),
+	('cart_billing_preview', '', 'zoid', '', 'Preview Order', '', '', 0, '0', '0', '', 0, 'Cart', '', 0, 1, 2),
+	('catalog', '', 'zoid', '', 'Catalog', '', '', 0, '0', '0', '', 0, 'Catalog', '', 0, 1, 2),
+	('catalog_view_product', '', 'zoid', '', 'Viewing Product', '', '', 0, '0', '0', '', 0, 'Catalog', '', 0, 1, 2),
+	('cart_overview', '', 'zoid', '', 'Cart Contents', '', '', 0, '0', '0', '', 0, 'Cart', '', 0, 1, 2),
+	('login', '', 'zoid', '', 'Member Login', '', '', 0, '0', '0', '', 0, 'Login', '', 0, 1, 2),
+	('activation_code_sent', '', 'zoid', '', 'Activation Code Sent!', '', '', 0, '0', '0', '', 0, 'Login', '', 0, 1, 2),
+	('email_confirmed', '', 'zoid', '', 'E-mail Confirmation Complete', '', '', 0, '0', '0', '', 0, 'Login', '', 0, 1, 2),
+	('update', '', 'zoid', '', 'Membership Update Form', 'Used for any update form other than the primary update form.', '', '0', '', '', '', '0', 'Home', '', 0, 1, 2);
+";
+
+$inserts[] = "
+	INSERT INTO `ppSD_templates` (`id`, `path`, `theme`, `subtemplate`, `title`, `desc`, `caller_tags`, `order`, `custom_header`, `custom_footer`, `custom_template`, `type`, `section`, `content`, `secure`, `static`, `owner`) VALUES
+  ('cart_view_order', '', 'zoid', '', 'View Order', '', '', 0, '0', '0', '', 0, 'Cart', '', 0, 1, 2),
+	('cart_add_card',  '',  'zoid',  '',  'Add Credit Card',  '',  '',  0,  '',  '',  '',  '0',  'Member Dashboard',  '',  0,  1, 2),
+	('cart_manage_subscription', '', 'zoid', '', 'Manage Subscription', '', '', 0, '0', '0', '', 0, 'Cart', '', 0, 1, 2),
+	('cart_upsell_checkout', '', 'zoid', '', 'Related Products', '', '', 0, '', '', '', '0', 'Cart', '', 0, 1, 2),
+	('cart_product_entry_upsell', '', 'zoid', '', 'Cart Upsell Product Entry (Checkout)', '', '', 0, '', '', '', '0', 'Cart', '', 0, 1, 2),
+	('register_list_entry', '', 'zoid', '', 'Registration Form List Entry', '', '', 0, '0', '0', '', 0, 'Register', '', 0, 1, 2),
+	('reg_complete', '', 'zoid', '', 'Registration Complete', '', '', 0, '0', '0', '', 0, 'Register', '', 0, 1, 2),
+	('reg_activation_code', '', 'zoid', '', 'E-Mail Confirmation Required', '', '', 0, '0', '0', '', 0, 'Register', '', 0, 1, 2),
+	('reg_await_activation', '', 'zoid', '', 'Membership Pending Approval', '', '', 0, '0', '0', '', 0, 'Register', '', 0, 1, 2),
+	('register', '', 'zoid', '', 'Member Registration', '', '', 0, '0', '0', '', 0, 'Register', '', 0, 1, 2),
+	('reg_awaiting_payment', '', 'zoid', '', 'Account Pending Payment', '', '', 0, '0', '0', '', 0, 'Register', '', 0, 1, 2),
+	('password_reset', '', 'zoid', '', 'Password Reset', '', '', 0, '0', '0', '', 0, 'Login', '', 0, 1, 2),
+	('invoice_pay', '', 'zoid', '', 'Make a Payment on an Invoice', '', '', 0, '0', '0', '', 0, 'Invoice', '', 0, 1, 2),
+	('reset_password', '', 'zoid', '', 'Reset Your Password', '', '', 0, '0', '0', '', 0, 'Login', '', 0, 1, 2),
+	('password_recovery', '', 'zoid', '', 'Lost Password Recovery', '', '', 0, '0', '0', '', 0, 'Login', '', 0, 1, 2),
+	('invoice_print', '', 'zoid', '', 'Print an Invoice', '', '', 0, '0', '0', '', 0, 'Invoice', '', 0, 1, 2);
+";
+
+$inserts[] = "
+INSERT INTO `ppSD_templates` (`id`, `path`, `theme`, `subtemplate`, `title`, `desc`, `caller_tags`, `order`, `custom_header`, `custom_footer`, `custom_template`, `type`, `section`, `content`, `secure`, `static`, `owner`) VALUES
+	('invoice', '', 'zoid', '', 'Viewing Invoice', '', '', 0, '0', '0', '', 0, 'Invoice', '', 0, 1, 2),
+	('header', '', 'zoid', '', 'Header', '', '', 0, '0', '0', '', 1, '', '', 0, 1, 2),
+	('footer', '', 'zoid', '', 'Footer', '', '', 0, '0', '0', '', 2, '', '', 0, 1, 2),
+	('homepage', '', 'zoid', '', 'Welcome', '', '', 0, '0', '0', '', 0, 'Home', '', 0, 1, 2),
+	('featured_product_cell', '', 'zoid', '', 'Featured Product Cell', 'For use in the featured product widget.', '', 0, '0', '0', '', 3, '', '', 0, 0, 2),
+	('cart_overview_empty', '', 'zoid', '', 'Your Cart Is Empty!', '', '', 0, '0', '0', '', 0, 'Cart', '', 0, 1, 2),
+	('default_page', '', 'zoid', '', 'Default Content Page', '', '', 0, '0', '0', '', 3, '', '', 0, 0, 2),
+	('page-2col-5050', '', 'zoid', '', 'Two Column: 50-50', '', '', 0, '0', '0', '', 3, '', '', 0, 0, 2),
+	('page-2col-7030', '', 'zoid', '', 'Two Column: 70-30', '', '', 0, '0', '0', '', 3, '', '', 0, 0, 2),
+	('page-2col-3070', '', 'zoid', '', 'Two Column: 30-70', '', '', 0, '0', '0', '', 3, '', '', 0, 0, 2),
+	('page-3col-333', '', 'zoid', '', 'Three Column: 33-34-33', '', '', 0, '0', '0', '', 3, '', '', 0, 0, 2);
+";
+
+$inserts[] = "
+INSERT INTO `ppSD_templates` (`id`, `path`, `theme`, `subtemplate`, `title`, `desc`, `caller_tags`, `order`, `custom_header`, `custom_footer`, `custom_template`, `type`, `section`, `content`, `secure`, `static`, `owner`) VALUES
+	('manage_home', '', 'zoid', '', 'Manage Home', '', '', 0, '0', '0', '', 0, 'Member Dashboard', '', 1, 1, 2),
+	('manage_update_account', '', 'zoid', '', 'Update Account', '', '', 0, '0', '0', '', 0, 'Member Dashboard', '', 1, 1, 2),
+	('manage_announcements', '', 'zoid', '', 'Announcements and News', '', '', 0, '0', '0', '', 0, 'Member Dashboard', '', 1, 1, 2),
+	('manage_billing_history', '', 'zoid', '', 'Billing History', '', '', 0, '0', '0', '', 0, 'Member Dashboard', '', 1, 1, 2),
+	('manage_invoices',  '',  'zoid',  '',  'Invoice Management',  '',  '',  0,  '',  '',  '',  '0',  'Member Dashboard',  '',  1,  '1',  '2'),
+	('manage_calendar',  '',  'zoid',  '',  'Your Calendar',  '',  '',  0,  '',  '',  '',  '0',  'Member Dashboard	',  '',  1,  '1',  '2'),
+	('cart_receipt', '', 'zoid', '', 'Order Complete', '', '', 0, '0', '0', '', 0, 'Cart', '', 0, 1, 2),
+	('manage_event_rsvps', '', 'zoid', '', 'Event Registration History', '', '', 0, '0', '0', '', 0, 'Member Dashboard', '', 1, 1, 2),
+	('manage_subscriptions', '', 'zoid', '', 'Subscriptions', '', '', 0, '0', '0', '', 0, 'Member Dashboard', '', 1, 1, 2),
+	('manage_credit_cards', '', 'zoid', '', 'Credit Cards on File', '', '', 0, '0', '0', '', 0, 'Member Dashboard', '', 1, 1, 2),
+	('manage_uploads', '', 'zoid', '', 'File Manager', '', '', 0, '', '', '', '0', 'Member Dashboard', '', 1, '1', '2');
+";
+
+$inserts[] = "
+INSERT INTO `ppSD_templates` (`id`, `path`, `theme`, `subtemplate`, `title`, `desc`, `caller_tags`, `order`, `custom_header`, `custom_footer`, `custom_template`, `type`, `section`, `content`, `secure`, `static`, `owner`) VALUES
+	('reg_preview', '', 'zoid', '', 'Registration Preview', '', '', 0, '', '', '', 0, 'Register', '', 0, 1, 0),
+	('register_list', '', 'zoid', '', 'Registration Options', '', '', 0, '', '', '', 0, 'Register', '', 0, 1, 0),
+	('popup_cart_added', '', 'zoid', '', 'Cart Popup: Item Added To Cart', '', '', 0, '', '', '', '0', 'Cart', '', 0, '1', '2'),
+	('popup_cart_alter_subscription', '', 'zoid', '', 'Cart Popup: Confirm Subscription Change', '', '', 0, '', '', '', '0', 'Cart', '', 0, '1', '2'),
+	('popup_cart_set_region', '', 'zoid', '', 'Cart Popup: Set Tax Region', '', '', 0, '', '', '', '0', 'Cart', '', 0, '1', '2'),
+	('campaign_subscription', '', 'zoid', '', 'Subscription Confirmed', '', '', 0, '', '', '', 0, 'Home', '', 0, 1, 0),
+	('campaign_confirm_needed',  '',  'zoid',  '',  'Subscription Confirmation Required',  '',  '',  0,  '',  '',  '',  '0',  'Home',  '',  0,  '1',  '2'),
+	('campaign_unsubscribed', '', 'zoid', '', 'Unsubscribed From Campaign', '', '', 0, '', '', '', 0, 'Home', '', 0, 1, 0),
+	('contact', '', 'zoid', '', 'Contact', '', '', 0, '', '', '', 0, 'Home', '', 0, 1, 2),
+	('dependency', '', 'zoid', '', 'Additional Information Required', '', '', 0, '', '', '', '0', 'Home', '', 0, '1', '2'),
+	('contact_thankyou', '', 'zoid', '', 'Thank you for contacting us!', '', '', 0, '', '', '', 0, 'Home', '', 0, 1, 0),
+	('reg_select_product', '', 'zoid', '', 'Membership Options', '', '', 0, '', '', '', 0, 'Register', '', 0, 1, 2),
+	('reg_code_required', '', 'zoid', '', 'Registration Code is Required', '', '', 0, '', '', '', 0, 'Register', '', 0, 1, 1);
+";
+
+
+/*
 $inserts[] = "
 	INSERT INTO `ppSD_templates` (`id`, `path`, `theme`, `subtemplate`, `title`, `desc`, `caller_tags`, `order`, `custom_header`, `custom_footer`, `custom_template`, `type`, `section`, `content`, `secure`, `static`, `owner`) VALUES
 	('calendar', '', 'zoid', '', 'Viewing Calendar', '', '', 0, '0', '0', '', 0, 'Calendar', '', 0, 1, 2),
@@ -1144,6 +1234,8 @@ $inserts[] = "
 	('register_list_entry', 'zoid', 'Registration: Entry: Form Option', '0', 'Register', '1', '2'),
 	('register_list_entry_none', 'zoid', 'Registration: No form options', '0', 'Register', '1', '2');
 ";
+*/
+
 // ('popup_login_error', 'zoid', 'Popup: Login Error', '0', 'Cart', '1', '2'),
 // CC or BCC staff:
 // staff:1  (1 being the ID of the staff member)

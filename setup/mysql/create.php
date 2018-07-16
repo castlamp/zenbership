@@ -1252,7 +1252,7 @@ $create[] = "CREATE TABLE IF NOT EXISTS `ppSD_member_data` (
   `address_line_1` varchar(80) default NULL,
   `address_line_2` varchar(30) default NULL,
   `city` varchar(40) default NULL,
-  `state` varchar(3) default NULL,
+  `state` varchar(50) default NULL,
   `zip` varchar(10) default NULL,
   `country` varchar(35) default NULL,
   `phone` varchar(20) default NULL,
