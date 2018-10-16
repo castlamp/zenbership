@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * List of sources
  *
