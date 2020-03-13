@@ -5,7 +5,7 @@ Zenbership is open source membership software written in PHP that combines event
 subscription management, marketing tools (like e-mail campaigns), a shopping cart, and secure content delivery.
 
 Author: Castlamp (https://www.castlamp.com/)  
-Online: [http://www.zenbership.org/](http://www.zenbership.org/)
+Online: [http://zenbership.org/](http://www.zenbership.org/)
 
 
 License
