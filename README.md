@@ -7,6 +7,11 @@ subscription management, marketing tools (like e-mail campaigns), a shopping car
 Author: Jon Belelieu (http://twitter.com/jbelelieu)  
 Online: [http://zenbership.org/](http://www.zenbership.org/)
 
+Notice of Deprecation
+=====================
+
+While the software will still run on most servers, note that support and updates for the product have been deprecated since 2018. Work did begin on Zenbership v2 but that was sidelined due to a lack of time and a failed Kickstarter. As of March 2020, there are no plans continue development on the software.
+
 Documentation
 =============
 
