@@ -7,6 +7,14 @@ subscription management, marketing tools (like e-mail campaigns), a shopping car
 Author: Jon Belelieu (http://twitter.com/jbelelieu)  
 Online: [http://zenbership.org/](http://www.zenbership.org/)
 
+Documentation
+=============
+
+Temporary link to documentation can be found here:
+https://web.archive.org/web/20181221174926/http://documentation.zenbership.com/
+
+Note that zenbership.com was lost. I am working transferring everything to zenbership.org but this will take some time.
+
 License
 =======
 
