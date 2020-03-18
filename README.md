@@ -16,7 +16,7 @@ Documentation
 =============
 
 Temporary link to documentation can be found here:
-https://web.archive.org/web/20181221174926/http://documentation.zenbership.com/
+https://web.archive.org/web/20190209153507/http://documentation.zenbership.com/
 
 Note: I am _painfully_ aware that this isn't ideal. zenbership.com was lost. I am working transferring everything to zenbership.org but this will take some time.
 
