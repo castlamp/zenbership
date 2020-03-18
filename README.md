@@ -15,10 +15,7 @@ While the software will still run on most servers, note that support and updates
 Documentation
 =============
 
-Temporary link to documentation can be found here:
-https://web.archive.org/web/20190209153507/http://documentation.zenbership.com/
-
-Note: I am _painfully_ aware that this isn't ideal. zenbership.com was lost. I am working transferring everything to zenbership.org but this will take some time.
+http://docs.zenbership.org/
 
 License
 =======
