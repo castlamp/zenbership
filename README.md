@@ -1,3 +1,8 @@
+Work on Zenbership v2 Has Begun!
+================================
+
+**I am thrilled to announce that work on Zenbership v2 has begun! The process will be ongoing for some time, but you can follow along with the [progress here](http://zenbership.org/zen2.html).**
+
 Zenbership Membership Software
 ==============================
 
